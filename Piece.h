@@ -16,7 +16,7 @@ class Piece{
 	public :
 		Piece();
 		Piece(Couleur C,Nom N);
-		virtual string	 getCouleur()const;
+		virtual string getCouleur()const;
 		virtual string getNom()const;
 };
 

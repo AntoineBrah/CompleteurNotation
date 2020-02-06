@@ -1,7 +1,8 @@
 #ifndef Cellule_H
 #define Cellule_H
 using namespace std;
-#include "Piece.h"
+#include "Pion.h"
+
 
 class Cellule{
 
@@ -13,7 +14,7 @@ class Cellule{
 
     public:
         Cellule();
-        Cellule(Couleur, Nom);
+        Cellule(Piece* P);
 
         Piece* getPiece() const;
         string getPosition()const;
