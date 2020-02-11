@@ -3,24 +3,32 @@
 #include <string>
 using namespace std;
 
-int lectureFichier(string path, int line){
+string* lectureFichier(string path, string coup){
 
     string const thisPath(path);
     ifstream fichier(thisPath);
     if(fichier){
-        string lignePreced;
-        for(int i = 1;i < line;i++){
-            getline(fichier,lignePreced);
+        string test;
+        string numCoup = coup + '.';
+        while (test != numCoup){
+            fichier >> test;
         }
         string coupBlanc, coupNoir;
         fichier >> coupBlanc;
         fichier >> coupNoir;
-        cout << coupBlanc << endl;
-        cout << coupNoir << endl; 
+        //cout << coupBlanc << endl;
+        //cout << coupNoir << endl;
+        string* turn = new string[2];
+        turn[0] = coupBlanc;
+        turn[1] = coupNoir;
+        return turn;
     }
     else{
         cout << "erreur lors de l'ouverture du fichier" << endl;
+        string* erreur = new string[2];
+        erreur[0] = "-1";
+        erreur[1] = "-1";
+        return erreur;
     }
-    return 0;
 
 }
