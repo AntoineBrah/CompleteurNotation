@@ -1,11 +1,6 @@
-#include <iostream>
-#include <string>
-using namespace std;
 #include "Fou.h"
 
-Fou::Fou() : Piece(){}
-
-Fou::Fou(Couleur C, Nom N) : Piece(C,N){
+Fou::Fou(Couleur c, Nom n, string pos) : Piece(c,n,pos){
 	switch(couleur){
 		case Blanc : skin = '/';
 		case Noir : skin = '#';

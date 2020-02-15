@@ -1,18 +1,15 @@
-#ifndef PION_H
-#define PION_H
-#include <list>
-using namespace std;
+#ifndef Pion_H
+#define Pion_H
+
 #include "Piece.h"
 
-class pion : public virtual Piece{
+class Pion : public virtual Piece{
 
 	protected :
 		char skin;
 		
 	public :
-		pion();
-		pion(Couleur C,Nom N);
-		//virtual vector<string> mouvement();
+		Pion(Couleur,Nom,string);
 };
 
 #endif

@@ -15,16 +15,16 @@ Piece* Cellule::getPiece() const{
     return p;
 }
 
-string Cellule::getPosition() const{
-    return position->getCoord();
-}
-
 Cellule* Cellule::getCSP() const{
     return CSP;
 }
 
 Cellule* Cellule::getCSE() const{
     return CSE;
+}
+
+string Cellule::getPositionPiece() const{
+    return p->getPosition();
 }
 
 void Cellule::setCSP(Cellule c){

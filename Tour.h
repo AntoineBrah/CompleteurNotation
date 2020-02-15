@@ -1,5 +1,6 @@
-#ifndef TOUR_H
-#define TOUR_H
+#ifndef Tour_H
+#define Tour_H
+
 #include "Piece.h"
 
 class Tour : public virtual Piece{
@@ -8,8 +9,7 @@ protected:
 	char skin;
 
 public:
-	Tour();
-	Tour(Couleur C, Nom N);
+	Tour(Couleur, Nom, string);
 	virtual ~Tour();
 };
 

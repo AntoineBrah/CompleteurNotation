@@ -1,11 +1,6 @@
-#include <iostream>
-#include <string>
-using namespace std;
 #include "Roi.h"
 
-Roi::Roi() : Piece(){}
-
-Roi::Roi(Couleur C, Nom N) : Piece(C,N){
+Roi::Roi(Couleur c, Nom n, string pos) : Piece(c,n,pos){
 	switch(couleur){
 		case Blanc : skin = '/';
 		case Noir : skin = '#';

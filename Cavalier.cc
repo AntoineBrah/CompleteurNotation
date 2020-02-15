@@ -1,11 +1,6 @@
-#include <iostream>
-#include <string>
-using namespace std;
 #include "Cavalier.h"
 
-Cavalier::Cavalier() : Piece(){}
-
-Cavalier::Cavalier(Couleur C, Nom N) : Piece(C,N){
+Cavalier::Cavalier(Couleur c, Nom n, string pos) : Piece(c,n,pos){
 	switch(couleur){
 		case Blanc : skin = '/';
 		case Noir : skin = '#';

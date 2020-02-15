@@ -1,5 +1,6 @@
-#ifndef CAVALIER_H
-#define CAVALIER_H
+#ifndef Cavalier_H
+#define Cavalier_H
+
 #include "Piece.h"
 
 class Cavalier : public virtual Piece{
@@ -8,8 +9,7 @@ protected:
 	char skin;
 
 public:
-	Cavalier();
-	Cavalier(Couleur C, Nom N);
+	Cavalier(Couleur, Nom, string);
 	virtual ~Cavalier();
 };
 

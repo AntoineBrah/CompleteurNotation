@@ -1,5 +1,6 @@
-#ifndef FOU_H
-#define FOU_H
+#ifndef Fou_H
+#define Fou_H
+
 #include "Piece.h"
 
 class Fou : public virtual Piece{
@@ -8,8 +9,7 @@ protected:
 	char skin;
 
 public:
-	Fou();
-	Fou(Couleur C, Nom N);
+	Fou(Couleur, Nom, string);
 	virtual ~Fou();
 };
 

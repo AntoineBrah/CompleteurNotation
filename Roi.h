@@ -1,5 +1,6 @@
-#ifndef ROI_H
-#define ROI_H
+#ifndef Roi_H
+#define Roi_H
+
 #include "Piece.h"
 
 class Roi : public virtual Piece{
@@ -8,8 +9,7 @@ protected:
 	char skin;
 
 public:
-	Roi();
-	Roi(Couleur C, Nom N);
+	Roi(Couleur, Nom, string);
 	virtual ~Roi();
 };
 

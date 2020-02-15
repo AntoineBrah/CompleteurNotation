@@ -1,10 +1,6 @@
-
 #include "Piece.h"
 
-Piece::Piece(){}
-
-Piece::Piece(Couleur C, Nom N) : couleur(C), nom(N){
-}
+Piece::Piece(Couleur c, Nom n, string p) : couleur(c), nom(n), pos(p){}
 
 string Piece::getCouleur() const{
 	switch(couleur){
@@ -44,4 +40,8 @@ string Piece::getNom() const{
 			return "Erreur";
 			break;
 	}
+}
+
+string Piece::getPosition() const{
+	return pos.getCoord();
 }
