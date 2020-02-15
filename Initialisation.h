@@ -9,11 +9,7 @@
 #include "Pion.h"
 #include "Cellule.h"
 
-#define N 8
-/*
-Piece* initialiserPiece(){
+void initialiserPiece();
 
-    Piece **tab = new Piece[8][8];
-}
-*/
+
 #endif

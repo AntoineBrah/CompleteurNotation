@@ -1,6 +1,6 @@
 CXX=g++
 CXX_FLAGS= -ansi -Wall -pedantic -g
-SOURCE= Piece.cc Tour.cc Cavalier.cc Fou.cc Dame.cc Roi.cc Pion.cc Cellule.cc Position.cc LectureFichier.cc Main.cc
+SOURCE= Piece.cc Tour.cc Cavalier.cc Fou.cc Dame.cc Roi.cc Pion.cc Cellule.cc Position.cc LectureFichier.cc Initialisation.cc Main.cc
 PROG=chess
 MSG_OK = @ echo "\t\t\t........................OK"
 
