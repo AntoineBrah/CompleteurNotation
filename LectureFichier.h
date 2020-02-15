@@ -27,7 +27,7 @@ class lectureFichier{
         string getCb() const;
         string getCn() const;
 
-        //~lectureFichier();
+        ~lectureFichier();
 };
 
 #endif

@@ -46,11 +46,10 @@ void lectureFichier::traiter(){
     cn = s.substr(pos+1);
 }
 
-/*
 lectureFichier::~lectureFichier(){
     monFlux.close();
 }
-*/
+
 
 
 
