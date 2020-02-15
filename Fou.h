@@ -5,12 +5,9 @@
 
 class Fou : public virtual Piece{
 
-protected:
-	char skin;
-
-public:
-	Fou(Couleur, type::Nom, string);
-	virtual ~Fou();
+	public:
+		Fou(Couleur, type::Nom, string);
+		virtual ~Fou();
 };
 
 #endif

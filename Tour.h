@@ -5,12 +5,9 @@
 
 class Tour : public virtual Piece{
 
-protected:
-	char skin;
-
-public:
-	Tour(Couleur, type::Nom, string);
-	virtual ~Tour();
+	public:
+		Tour(Couleur, type::Nom, string);
+		virtual ~Tour();
 };
 
 #endif

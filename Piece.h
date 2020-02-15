@@ -9,6 +9,7 @@ using namespace std;
 
 namespace type{
 	enum Nom{
+		Null,
 		Pion, 
 		Tour, 
 		Cavalier, 
@@ -27,6 +28,7 @@ class Piece{
 		Position pos;
 
 	public :
+		Piece();
 		Piece(Couleur, type::Nom, string);
 		string getCouleur() const;
 		string getNom() const;

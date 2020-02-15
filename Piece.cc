@@ -1,5 +1,6 @@
 #include "Piece.h"
 
+Piece::Piece() : couleur(Null), nom(type::Null), pos(""){}
 Piece::Piece(Couleur c, type::Nom n, string p) : couleur(c), nom(n), pos(p){}
 
 string Piece::getCouleur() const{
@@ -11,7 +12,7 @@ string Piece::getCouleur() const{
 			return "Noir";
 			break;
 		default:
-			return "Erreur";
+			return "Null";
 			break;
 	}
 }

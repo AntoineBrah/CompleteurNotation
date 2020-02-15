@@ -5,9 +5,6 @@
 
 class Pion : public virtual Piece{
 
-	protected :
-		char skin;
-		
 	public :
 		Pion(Couleur, type::Nom, string);
 		virtual ~Pion();

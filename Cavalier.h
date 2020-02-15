@@ -5,12 +5,9 @@
 
 class Cavalier : public virtual Piece{
 
-protected:
-	char skin;
-
-public:
-	Cavalier(Couleur, type::Nom, string);
-	virtual ~Cavalier();
+	public:
+		Cavalier(Couleur, type::Nom, string);
+		virtual ~Cavalier();
 };
 
 #endif
