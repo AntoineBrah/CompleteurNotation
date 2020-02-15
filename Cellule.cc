@@ -1,13 +1,14 @@
 #include "Cellule.h"
 
-Cellule::Cellule() : p(NULL),position(""), CSP(NULL), CSE(NULL){}
 Cellule::Cellule(Piece* P) : p(P), CSP(NULL), CSE(NULL){
+    /*
 	if((P->getCouleur()=="Blanc") && (P->getNom()=="Pion")){
 		position = "A2";
 	}
 	else if((P->getCouleur()=="Noir") && (P->getNom()=="Pion")){
 		position = "A7";
 	}
+    */
 }
 
 Piece* Cellule::getPiece() const{
@@ -15,7 +16,7 @@ Piece* Cellule::getPiece() const{
 }
 
 string Cellule::getPosition() const{
-    return position;
+    return position->getCoord();
 }
 
 Cellule* Cellule::getCSP() const{

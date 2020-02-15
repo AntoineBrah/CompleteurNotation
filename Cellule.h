@@ -1,19 +1,21 @@
 #ifndef Cellule_H
 #define Cellule_H
+
+#include "Piece.h"
+#include "Position.h"
+
 using namespace std;
-#include "Pion.h"
 
 
 class Cellule{
 
     private:
         Piece *p;
-        string position;
+        Position* position;
         Cellule *CSP; // Coup suivant pièce
         Cellule *CSE; // Coup suivant échiquier 
 
     public:
-        Cellule();
         Cellule(Piece* P);
 
         Piece* getPiece() const;

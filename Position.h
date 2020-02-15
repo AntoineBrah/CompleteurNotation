@@ -1,0 +1,29 @@
+#ifndef Position_H
+#define Position_H
+
+#include <iostream>
+#include <string>
+#include "Couleur.h"
+
+using namespace std;
+
+class Position{
+
+    private:
+        string colonne;
+        string ligne;
+
+        Couleur couleurCase;
+    public:
+        Position(string);
+
+        string getCoord() const;
+        string getCouleur() const;
+        string toString() const;
+    
+
+
+
+};
+
+#endif

@@ -1,9 +1,11 @@
-#ifndef PIECE_H
-#define PIECE_H
-#include<string>
+#ifndef Piece_H
+#define Piece_H
+
+#include <string>
+#include "Couleur.h"
+
 using namespace std;
 
-enum Couleur{Blanc, Noir};
 enum Nom{Pion, Tour, Cavalier, Fou, Dame, Roi};
 
 
@@ -16,8 +18,8 @@ class Piece{
 	public :
 		Piece();
 		Piece(Couleur C,Nom N);
-		virtual string getCouleur()const;
-		virtual string getNom()const;
+		string getCouleur() const;
+		string getNom() const;
 };
 
 #endif
