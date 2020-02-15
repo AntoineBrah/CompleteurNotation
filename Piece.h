@@ -33,6 +33,10 @@ class Piece{
 		string getCouleur() const;
 		string getNom() const;
 		string getPosition() const;
+
+		void setPostion(string);
+
+		string toString() const;
 };
 
 #endif

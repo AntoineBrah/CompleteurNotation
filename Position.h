@@ -17,13 +17,12 @@ class Position{
     public:
         Position(string);
 
+        void setCoord(string);
+
         string getCoord() const;
         string getCouleur() const;
         string toString() const;
     
-
-
-
 };
 
 #endif

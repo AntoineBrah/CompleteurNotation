@@ -46,3 +46,11 @@ string Piece::getNom() const{
 string Piece::getPosition() const{
 	return pos.getCoord();
 }
+
+void Piece::setPostion(string position){
+	pos.setCoord(position);
+}
+
+string Piece::toString() const{
+	return "Type pièce : " + getNom() + "\nCouleur pièce : " + getCouleur() + "\nPosition pièce : " + getPosition();
+}
