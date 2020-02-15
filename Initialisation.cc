@@ -15,6 +15,8 @@ void initialiserPiece(){
     /*****************************/
     /*****************************/
 
+    // Ne pas oublier de delete toutes les pièces allouées dynamiquement
+
     /* Pièces joueur blanc */
 
     Piece *Pb1 = new Pion(Blanc, type::Pion, "a2"); // Pion blanc n°1 situé en a2
@@ -32,7 +34,7 @@ void initialiserPiece(){
     Piece *Cb2 = new Cavalier(Blanc, type::Cavalier, "g1"); // Cavalier blanc n°2 situé en b2
     Piece *Fb1 = new Fou(Blanc, type::Fou, "c1"); // Fou blanc n°1 situé en c1
     Piece *Fb2 = new Fou(Blanc, type::Fou, "f1"); // Fou blanc n°1 situé en c1
-    Piece *Db = new Dame(Blanc, type::Dame, "d1"); // Dame blanche situé en d1
+    Piece *Db1 = new Dame(Blanc, type::Dame, "d1"); // Dame blanche n°1 situé en d1 (n°1 car il peut y avoir des promotions)
     Piece *Rb = new Roi(Blanc, type::Roi, "e1"); // Roi blanc situé en e1
 
     /* Pièces joueur noir */
@@ -52,25 +54,10 @@ void initialiserPiece(){
     Piece *Cn2 = new Cavalier(Noir, type::Cavalier, "b8"); 
     Piece *Fn1 = new Fou(Noir, type::Fou, "f8"); 
     Piece *Fn2 = new Fou(Noir, type::Fou, "c8"); 
-    Piece *Dn = new Dame(Noir, type::Dame, "d8"); 
+    Piece *Dn1 = new Dame(Noir, type::Dame, "d8"); 
     Piece *Rn = new Roi(Noir, type::Roi, "e8"); 
 
     /* Création plateau */
 
     // Ce plateau sert juste à simplifier l'initialisation des cellules de chaque pièces 
-    // Si on souhaite accéder au Cavalier blanc n°1, on doit faire : plateau[8][2]
-    // Si on souhaite accéder au Pion noir n°5, on doit faire : plateau[2][5]
-
-    Piece *plateau[8][8] = {
-        {Tn1,Cn1,Fn1,Rn,Dn,Fn2,Cn2,Tn2}, // Initialisation de la ligne des pièces noires
-        {Pn1,Pn2,Pn3,Pn4,Pn5,Pn6,Pn7,Pn8}, // Initialisation de la ligne des pions noirs
-        {NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL},
-        {NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL},
-        {NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL},
-        {NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL},
-        {Pb1,Pb2,Pb3,Pb4,Pb5,Pb6,Pb7,Pb8}, // Initialisation de la ligne des pions blancs
-        {Tb1,Cb1,Fb1,Rb,Db,Fb2,Cb2,Tb2} // Initialisation de la ligne des pièces blanches
-    };
-
-    cout << "Plateau : " << plateau << endl;
 }

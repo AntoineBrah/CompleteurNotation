@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[]){
     
-    initialiserPiece();
+    cout << "Hello World" << endl;
 
     return 0;
 }
