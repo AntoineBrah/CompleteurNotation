@@ -9,7 +9,7 @@ protected:
 	char skin;
 
 public:
-	Tour(Couleur, Nom, string);
+	Tour(Couleur, type::Nom, string);
 	virtual ~Tour();
 };
 

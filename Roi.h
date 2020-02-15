@@ -9,7 +9,7 @@ protected:
 	char skin;
 
 public:
-	Roi(Couleur, Nom, string);
+	Roi(Couleur, type::Nom, string);
 	virtual ~Roi();
 };
 

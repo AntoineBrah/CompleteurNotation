@@ -1,6 +1,6 @@
 #include "Piece.h"
 
-Piece::Piece(Couleur c, Nom n, string p) : couleur(c), nom(n), pos(p){}
+Piece::Piece(Couleur c, type::Nom n, string p) : couleur(c), nom(n), pos(p){}
 
 string Piece::getCouleur() const{
 	switch(couleur){
@@ -18,22 +18,22 @@ string Piece::getCouleur() const{
 
 string Piece::getNom() const{
 	switch(nom){
-		case Pion : 
+		case type::Pion : 
 			return "Pion";
 			break;
-		case Tour : 
+		case type::Tour : 
 			return "Tour";
 			break;
-		case Cavalier : 
+		case type::Cavalier : 
 			return "Cavalier";
 			break;
-		case Fou : 
+		case type::Fou : 
 			return "Fou";
 			break;
-		case Dame : 
+		case type::Dame : 
 			return "Dame";
 			break;
-		case Roi : 
+		case type::Roi : 
 			return "Roi";
 			break;
 		default:

@@ -9,7 +9,7 @@ protected:
 	char skin;
 
 public:
-	Cavalier(Couleur, Nom, string);
+	Cavalier(Couleur, type::Nom, string);
 	virtual ~Cavalier();
 };
 

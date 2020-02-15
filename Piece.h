@@ -7,18 +7,27 @@
 
 using namespace std;
 
-enum Nom{Pion, Tour, Cavalier, Fou, Dame, Roi};
+namespace type{
+	enum Nom{
+		Pion, 
+		Tour, 
+		Cavalier, 
+		Fou, 
+		Dame, 
+		Roi
+	};
+}
 
 
 class Piece{
 
 	protected :
 		Couleur couleur;
-		Nom nom;
+		type::Nom nom;
 		Position pos;
 
 	public :
-		Piece(Couleur, Nom, string);
+		Piece(Couleur, type::Nom, string);
 		string getCouleur() const;
 		string getNom() const;
 		string getPosition() const;

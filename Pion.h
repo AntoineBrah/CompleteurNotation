@@ -9,7 +9,8 @@ class Pion : public virtual Piece{
 		char skin;
 		
 	public :
-		Pion(Couleur,Nom,string);
+		Pion(Couleur, type::Nom, string);
+		virtual ~Pion();
 };
 
 #endif

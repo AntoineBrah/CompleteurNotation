@@ -9,7 +9,7 @@ protected:
 	char skin;
 
 public:
-	Fou(Couleur, Nom, string);
+	Fou(Couleur, type::Nom, string);
 	virtual ~Fou();
 };
 

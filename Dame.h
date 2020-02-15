@@ -9,7 +9,7 @@ protected:
 	char skin;
 
 public:
-	Dame(Couleur, Nom, string);
+	Dame(Couleur, type::Nom, string);
 	virtual ~Dame();
 };
 
