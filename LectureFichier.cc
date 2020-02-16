@@ -1,19 +1,15 @@
 #include "LectureFichier.h"
 
-lectureFichier::lectureFichier() : ligne(""), cb(""), cn(""){
+lectureFichier::lectureFichier(string fichier) : ligne(""), cb(""), cn(""){
 
-    string cheminFichier;
-
-    cin >> cheminFichier;
-
-    monFlux.open(cheminFichier.c_str()); // obligé de rajouter '.c_str()' car le constructeur de ifstream prend un 'const char*' et non pas un 'string' en paramètre.
+    monFlux.open(fichier.c_str()); // obligé de rajouter '.c_str()' car le constructeur de ifstream prend un 'const char*' et non pas un 'string' en paramètre.
 
     if(monFlux){
-        cout << cheminFichier << " : ouverture en lecture réussie." << endl;
+        cout << fichier << " : ouverture en lecture réussie." << endl;
         getline(monFlux, ligne);
     }
     else{
-        cout << cheminFichier << " : ouverture en lecture échouée." << endl;
+        cout << fichier << " : ouverture en lecture échouée." << endl;
     }
 }
 

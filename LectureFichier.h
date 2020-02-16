@@ -17,7 +17,7 @@ class lectureFichier{
         string cn;
 
     public:
-        lectureFichier();
+        lectureFichier(string);
 
         void getLigne() const;
         int lireLigneSuivante();

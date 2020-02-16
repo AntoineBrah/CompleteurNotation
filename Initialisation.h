@@ -1,6 +1,7 @@
 #ifndef Initialisation_h
 #define Initialisation_h
 
+#include <vector>
 #include "Tour.h"
 #include "Cavalier.h"
 #include "Fou.h"
@@ -11,7 +12,6 @@
 
 using namespace std;
 
-void initialiserPiece();
-
+vector<Cellule*>* initialiserCellules();
 
 #endif

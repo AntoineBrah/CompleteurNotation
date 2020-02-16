@@ -21,6 +21,7 @@ class Cellule{
         Cellule *CSE; // Coup suivant échiquier 
 
     public:
+        Cellule();
         Cellule(Piece*);
 
         Piece* getPiece() const;

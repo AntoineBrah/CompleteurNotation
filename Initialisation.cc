@@ -1,15 +1,15 @@
 #include "Initialisation.h"
 
-void initialiserPiece(){
+vector<Cellule*>* initialiserCellules(){
 
     /*****************************/
     /* Convention écriture pièce */
     /*****************************/
 
-    // Première lettre de la pièce en majuscule suivi de la première lettre de la couleur de la pièce en minuscule suivi du numéro de la pièce (sauf pour le roi et la dame).
+    // Première lettre de la pièce en majuscule suivi de la première lettre de la couleur de la pièce en minuscule suivi du numéro de la pièce (sauf pour le roi).
     // Exemple, le pion blanc n°1 se note : Pb1
     // Exemple, le cavalier noir n°2 se note : Cn2
-    // Exemple, la dame blanche se note : Db
+    // Exemple, la dame blanche se note : Db1
     // Exemple, le roi noir se note : Rn
 
     /*****************************/
@@ -57,7 +57,52 @@ void initialiserPiece(){
     Piece *Dn1 = new Dame(Noir, type::Dame, "d8"); 
     Piece *Rn = new Roi(Noir, type::Roi, "e8"); 
 
-    /* Création plateau */
+    /* Création listeCellules */
 
-    // Ce plateau sert juste à simplifier l'initialisation des cellules de chaque pièces 
+    // Ce vector contient les 32 cellules initiales qui elles mêmes contiennent chacune 1 pièce.
+    // Chaque fois qu'on créera une nouvelle cellule on la "rangera" dans ce vector
+
+    vector<Cellule*> *listeCellules = new vector<Cellule*>;
+
+    // Les pions noirs
+    listeCellules->push_back(new Cellule(Pn1));
+    listeCellules->push_back(new Cellule(Pn2));
+    listeCellules->push_back(new Cellule(Pn3));
+    listeCellules->push_back(new Cellule(Pn4));
+    listeCellules->push_back(new Cellule(Pn5));
+    listeCellules->push_back(new Cellule(Pn6));
+    listeCellules->push_back(new Cellule(Pn7));
+    listeCellules->push_back(new Cellule(Pn8));
+
+    // Les pièces noires
+    listeCellules->push_back(new Cellule(Tn1));
+    listeCellules->push_back(new Cellule(Tn2));
+    listeCellules->push_back(new Cellule(Cn1));
+    listeCellules->push_back(new Cellule(Cn2));
+    listeCellules->push_back(new Cellule(Fn1));
+    listeCellules->push_back(new Cellule(Fn2));
+    listeCellules->push_back(new Cellule(Dn1));
+    listeCellules->push_back(new Cellule(Rn));
+
+    // Les pions blancs
+    listeCellules->push_back(new Cellule(Pb1));
+    listeCellules->push_back(new Cellule(Pb2));
+    listeCellules->push_back(new Cellule(Pb3));
+    listeCellules->push_back(new Cellule(Pb4));
+    listeCellules->push_back(new Cellule(Pb5));
+    listeCellules->push_back(new Cellule(Pb6));
+    listeCellules->push_back(new Cellule(Pb7));
+    listeCellules->push_back(new Cellule(Pb8));
+
+    // Les pièces blanches
+    listeCellules->push_back(new Cellule(Tb1));
+    listeCellules->push_back(new Cellule(Tb2));
+    listeCellules->push_back(new Cellule(Cb1));
+    listeCellules->push_back(new Cellule(Cb2));
+    listeCellules->push_back(new Cellule(Fb1));
+    listeCellules->push_back(new Cellule(Fb2));
+    listeCellules->push_back(new Cellule(Db1));
+    listeCellules->push_back(new Cellule(Rb));
+
+    return listeCellules;
 }
