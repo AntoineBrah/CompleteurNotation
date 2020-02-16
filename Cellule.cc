@@ -1,6 +1,5 @@
 #include "Cellule.h"
 
-Cellule::Cellule() : piece(NULL), pos(NULL), CSP(NULL), CSE(NULL){}
 Cellule::Cellule(Piece* p) : piece(p), pos(p->getPosition()), CSP(NULL), CSE(NULL){
     /*
 	if((P->getCouleur()=="Blanc") && (P->getNom()=="Pion")){

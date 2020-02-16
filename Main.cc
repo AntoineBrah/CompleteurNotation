@@ -20,7 +20,9 @@ int main(int argc, char* argv[]){
     else{
         lectureFichier File(argv[1]);
 
-        
+        while(File.lireLigneSuivante()){
+            File.getLigne();
+        }
 
 
 
