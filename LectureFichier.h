@@ -13,8 +13,8 @@ class lectureFichier{
         ifstream monFlux;
         string ligne;
 
-        string cb;
-        string cn;
+        string cb; // Coup blanc
+        string cn; // Coup noir
 
     public:
         lectureFichier(string);
@@ -24,8 +24,8 @@ class lectureFichier{
 
         void traiter();
  
-        string getCb() const;
-        string getCn() const;
+        string getCoupBlanc() const;
+        string getCoupNoir() const;
 
         ~lectureFichier();
 };

@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "LectureFichier.h"
 #include "Initialisation.h"
+#include "Point.h"
 
 #define separator() cout << "---------------------------------" << endl
 
@@ -20,18 +21,31 @@ int main(int argc, char* argv[]){
     else{
         lectureFichier File(argv[1]);
 
-        while(File.lireLigneSuivante()){
-            File.getLigne();
-        }
+        separator();
 
+        Point p1(3,5);
+        cout << p1 << endl;
 
+        separator();
 
+        cout << convertPointToPosition(p1) << endl;
+        
+        separator();
 
+        Position p("b7");
 
+        cout << convertPositionToPoint(p) << endl;
 
+        separator();
 
+        Point p2(2,1);
+        Point p3(3,1);
 
+        p2 += p3;
 
+        cout << p2 << endl;
+
+    
 
 
 

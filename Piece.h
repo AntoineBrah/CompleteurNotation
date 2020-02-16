@@ -1,9 +1,11 @@
 #ifndef Piece_H
 #define Piece_H
 
+#include <vector>
 #include <string>
 #include "Couleur.h"
 #include "Position.h"
+#include "Point.h"
 
 using namespace std;
 
@@ -26,6 +28,7 @@ class Piece{
 		Couleur couleur;
 		type::Nom nom;
 		Position pos;
+		vector<Position> listeCoupsPossibles;
 
 	public :
 		Piece();
@@ -35,8 +38,11 @@ class Piece{
 		string getPosition() const;
 
 		void setPostion(string);
+		void printListeCoupsPossibles() const;
 
 		string toString() const;
 };
+
+
 
 #endif

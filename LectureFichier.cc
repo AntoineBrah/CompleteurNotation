@@ -26,11 +26,11 @@ int lectureFichier::lireLigneSuivante(){
     }
 }
 
-string lectureFichier::getCb() const{
+string lectureFichier::getCoupBlanc() const{
     return cb;
 }
 
-string lectureFichier::getCn() const{
+string lectureFichier::getCoupNoir() const{
     return cn;
 }
 

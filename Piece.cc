@@ -51,6 +51,23 @@ void Piece::setPostion(string position){
 	pos.setCoord(position);
 }
 
+void Piece::printListeCoupsPossibles() const{
+
+	cout << "{";
+
+	for(unsigned int i=0; i<=listeCoupsPossibles.size()-1; i++){
+
+		if(i==listeCoupsPossibles.size()-1){
+			cout << listeCoupsPossibles.at(i).getCoord();
+		}
+		else{
+			cout << listeCoupsPossibles.at(i).getCoord() << ",";
+		}
+	}
+
+	cout << "}" << endl;
+}
+
 string Piece::toString() const{
 	return "Type pièce : " + getNom() + "\nCouleur pièce : " + getCouleur() + "\nPosition pièce : " + getPosition();
 }
