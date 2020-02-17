@@ -3,6 +3,7 @@
 #include "LectureFichier.h"
 #include "Initialisation.h"
 #include "Point.h"
+#include "Pion.h"
 
 #define separator() cout << "---------------------------------" << endl
 
@@ -19,36 +20,10 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
     else{
-        lectureFichier File(argv[1]);
+        Pion p1(Blanc, type::Pion, "e2");
 
-        separator();
-
-        Point p1(3,5);
-        cout << p1 << endl;
-
-        separator();
-
-        cout << convertPointToPosition(p1) << endl;
-        
-        separator();
-
-        Position p("b7");
-
-        cout << convertPositionToPoint(p) << endl;
-
-        separator();
-
-        Point p2(2,1);
-        Point p3(3,1);
-
-        p2 += p3;
-
-        cout << p2 << endl;
-
-    
-
-
-
+        cout << "Le pion p1 est en position : " << p1.getPosition() << ", sa liste des coups possibles est : "; 
+        p1.printListeCoupsPossibles();
 
     }
 

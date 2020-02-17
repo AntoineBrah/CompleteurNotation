@@ -1,6 +1,20 @@
 #include "Point.h"
 
+Point::Point(): x(0), y(0){}
 Point::Point(int x, int y) : x(x), y(y){}
+
+Point::Point(const Point &p) : x(p.getX()), y(p.getY()){}
+
+Point& Point::operator=(const Point &p){
+
+    if(&p != this){
+        x = p.getX();
+        y = p.getY();
+    }
+
+    return *this;
+
+}
 
 Point Point::operator+(const Point &p) const{
     Point p2(*this);
@@ -20,6 +34,20 @@ int Point::getX() const{
 
 int Point::getY() const{
     return y;
+}
+
+void Point::setX(int a){
+    x = a;
+}
+
+void Point::setY(int a){
+    y = a;
+}
+
+
+void Point::setCoordNulles(){
+    x = 0;
+    y = 0;
 }
 
 ostream& Point::affiche(ostream& os) const{

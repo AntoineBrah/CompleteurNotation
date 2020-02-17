@@ -30,6 +30,8 @@ class Piece{
 		Position pos;
 		vector<Position> listeCoupsPossibles;
 
+		virtual void updateListeCoupsPossibles() = 0;
+
 	public :
 		Piece();
 		Piece(Couleur, type::Nom, string);

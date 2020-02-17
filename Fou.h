@@ -7,6 +7,7 @@ class Fou : public virtual Piece{
 
 	public:
 		Fou(Couleur, type::Nom, string);
+		virtual void updateListeCoupsPossibles();
 		virtual ~Fou();
 };
 

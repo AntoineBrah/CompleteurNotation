@@ -6,6 +6,7 @@
 class Roi : public virtual Piece{
 	public:
 		Roi(Couleur, type::Nom, string);
+		virtual void updateListeCoupsPossibles();
 		virtual ~Roi();
 };
 

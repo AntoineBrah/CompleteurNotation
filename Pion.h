@@ -10,6 +10,7 @@ class Pion : public virtual Piece{
 
 	public :
 		Pion(Couleur, type::Nom, string);
+		virtual void updateListeCoupsPossibles();
 		virtual ~Pion();
 };
 

@@ -12,11 +12,19 @@ class Point{
         int x;
         int y;
     public:
+        Point();
         Point(int,int);
 
         int getX() const;
         int getY() const;
 
+        void setX(int);
+        void setY(int);
+
+        void setCoordNulles();
+
+        Point (const Point &p);
+        Point& operator=(const Point &p);
         Point operator+(const Point&) const;
         void operator+=(const Point&);
         ostream& affiche(ostream& os) const;
