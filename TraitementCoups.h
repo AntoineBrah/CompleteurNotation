@@ -6,6 +6,6 @@
 #include "Initialisation.h"
 #include "LectureFichier.h"
 
-//void traitementCoups(string);
+void traitementCoups(string);
 
 #endif

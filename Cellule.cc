@@ -24,7 +24,7 @@ string Cellule::getTypePiece() const{
 
 
 string Cellule::toString() const{
-    return "La cellule contient :\n- Un " + piece->getNom() + "\n- De couleur : " + piece->getCouleur() + "\n- Dont la position est ou a été : " + pos.getCoord();
+    return "La cellule contient :\n- Un " + piece->getNom() + "\n- De couleur : " + piece->getCouleur() + "\n- Dont la position est : " + pos.getCoord();
 }
 
 

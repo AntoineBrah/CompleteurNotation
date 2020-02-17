@@ -21,7 +21,13 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
     else{
-        initialiserCellules();
+        vector<Cellule*> *listeCellules = initialiserCellules();
+
+        for(unsigned int i=0; i<=listeCellules->size()-1; i++){
+            separator();
+            cout << listeCellules->at(i)->toString() << endl;
+            separator();
+        }
 
     }
 
