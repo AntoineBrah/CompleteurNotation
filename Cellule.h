@@ -16,17 +16,20 @@ class Cellule{
 
     private:
         Piece *piece;
-        const Position pos;
         Cellule *CSP; // Coup suivant pièce
         Cellule *CSE; // Coup suivant échiquier 
 
     public:
         Cellule(Piece*);
 
+        const Position pos; // Position de la cellule (cad de la pièce à un moment donné)
+
         Piece* getPiece() const;
         Cellule* getCSP() const;
         Cellule* getCSE() const;
-        string getPosition() const;
+        string getPositionPiece() const; // Renvoi la position courante de la pièce
+        string getTypePiece() const;
+        
         string toString() const;
 
         void setCSP(Cellule);

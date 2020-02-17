@@ -1,15 +1,6 @@
 #include "Cellule.h"
 
-Cellule::Cellule(Piece* p) : piece(p), pos(p->getPosition()), CSP(NULL), CSE(NULL){
-    /*
-	if((P->getCouleur()=="Blanc") && (P->getNom()=="Pion")){
-		position = "A2";
-	}
-	else if((P->getCouleur()=="Noir") && (P->getNom()=="Pion")){
-		position = "A7";
-	}
-    */
-}
+Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CSE(NULL), pos(p->getPositionString()){}
 
 Piece* Cellule::getPiece() const{
     return piece;
@@ -23,9 +14,14 @@ Cellule* Cellule::getCSE() const{
     return CSE;
 }
 
-string Cellule::getPosition() const{
+string Cellule::getPositionPiece() const{
     return pos.getCoord();
 }
+
+string Cellule::getTypePiece() const{
+    return piece->getNom();
+}
+
 
 string Cellule::toString() const{
     return "La cellule contient :\n- Un " + piece->getNom() + "\n- De couleur : " + piece->getCouleur() + "\n- Dont la position est ou a été : " + pos.getCoord();

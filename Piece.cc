@@ -43,7 +43,11 @@ string Piece::getNom() const{
 	}
 }
 
-string Piece::getPosition() const{
+Position Piece::getPosition() const{
+	return pos;
+}
+
+string Piece::getPositionString() const{
 	return pos.getCoord();
 }
 
@@ -69,5 +73,5 @@ void Piece::printListeCoupsPossibles() const{
 }
 
 string Piece::toString() const{
-	return "Type pièce : " + getNom() + "\nCouleur pièce : " + getCouleur() + "\nPosition pièce : " + getPosition();
+	return "Type pièce : " + getNom() + "\nCouleur pièce : " + getCouleur() + "\nPosition pièce : " + getPositionString();
 }

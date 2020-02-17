@@ -3,7 +3,7 @@
 Position::Position(string pos) : colonne(""), ligne(""){
 
     if(pos.size() != 2){
-        cout << "ERREUR la position doit contenir uniquement 2 charactères de la forme : [Colonne][Ligne]." << endl;
+        cout << "ERREUR la position doit contenir uniquement 2 caractères de la forme : [Colonne][Ligne]." << endl;
     }
     else if (((pos[0] != 'a') && (pos[0] != 'b') && (pos[0] != 'c') && (pos[0] != 'd') && (pos[0] != 'e') && (pos[0] != 'f') && (pos[0] != 'g') && (pos[0] != 'h')) 
     || ((pos[1] != '1') && (pos[1] != '2') && (pos[1] != '3') && (pos[1] != '4') && (pos[1] != '5') && (pos[1] != '6') && (pos[1] != '7') && (pos[1] != '8'))){

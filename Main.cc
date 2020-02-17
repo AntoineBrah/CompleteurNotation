@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "LectureFichier.h"
 #include "Initialisation.h"
+#include "TraitementCoups.h"
 #include "Point.h"
 #include "Pion.h"
 
@@ -20,10 +21,7 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
     else{
-        Pion p1(Blanc, type::Pion, "e2");
-
-        cout << "Le pion p1 est en position : " << p1.getPosition() << ", sa liste des coups possibles est : "; 
-        p1.printListeCoupsPossibles();
+        initialiserCellules();
 
     }
 
