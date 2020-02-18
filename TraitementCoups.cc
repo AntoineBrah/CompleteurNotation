@@ -1,9 +1,14 @@
 #include "TraitementCoups.h"
 
-void traitementCoups(string fichier){
-    /*
-    lectureFichier File(fichier);
+void traitementCoups(lectureFichier* f){
 
+    lectureFichier *File = f;
+
+    while(File->lireLigneSuivante()){
+        File->printLigne();
+    }
+
+    /*
     vector<Cellule*> *listeCellulesInitiales = initialiserCellules();
     vector<Cellule*> *listeCellulesNouvelles = new vector<Cellule*>;
     */

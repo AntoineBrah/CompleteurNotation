@@ -16,14 +16,17 @@ class lectureFichier{
         string cb; // Coup blanc
         string cn; // Coup noir
 
+        bool estCorrectementOuvert;
+
     public:
         lectureFichier(string);
 
-        void getLigne() const;
+        void printLigne() const;
         int lireLigneSuivante();
 
-        void traiter();
- 
+        void traiterLigne();
+
+        bool getEstCorrectementOuvert() const;
         string getCoupBlanc() const;
         string getCoupNoir() const;
 

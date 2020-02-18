@@ -21,13 +21,12 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
     else{
-        //Le pion est fonctionnel
-        //Il manque juste à implémenter la prise en passant
-        Piece *p = new Pion(Blanc, type::Pion, "e2");
+        
+        lectureFichier File(argv[1]); // On ouvre le fichier txt en lecture
 
-        p->printListeCoupsPossibles();
-
-        delete p;
+        if(File.getEstCorrectementOuvert()) // Si le fichier est correctement ouvert alors, on le traite
+            traitementCoups(&File);
+        
     }
 
     return 0;

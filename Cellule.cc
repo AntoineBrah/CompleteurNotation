@@ -40,4 +40,6 @@ void Cellule::setCSE(Cellule c){
 
 
 
-Cellule::~Cellule(){}
+Cellule::~Cellule(){
+    delete piece; // Effacer la cellule efface d'abord la pièce qu'elle contient
+}
