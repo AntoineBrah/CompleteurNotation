@@ -4,9 +4,9 @@ void traitementCoups(lectureFichier* f){
 
     lectureFichier *File = f;
 
-    while(File->lireLigneSuivante()){
+    do{
         File->printLigne();
-    }
+    }while(File->lireLigneSuivante());
 
     /*
     vector<Cellule*> *listeCellulesInitiales = initialiserCellules();
