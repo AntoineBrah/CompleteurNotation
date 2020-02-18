@@ -19,8 +19,8 @@ function createWindow(){
     mainWindow = new BrowserWindow({
         width: 1000, 
         height: 800,
-        icon: 'icon.png',
-        title: 'Compléteur de Notation'
+        icon: "images/icones/icon.png",
+        title: 'Completeur de Notation'
     });
 
     // On est obligé de passer par un chemin absolu
