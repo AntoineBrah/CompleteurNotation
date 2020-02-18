@@ -44,8 +44,23 @@ class Piece{
 		void printListeCoupsPossibles() const;
 
 		string toString() const;
+		
+		virtual ~Piece();
 };
 
+// variable globale restreinte au fichier uniquement
+// cette liste nous permettra d'obtenir des informations sur toutes
+// les pièces du jeu qui sont instanciés
+static vector<Piece*> listePiece;
+
+// fonction qui prend en parametre une position et renvoi la première pièce présente sur cette position
+// renvoi NULL si aucune pièce présente sur la position donnée
+
+/*
+* On test l'existance d'une piece de la manière suivante : if(existePieceSurPosition("a2")),
+* si on souhaite tester la non existance, il suffit de faire la négation : if(!existePieceSurPosition("a2"))
+*/
+Piece* existePieceSurPosition(string);
 
 
 #endif

@@ -21,13 +21,15 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
     else{
-        vector<Cellule*> *listeCellules = initialiserCellules();
+        
+        // Test 
+        Piece *p2 = new Pion(Noir, type::Pion, "b3");
+        Piece *p = new Pion(Blanc, type::Pion, "c2");
 
-        for(unsigned int i=0; i<=listeCellules->size()-1; i++){
-            separator();
-            cout << listeCellules->at(i)->toString() << endl;
-            separator();
-        }
+        p->printListeCoupsPossibles();
+
+        delete p;
+        delete p2;
 
     }
 

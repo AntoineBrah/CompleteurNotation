@@ -1,7 +1,9 @@
 #include "Piece.h"
 
 Piece::Piece() : couleur(Null), nom(type::Null), pos(""){}
-Piece::Piece(Couleur c, type::Nom n, string p) : couleur(c), nom(n), pos(p){}
+Piece::Piece(Couleur c, type::Nom n, string p) : couleur(c), nom(n), pos(p){
+	listePiece.push_back(this);
+}
 
 string Piece::getCouleur() const{
 	switch(couleur){
@@ -74,4 +76,18 @@ void Piece::printListeCoupsPossibles() const{
 
 string Piece::toString() const{
 	return "Type pièce : " + getNom() + "\nCouleur pièce : " + getCouleur() + "\nPosition pièce : " + getPositionString();
+}
+
+Piece::~Piece(){}
+
+Piece* existePieceSurPosition(string p){
+	for(unsigned int i=0; i<=listePiece.size()-1; i++){
+
+		// On renvoit la première pièce qu'on trouve à la position donnée
+		if(listePiece.at(i)->getPositionString() == p){
+			return listePiece.at(i);
+		}
+	}
+
+	return NULL;
 }
