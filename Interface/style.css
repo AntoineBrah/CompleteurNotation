@@ -3,6 +3,10 @@ body{
     height: 800px;
 }
 
+button {
+    -webkit-app-region: no-drag;
+}
+
 .main-content{
     width: 1200px;
     height: 800px;
