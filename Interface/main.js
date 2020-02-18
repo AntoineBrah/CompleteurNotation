@@ -17,8 +17,10 @@ function createWindow(){
 
     // On définit une taille pour notre fenêtre
     mainWindow = new BrowserWindow({
-        width: 1000, 
+        width: 1400, 
         height: 800,
+        resizable: false,
+        frame: false,
         icon: "images/icones/icon.png",
         title: 'Completeur de Notation'
     });

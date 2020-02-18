@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
 
         if(File.getEstCorrectementOuvert()){ // Si le fichier est correctement ouvert alors, on le traite
             traitementCoups(&File);
-            //system("cd Electron ; electron .");
+            //system("cd Interface ; electron .");
         }
     }
 
