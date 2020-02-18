@@ -30,7 +30,7 @@ class Piece{
 		Position pos;
 		vector<Position> listeCoupsPossibles;
 
-		virtual void updateListeCoupsPossibles() = 0;
+		virtual void updateListeCoupsPossibles() = 0; // Méthode (abstraite) virtuelle pure
 
 	public :
 		Piece();

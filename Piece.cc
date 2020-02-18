@@ -61,13 +61,15 @@ void Piece::printListeCoupsPossibles() const{
 
 	cout << "{";
 
-	for(unsigned int i=0; i<=listeCoupsPossibles.size()-1; i++){
+	if(listeCoupsPossibles.size() > 0){ // car erreur compilation si la liste est vide
+		for(unsigned int i=0; i<=listeCoupsPossibles.size()-1; i++){
 
-		if(i==listeCoupsPossibles.size()-1){
-			cout << listeCoupsPossibles.at(i).getCoord();
-		}
-		else{
-			cout << listeCoupsPossibles.at(i).getCoord() << ",";
+			if(i==listeCoupsPossibles.size()-1){
+				cout << listeCoupsPossibles.at(i).getCoord();
+			}
+			else{
+				cout << listeCoupsPossibles.at(i).getCoord() << ",";
+			}
 		}
 	}
 

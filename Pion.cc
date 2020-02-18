@@ -1,5 +1,7 @@
 #include "Pion.h"
 
+// La prise en passant n'est pour le moment pas opérationnelle
+
 /*
 * Potentiel problème avec le 'aBouge' qui est initialisé à false
 * dès qu'on créé une pièce. Car si on part sur une création de pièce
@@ -20,7 +22,6 @@ void Pion::updateListeCoupsPossibles(){
 
     Position currentPosition(pos);
     Point positionPion = convertPositionToPoint(currentPosition);
-    Point positionsPossibles(positionPion);
 
     /*
     * On est obligé de vérifier que le pion est toujours dans l'échiquier...
@@ -39,48 +40,30 @@ void Pion::updateListeCoupsPossibles(){
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
     // On vérifie qu'aucun Pion n'est présent sur la case col+1
     // Puis on vérifie également qu'aucun pion n'est présent sur la case col+2
-    if(!aBouge){
-        positionsPossibles.setX(positionsPossibles.getX()+2);
-
-        if(estCorrectPoint(positionsPossibles) && (!existePieceSurPosition(convertPointToPosition(positionsPossibles))) && (!existePieceSurPosition(convertPointToPosition(positionsPossibles+Point(2,0)))))
-            listeCoupsPossibles.push_back(convertPointToPosition(positionsPossibles));
+    if(!aBouge){        
+        if(estCorrectPoint(positionPion) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(2,0)))) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(1,0)))))
+            listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(2,0)));
     }
 
     // Tout pion peut avancer 1 case (ligne+1) devant lui
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
     // On vérifie qu'aucun Pion n'est présent sur la case ligne+1
-    positionsPossibles = positionPion;
-    positionsPossibles.setX(positionsPossibles.getX()+1);
-
-    if(estCorrectPoint(positionsPossibles) && (!existePieceSurPosition(convertPointToPosition(positionsPossibles))))
-        listeCoupsPossibles.push_back(convertPointToPosition(positionsPossibles));
+    if(estCorrectPoint(positionPion+Point(1,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(1,0)))))
+        listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(1,0)));
 
     // Tout pion peut avancer en diagonale gauche (col+1,ligne-1) si il y a une pièce de couleur opposé (il le mange donc)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
     // On vérifie qu'un Pion est présent sur la case (col+1, ligne-1)
     // On vérifie que le Pion est de couleur opposé
-    positionsPossibles = positionPion;
-
-    positionsPossibles.setX(positionsPossibles.getX()+1);
-    positionsPossibles.setY(positionsPossibles.getY()-1);
-
-    if(estCorrectPoint(positionsPossibles) && existePieceSurPosition(convertPointToPosition(positionsPossibles)) && existePieceSurPosition(convertPointToPosition(positionsPossibles))->getCouleur() != this->getCouleur())
-        listeCoupsPossibles.push_back(convertPointToPosition(positionsPossibles));
+    if(estCorrectPoint(positionPion+Point(1,-1)) && existePieceSurPosition(convertPointToPosition(positionPion+Point(1,-1))) && existePieceSurPosition(convertPointToPosition(positionPion+Point(1,-1)))->getCouleur() != this->getCouleur())
+        listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(1,-1)));
 
     // Tout pion peut avancer en diagonale droite (col+1,ligne+1) si il y a une pièce de couleur opposé (il le mange donc)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
     // On vérifie qu'un Pion est présent sur la case (col+1, ligne+1)
     // On vérifie que le Pion est de couleur opposé
-    positionsPossibles = positionPion;
-
-    positionsPossibles.setX(positionsPossibles.getX()+1);
-    positionsPossibles.setY(positionsPossibles.getY()+1);
-
-    if(estCorrectPoint(positionsPossibles) && existePieceSurPosition(convertPointToPosition(positionsPossibles)) && existePieceSurPosition(convertPointToPosition(positionsPossibles))->getCouleur() != this->getCouleur())
-        listeCoupsPossibles.push_back(convertPointToPosition(positionsPossibles));
+    if(estCorrectPoint(positionPion+Point(1,1)) && existePieceSurPosition(convertPointToPosition(positionPion+Point(1,1))) && existePieceSurPosition(convertPointToPosition(positionPion+Point(1,1)))->getCouleur() != this->getCouleur())
+        listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(1,1)));
 }
-
-
-
 
 Pion::~Pion(){}

@@ -30,7 +30,7 @@ class Point{
         ostream& affiche(ostream& os) const;
 };
 
-bool estCorrectPoint(Point &p);
+bool estCorrectPoint(const Point &p);
 
 ostream& operator<<(ostream& os, const Point &p);
 

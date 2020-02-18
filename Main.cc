@@ -21,16 +21,13 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
     else{
-        
-        // Test 
-        Piece *p2 = new Pion(Noir, type::Pion, "b3");
-        Piece *p = new Pion(Blanc, type::Pion, "c2");
+        //Le pion est fonctionnel
+        //Il manque juste à implémenter la prise en passant
+        Piece *p = new Pion(Blanc, type::Pion, "e2");
 
         p->printListeCoupsPossibles();
 
         delete p;
-        delete p2;
-
     }
 
     return 0;

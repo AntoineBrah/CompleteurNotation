@@ -54,7 +54,7 @@ ostream& Point::affiche(ostream& os) const{
     return os << "(" << x << "," << y << ")";
 }
 
-bool estCorrectPoint(Point &p){
+bool estCorrectPoint(const Point &p){
     return p.getX()>=1 && p.getX()<=8 && p.getY()>=1 && p.getY()<=8;
 }
 
