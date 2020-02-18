@@ -1,0 +1,11 @@
+{
+    "name": "Compléteur de notation",
+    "version": "1.0.0",
+    "description": "Affichage graphique du Compléteur de notation",
+    "main": "main.js",
+    "scripts": {
+        "test": "electron ?"
+    },
+    "author": "Antoine Brahimi",
+    "license": "GPL-3.0"
+}
