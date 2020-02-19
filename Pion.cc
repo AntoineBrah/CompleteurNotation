@@ -41,7 +41,7 @@ void Pion::updateListeCoupsPossibles(){
     // On vérifie qu'aucun Pion n'est présent sur la case col+1
     // Puis on vérifie également qu'aucun pion n'est présent sur la case col+2
     if(!aBouge){        
-        if(estCorrectPoint(positionPion) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(2,0)))) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(1,0)))))
+        if(estCorrectPoint(positionPion+Point(2,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(2,0)))) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(1,0)))))
             listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(2,0)));
     }
 

@@ -41,6 +41,7 @@ class Piece{
 		string getPositionString() const; // Renvoi la position de la pièce sous forme de string
 
 		void setPostion(string);
+		vector<Position>* getListeCoupsPossibles(); // Renvoi un pointeur vers la liste des coups possibles d'une pièce
 		void printListeCoupsPossibles() const;
 
 		string toString() const;
@@ -53,14 +54,23 @@ class Piece{
 // les pièces du jeu qui sont instanciés
 static vector<Piece*> listePiece;
 
+// renvoi un pointeur vers le vector listePiece
+// car ce vector ne peut pas être manipuler en dehors du fichier (static)
+vector<Piece*>* getListePiece();
+
 // fonction qui prend en parametre une position et renvoi la première pièce présente sur cette position
 // renvoi NULL si aucune pièce présente sur la position donnée
 
 /*
 * On test l'existance d'une piece de la manière suivante : if(existePieceSurPosition("a2")),
 * si on souhaite tester la non existance, il suffit de faire la négation : if(!existePieceSurPosition("a2"))
+* Si la pièce existe sur la position donnée :
+* 	existePieceSurPosition(pos) renvoit l'adresse de la pièce (<=> true dans un if(existePieceSurPosition(...)))
+*	!existePieceSurPosition(pos) renvoit 0
+* Si la pièce n'existe pas sur la position donnée :
+*	existePieceSurPosition(pos) renvoit 0 
+*	!existePieceSurPosition(pos) renvoit 1
 */
 Piece* existePieceSurPosition(string);
-
 
 #endif

@@ -57,6 +57,10 @@ void Piece::setPostion(string position){
 	pos.setCoord(position);
 }
 
+vector<Position>* Piece::getListeCoupsPossibles(){
+	return &listeCoupsPossibles;
+}
+
 void Piece::printListeCoupsPossibles() const{
 
 	cout << "{";
@@ -92,4 +96,8 @@ Piece* existePieceSurPosition(string p){
 	}
 
 	return NULL;
+}
+
+vector<Piece*>* getListePiece(){
+	return &listePiece;
 }

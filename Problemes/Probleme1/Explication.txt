@@ -1,0 +1,21 @@
+--> Probleme 1 :
+
+On doit définir la liste des coups possibles du Roi. C'est au départ assez simple car rien ne change par rapport aux autres pièces.
+Toutefois il peut arriver une situation un peu ambarassante. En effet la liste des coups possibles des pions ne prend pas en compte
+leurs digonales si aucune pièce adversaire n'est positionné. Alors que pour calculer la liste des coups possibles du Roi, on vérifie
+que parmis toutes les pièces ennemis, les positions ou le Roi est sensé pouvoir se déplacer n'appartiennent pas à la liste des coups
+possibles de toutes les pièces ennemis. Le problème intervient au niveau des pions (comme on peut le voir dans l'image 'Probleme1.png'.
+En effet les pions ne possèdent leurs coups diagonaux dans leur liste de coup possible que si il existe une pièce ennemi sur ces posi-
+tions. En ce sens, le Roi croit qu'il peut se déplacer sur ces positions alors qu'en réalité s'il le fait, il se retrouve en échec.
+
+Solution proposé :
+
+on se positionne au niveau de la case ou on souhaite déplacer le Roi et on regarde tous ses voisins (un voisin est une Pièce adjacente au Roi que ca soit verticalement/horizontalement ou meme diagonalement) et si un pion adverse est présent (en diagonale supérieure gauche ou droite) alors on considère que cette case n'est pas un coup possible pour le Roi. 
+
+Exemple : (voir Solution1.png) on suppose un déplacement du Roi en c4, on regarde tous ses voisins (les ronds) et comme un pion est présent en diagonale supérieure droite (d5) et bien on inclut pas la case c4 dans la liste des coups possibles du Roi.
+
+solution1bis.png : on regarde les diagonales supérieures on constate qu'il y a un pion noir donc on peut pas se déplacer.
+
+solution1bisbis.png : on regarde les diagonales supérieures on constate qu'il y a aucun pion noir donc on peut se déplacer.
+
+solution1bisbisbis : pareil on se retrouve avec 1 pion en diagonale supérieure gauche et droite.
