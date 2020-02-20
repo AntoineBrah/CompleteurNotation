@@ -22,6 +22,9 @@ void Roi::updateListeCoupsPossibles(){
     /* Pour le Roi c'est un peu plus compliqué...      voir 'Probleme/Probleme1/explication.txt' */
     /*********************************************************************************************/
     /* -> D'ou le fait de devoir effectuer de nouvelles vérifications en plus des traditionelles */
+    /*               - n'est pas dans liste des coups possibles d'une pièce adverse (LCPA)       */
+    /*               - la case ou le Roi souhaite aller ne possede pas de Pion adverse sur les   */
+    /*                 diagonales supérieures 'possedePionEnDiagonalSup'...                      */
     /*********************************************************************************************/
     /*********************************************************************************************/
 
@@ -33,8 +36,13 @@ void Roi::updateListeCoupsPossibles(){
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point haut = positionPiece + Point(1,0);
 
-    if(estCorrectPoint(haut) && (!existePieceSurPosition(convertPointToPosition(haut))) && !posDansLCPAdverse(convertPointToPosition(haut))){
-        if(!this->possedePionAdverseEnDiagonaleSup(haut)){
+    if(estCorrectPoint(haut) && !posDansLCPAdverse(convertPointToPosition(haut)) && !this->possedePionAdverseEnDiagonaleSup(haut)){
+        if(existePieceSurPosition(convertPointToPosition(haut))){
+            if(existePieceSurPosition(convertPointToPosition(haut))->getCouleur() != this->getCouleur()){
+                listeCoupsPossibles.push_back(convertPointToPosition(haut));
+            }
+        }
+        else{
             listeCoupsPossibles.push_back(convertPointToPosition(haut));
         }
     }
@@ -46,8 +54,13 @@ void Roi::updateListeCoupsPossibles(){
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point diagonaleSupDroite = positionPiece + Point(1,1);
 
-    if(estCorrectPoint(diagonaleSupDroite) && (!existePieceSurPosition(convertPointToPosition(diagonaleSupDroite))) && !posDansLCPAdverse(convertPointToPosition(diagonaleSupDroite))){
-        if(!this->possedePionAdverseEnDiagonaleSup(diagonaleSupDroite)){
+    if(estCorrectPoint(diagonaleSupDroite) && !posDansLCPAdverse(convertPointToPosition(diagonaleSupDroite)) && !this->possedePionAdverseEnDiagonaleSup(diagonaleSupDroite)){
+        if(existePieceSurPosition(convertPointToPosition(diagonaleSupDroite))){
+            if(existePieceSurPosition(convertPointToPosition(diagonaleSupDroite))->getCouleur() != this->getCouleur()){
+                listeCoupsPossibles.push_back(convertPointToPosition(diagonaleSupDroite));
+            }
+        }
+        else{
             listeCoupsPossibles.push_back(convertPointToPosition(diagonaleSupDroite));
         }
     }
@@ -59,8 +72,13 @@ void Roi::updateListeCoupsPossibles(){
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point droite = positionPiece + Point(0,1);
 
-    if(estCorrectPoint(droite) && (!existePieceSurPosition(convertPointToPosition(droite))) && !posDansLCPAdverse(convertPointToPosition(droite))){
-        if(!this->possedePionAdverseEnDiagonaleSup(droite)){
+    if(estCorrectPoint(droite) && !posDansLCPAdverse(convertPointToPosition(droite)) && !this->possedePionAdverseEnDiagonaleSup(droite)){
+        if(existePieceSurPosition(convertPointToPosition(droite))){
+            if(existePieceSurPosition(convertPointToPosition(droite))->getCouleur() != this->getCouleur()){
+                listeCoupsPossibles.push_back(convertPointToPosition(droite));
+            }
+        }
+        else{
             listeCoupsPossibles.push_back(convertPointToPosition(droite));
         }
     }
@@ -72,8 +90,13 @@ void Roi::updateListeCoupsPossibles(){
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point diagonaleInfDroite = positionPiece + Point(-1,1);
 
-    if(estCorrectPoint(diagonaleInfDroite) && (!existePieceSurPosition(convertPointToPosition(diagonaleInfDroite))) && !posDansLCPAdverse(convertPointToPosition(diagonaleInfDroite))){
-        if(!this->possedePionAdverseEnDiagonaleSup(diagonaleInfDroite)){
+    if(estCorrectPoint(diagonaleInfDroite) && !posDansLCPAdverse(convertPointToPosition(diagonaleInfDroite)) && !this->possedePionAdverseEnDiagonaleSup(diagonaleInfDroite)){
+        if(existePieceSurPosition(convertPointToPosition(diagonaleInfDroite))){
+            if(existePieceSurPosition(convertPointToPosition(diagonaleInfDroite))->getCouleur() != this->getCouleur()){
+                listeCoupsPossibles.push_back(convertPointToPosition(diagonaleInfDroite));
+            }
+        }
+        else{
             listeCoupsPossibles.push_back(convertPointToPosition(diagonaleInfDroite));
         }
     }
@@ -85,8 +108,13 @@ void Roi::updateListeCoupsPossibles(){
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point bas = positionPiece + Point(-1,0);
 
-    if(estCorrectPoint(bas) && (!existePieceSurPosition(convertPointToPosition(bas))) && !posDansLCPAdverse(convertPointToPosition(bas))){
-        if(!this->possedePionAdverseEnDiagonaleSup(bas)){
+    if(estCorrectPoint(bas) && !posDansLCPAdverse(convertPointToPosition(bas)) && !this->possedePionAdverseEnDiagonaleSup(bas)){
+        if(existePieceSurPosition(convertPointToPosition(bas))){
+            if(existePieceSurPosition(convertPointToPosition(bas))->getCouleur() != this->getCouleur()){
+                listeCoupsPossibles.push_back(convertPointToPosition(bas));
+            }
+        }
+        else{
             listeCoupsPossibles.push_back(convertPointToPosition(bas));
         }
     }
@@ -98,8 +126,13 @@ void Roi::updateListeCoupsPossibles(){
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point diagonaleInfGauche = positionPiece + Point(-1,-1);
 
-    if(estCorrectPoint(diagonaleInfGauche) && (!existePieceSurPosition(convertPointToPosition(diagonaleInfGauche))) && !posDansLCPAdverse(convertPointToPosition(diagonaleInfGauche))){
-        if(!this->possedePionAdverseEnDiagonaleSup(diagonaleInfGauche)){
+    if(estCorrectPoint(diagonaleInfGauche) && !posDansLCPAdverse(convertPointToPosition(diagonaleInfGauche)) && !this->possedePionAdverseEnDiagonaleSup(diagonaleInfGauche)){
+        if(existePieceSurPosition(convertPointToPosition(diagonaleInfGauche))){
+            if(existePieceSurPosition(convertPointToPosition(diagonaleInfGauche))->getCouleur() != this->getCouleur()){
+                listeCoupsPossibles.push_back(convertPointToPosition(diagonaleInfGauche));
+            }
+        }
+        else{
             listeCoupsPossibles.push_back(convertPointToPosition(diagonaleInfGauche));
         }
     }
@@ -111,8 +144,13 @@ void Roi::updateListeCoupsPossibles(){
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point gauche = positionPiece + Point(0,-1);
 
-    if(estCorrectPoint(gauche) && (!existePieceSurPosition(convertPointToPosition(gauche))) && !posDansLCPAdverse(convertPointToPosition(gauche))){
-        if(!this->possedePionAdverseEnDiagonaleSup(gauche)){
+    if(estCorrectPoint(gauche) && !posDansLCPAdverse(convertPointToPosition(gauche)) && !this->possedePionAdverseEnDiagonaleSup(gauche)){
+        if(existePieceSurPosition(convertPointToPosition(gauche))){
+            if(existePieceSurPosition(convertPointToPosition(gauche))->getCouleur() != this->getCouleur()){
+                listeCoupsPossibles.push_back(convertPointToPosition(gauche));
+            }
+        }
+        else{
             listeCoupsPossibles.push_back(convertPointToPosition(gauche));
         }
     }
@@ -124,8 +162,13 @@ void Roi::updateListeCoupsPossibles(){
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point diagonaleSupGauche = positionPiece + Point(1,-1);
 
-    if(estCorrectPoint(diagonaleSupGauche) && (!existePieceSurPosition(convertPointToPosition(diagonaleSupGauche))) && !posDansLCPAdverse(convertPointToPosition(diagonaleSupGauche))){
-        if(!this->possedePionAdverseEnDiagonaleSup(diagonaleSupGauche)){
+    if(estCorrectPoint(diagonaleSupGauche) && !posDansLCPAdverse(convertPointToPosition(diagonaleSupGauche)) && !this->possedePionAdverseEnDiagonaleSup(diagonaleSupGauche)){
+        if(existePieceSurPosition(convertPointToPosition(diagonaleSupGauche))){
+            if(existePieceSurPosition(convertPointToPosition(diagonaleSupGauche))->getCouleur() != this->getCouleur()){
+                listeCoupsPossibles.push_back(convertPointToPosition(diagonaleSupGauche));
+            }
+        }
+        else{
             listeCoupsPossibles.push_back(convertPointToPosition(diagonaleSupGauche));
         }
     }
@@ -140,7 +183,10 @@ bool Roi::posDansLCPAdverse(const string &p) const{
 
     for(unsigned int i=0; i<getListePiece()->size(); i++){
         for(unsigned int j=0; j<getListePiece()->at(i)->getListeCoupsPossibles()->size(); j++){
-            if((p == getListePiece()->at(i)->getListeCoupsPossibles()->at(j).getCoord()) && (this->getCouleur() != getListePiece()->at(i)->getCouleur())){
+            if((p == getListePiece()->at(i)->getListeCoupsPossibles()->at(j).getCoord()) && (this->getCouleur() != getListePiece()->at(i)->getCouleur() && getListePiece()->at(i)->getNom() != "Pion")){
+                // On vérifie la liste des coups possibles de la pièce
+                // Que la pièce est bien de couleur opposée
+                // Qu'il ne s'agit d'un Pion (car un Pion n'est pas une menace pour le Roi dans sa liste des coups possibles)
                 return true;
             }
         }

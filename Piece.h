@@ -21,6 +21,10 @@ namespace type{
 	};
 }
 
+/*
+* Pièce est une classe abstraite, de fait elle ne peut pas être instancié
+*/
+
 
 class Piece{
 

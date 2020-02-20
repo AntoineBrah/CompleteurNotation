@@ -33,19 +33,18 @@ int main(int argc, char* argv[]){
 
 
         Piece *p3 = new Fou(Blanc, type::Fou, "h8");
-        Piece *p2 = new Pion(Noir, type::Pion, "f3");
         Piece *p4 = new Tour(Noir, type::Tour, "c8");
-        Piece *p5 = new Cavalier(Noir, type::Tour, "f6");
+        Piece *p5 = new Cavalier(Noir, type::Cavalier, "f6");
+        Piece *p2 = new Pion(Noir, type::Pion, "e3");
         Piece *p1 = new Roi(Blanc, type::Roi, "d3");
 
         p1->printListeCoupsPossibles();
 
         delete p3;
         delete p2;
-        delete p1;
         delete p4;
         delete p5;
-
+        delete p1;
     }
 
     return 0;
