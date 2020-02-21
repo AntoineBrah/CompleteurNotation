@@ -3,6 +3,7 @@
 #include "LectureFichier.h"
 #include "Initialisation.h"
 #include "TraitementCoups.h"
+#include "EcritureFichier.h"
 #include "Point.h"
 #include "Pion.h"
 
@@ -10,6 +11,8 @@
 
 
 int main(int argc, char* argv[]){
+
+    viderFichier();
 
     if(argc != 2){
         if(argc < 2){
@@ -31,21 +34,32 @@ int main(int argc, char* argv[]){
         }
         */
 
+        
+        Cellule *p3 = new Cellule(new Fou(Blanc, type::Fou, "h8"));
+        Cellule *p4 = new Cellule(new Cavalier(Blanc, type::Cavalier, "b2"));
+        Cellule *p5 = new Cellule(new Pion(Noir, type::Pion, "d5"));
+        Cellule *p2 = new Cellule(new Roi(Blanc, type::Roi, "e1"));
+        
 
-        Piece *p3 = new Fou(Blanc, type::Fou, "h8");
-        Piece *p4 = new Tour(Noir, type::Tour, "c8");
-        Piece *p5 = new Cavalier(Noir, type::Cavalier, "f6");
-        Piece *p2 = new Pion(Noir, type::Pion, "e3");
-        Piece *p1 = new Roi(Blanc, type::Roi, "d3");
+        
+        Piece *p1 = new Dame(Blanc, type::Dame, "d3");
+        Cellule *c1 = new Cellule(p1);
+        /*
+        cout << c1->getJSON() << endl;
+        */
 
-        p1->printListeCoupsPossibles();
-
+        /*
         delete p3;
         delete p2;
         delete p4;
         delete p5;
         delete p1;
+        */
+
+       
     }
+
+    correctionSyntaxe();
 
     return 0;
 }

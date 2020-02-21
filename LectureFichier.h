@@ -1,9 +1,9 @@
 #ifndef LectureFichier_H
 #define LectureFichier_H
 
-#include<iostream>
-#include<fstream> // Flux de lecture/écriture
-#include<string>
+#include <iostream>
+#include <fstream> // Flux de lecture/écriture
+#include <string>
 
 using namespace std;
 
