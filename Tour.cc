@@ -1,8 +1,6 @@
 #include "Tour.h"
 
-Tour::Tour(Couleur c, type::Nom n, string pos) : Piece(c,n,pos){
-    updateListeCoupsPossibles();
-}
+Tour::Tour(Couleur c, type::Nom n, string pos) : Piece(c,n,pos){}
 
 void Tour::updateListeCoupsPossibles(){
 

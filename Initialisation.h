@@ -9,6 +9,7 @@
 #include "Roi.h"
 #include "Pion.h"
 #include "Cellule.h"
+#include "Piece.h"
 
 using namespace std;
 

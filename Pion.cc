@@ -12,9 +12,7 @@
 * erreurs;
 */
 
-Pion::Pion(Couleur c, type::Nom n, string pos) : Piece(c,n,pos), aBouge(false){
-    updateListeCoupsPossibles();
-}
+Pion::Pion(Couleur c, type::Nom n, string pos) : Piece(c,n,pos), aBouge(false){}
 
 void Pion::updateListeCoupsPossibles(){
 

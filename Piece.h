@@ -34,7 +34,6 @@ class Piece{
 		Position pos;
 		vector<Position> listeCoupsPossibles;
 
-		virtual void updateListeCoupsPossibles() = 0; // Méthode (abstraite) virtuelle pure
 
 	public :
 		Piece();
@@ -43,6 +42,8 @@ class Piece{
 		string getNom() const;
 		Position getPosition() const; // Renvoi la position de la pièce
 		string getPositionString() const; // Renvoi la position de la pièce sous forme de string
+
+		virtual void updateListeCoupsPossibles() = 0; // Méthode (abstraite) virtuelle pure
 
 		void setPostion(string);
 		vector<Position>* getListeCoupsPossibles(); // Renvoi un pointeur vers la liste des coups possibles d'une pièce
@@ -76,5 +77,8 @@ vector<Piece*>* getListePiece();
 *	!existePieceSurPosition(pos) renvoit 1
 */
 Piece* existePieceSurPosition(string);
+
+// Met à jour la liste des coups possibles de toutes les pièces instanciés
+void updateListeCoupsPossiblesAll();
 
 #endif

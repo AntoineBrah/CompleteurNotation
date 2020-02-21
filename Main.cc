@@ -33,28 +33,14 @@ int main(int argc, char* argv[]){
             //system("cd Interface ; electron .");
         }
         */
-
         
-        Cellule *p3 = new Cellule(new Fou(Blanc, type::Fou, "h8"));
-        Cellule *p4 = new Cellule(new Cavalier(Blanc, type::Cavalier, "b2"));
-        Cellule *p5 = new Cellule(new Pion(Noir, type::Pion, "d5"));
-        Cellule *p2 = new Cellule(new Roi(Blanc, type::Roi, "e1"));
-        
+        vector<Cellule*> *initialisationEchiquier = initialiserCellules();
 
-        
-        Piece *p1 = new Dame(Blanc, type::Dame, "d3");
-        Cellule *c1 = new Cellule(p1);
-        /*
-        cout << c1->getJSON() << endl;
-        */
+        for(Cellule* cell : (*initialisationEchiquier)){
+            delete cell;
+        }
 
-        /*
-        delete p3;
-        delete p2;
-        delete p4;
-        delete p5;
-        delete p1;
-        */
+        initialisationEchiquier->clear();
 
        
     }

@@ -57,6 +57,8 @@ vector<Cellule*>* initialiserCellules(){
     Piece *Dn1 = new Dame(Noir, type::Dame, "d8"); 
     Piece *Rn = new Roi(Noir, type::Roi, "e8"); 
 
+    updateListeCoupsPossiblesAll(); // On met à jour la liste des coups possibles de toutes les pièces instanciées
+
     /* Création listeCellules */
 
     // Ce vector contient les 32 cellules initiales qui elles mêmes contiennent chacune 1 pièce.
