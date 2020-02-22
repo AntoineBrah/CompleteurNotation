@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
         Piece *p1 = new Cavalier(Blanc, type::Cavalier, "g1");
 
         Cellule *c1 = new Cellule(p1);
-
+        
         p1->setPostion("g3");
         updateListeCoupsPossiblesAll();
 

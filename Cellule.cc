@@ -60,9 +60,7 @@ void Cellule::setCSE(Cellule *c){
     CSE=c;
 }
 
-Cellule::~Cellule(){
-    delete piece; // Effacer la cellule efface d'abord la pièce qu'elle contient
-}
+Cellule::~Cellule(){}
 
 vector<Cellule*>* getListeCellule(){
 	return &listeCellule;

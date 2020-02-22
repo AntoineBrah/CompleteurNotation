@@ -4,7 +4,7 @@ void traitementCoups(lectureFichier* f){
 
     vector<Cellule*> *instancesEchiquier = initialiserCellules();
     // On l'utilise seulement pour effacer en mémoire les nouvelles cellules créées
-    vector<Cellule*> *nouvellesCellules = new vector<Cellule*>; // On l'utilise seulement pour effacer en mémoire
+    vector<Cellule*> nouvellesCellules; // On l'utilise seulement pour effacer en mémoire
 
     lectureFichier *File = f;
 
@@ -63,7 +63,7 @@ void traitementCoups(lectureFichier* f){
 
                                 // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                 Cellule *c = new Cellule(instancesEchiquier->at(i)->getPiece());
-                                nouvellesCellules->push_back(c); 
+                                nouvellesCellules.push_back(c); 
 
                                 dernierCSP->setCSP(c);
 
@@ -92,7 +92,7 @@ void traitementCoups(lectureFichier* f){
 
                                 // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                 Cellule *c = new Cellule(instancesEchiquier->at(i)->getPiece());
-                                nouvellesCellules->push_back(c); 
+                                nouvellesCellules.push_back(c); 
 
                                 dernierCSP->setCSP(c);
 
@@ -153,7 +153,7 @@ void traitementCoups(lectureFichier* f){
 
                                 // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                 Cellule *c = new Cellule(instancesEchiquier->at(i)->getPiece());
-                                nouvellesCellules->push_back(c); 
+                                nouvellesCellules.push_back(c); 
 
                                 dernierCSP->setCSP(c);
 
@@ -182,7 +182,7 @@ void traitementCoups(lectureFichier* f){
 
                                 // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                 Cellule *c = new Cellule(instancesEchiquier->at(i)->getPiece());
-                                nouvellesCellules->push_back(c); 
+                                nouvellesCellules.push_back(c); 
 
                                 dernierCSP->setCSP(c);
 
@@ -205,11 +205,19 @@ void traitementCoups(lectureFichier* f){
     }while(File->lireLigneSuivante());
 
 
-    cout << "Nb coups : " << nbCoup << endl;
-    // On efface le contenu du vector (mémoire dynamique)
+    // On efface le contenu des vectors (mémoire dynamique)
     for(Cellule* cell : (*instancesEchiquier)){
+        delete cell->getPiece(); // On efface la pièce contenu dans la cellule
+        delete cell; // On efface la cellule
+    }
+    
+    
+    for(Cellule* cell : nouvellesCellules){
         delete cell;
     }
-
+    
     instancesEchiquier->clear();
+    nouvellesCellules.clear();
+    
+
 }
