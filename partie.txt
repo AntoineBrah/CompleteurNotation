@@ -1,7 +1,4 @@
-d3 d6
-d4 d5
-Fd2 h6
-e4 e5
-Fe3 b5
-De2 De7
-Df3 Df6
+a3
+a4
+a5
+a6

@@ -31,8 +31,8 @@ int main(int argc, char* argv[]){
         if(File.getEstCorrectementOuvert()){ // Si le fichier est correctement ouvert alors, on le traite
             traitementCoups(&File);
         }
-
         
+
 
         /*
         Piece *p1 = new Cavalier(Blanc, type::Cavalier, "g1");

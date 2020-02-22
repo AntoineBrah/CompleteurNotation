@@ -21,29 +21,6 @@ Cellule* Cellule::getCSE() const{
     return CSE;
 }
 
-vector<Position>* Cellule::getListeCoupsPossiblesPiece(){
-    return &listeCoupsPossiblesPiece;
-}
-
-void Cellule::printListeCoupsPossiblesPiece() const{
-
-	cout << "{";
-
-	if(listeCoupsPossiblesPiece.size() > 0){ // car erreur compilation si la liste est vide
-		for(unsigned int i=0; i<=listeCoupsPossiblesPiece.size()-1; i++){
-
-			if(i==listeCoupsPossiblesPiece.size()-1){
-				cout << listeCoupsPossiblesPiece.at(i).getCoord();
-			}
-			else{
-				cout << listeCoupsPossiblesPiece.at(i).getCoord() << ",";
-			}
-		}
-	}
-
-	cout << "}" << endl;
-}
-
 
 string Cellule::getPosition() const{
     return pos.getCoord();
@@ -103,5 +80,10 @@ vector<Cellule*>* getListeCellule(){
 }
 
 Cellule* getDernierCSP(Cellule* c){
-    return c->getCSP() != NULL? getDernierCSP(c->getCSP()):c;
+
+    while(c->getCSP()){
+        c=c->getCSP();
+    }
+
+    return c;
 }

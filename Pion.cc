@@ -44,15 +44,16 @@ void Pion::updateListeCoupsPossibles(){
     // On vérifie qu'aucune Pièce n'est présent sur la case ligne+1
     // Puis on vérifie également qu'aucun pion n'est présent sur la case ligne+2
     if(!aBouge){        
-        if(estCorrectPoint(positionPion+Point(2,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(2,0)))) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(1,0)))))
+        if(estCorrectPoint(positionPion+Point(2,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(2,0)))) && estCorrectPoint(positionPion+Point(1,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(1,0)))))
             listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(2,0)));
     }
 
     // Tout pion peut avancer 1 case (ligne+1) devant lui (↑ vers le haut)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
     // On vérifie qu'aucune Pièce n'est présent sur la case ligne+1
-    if(estCorrectPoint(positionPion+Point(1,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(1,0)))))
+    if(estCorrectPoint(positionPion+Point(1,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(1,0))))){
         listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(1,0)));
+    }
 
     // Tout pion peut avancer en diagonale gauche (ligne+1,col-1) si il y a une pièce de couleur opposé (il le mange donc) (↖ diagonale supérieure gauche)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
@@ -81,7 +82,7 @@ void Pion::updateListeCoupsPossibles(){
     // On vérifie qu'aucune Pièce n'est présent sur la case ligne-1
     // Puis on vérifie également qu'aucun pion n'est présent sur la case ligne-2
     if(!aBouge){        
-        if(estCorrectPoint(positionPion+Point(-2,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(-2,0)))) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(-1,0)))))
+        if(estCorrectPoint(positionPion+Point(-2,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(-2,0)))) && estCorrectPoint(positionPion+Point(-1,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(-1,0)))))
             listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(-2,0)));
     }
 

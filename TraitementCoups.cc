@@ -50,9 +50,9 @@ void traitementCoups(lectureFichier* f){
 
                         Cellule *dernierCSP = getDernierCSP(instancesEchiquier->at(i));
 
-                        for(unsigned int j=0; j<dernierCSP->getListeCoupsPossiblesPiece()->size(); j++){
+                        for(unsigned int j=0; j<instancesEchiquier->at(i)->getPiece()->getListeCoupsPossibles()->size(); j++){
 
-                            if(dernierCSP->getListeCoupsPossiblesPiece()->at(j).getCoord() == deplacement){
+                            if(instancesEchiquier->at(i)->getPiece()->getListeCoupsPossibles()->at(j).getCoord() == deplacement){
                                 
                                 // Cas de la premiere pièce bougé, forcément un Cavalier
                                 if(nbCoup == 1){
@@ -72,7 +72,7 @@ void traitementCoups(lectureFichier* f){
                                 }
                                 else{
                                     // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
-                                    instancesEchiquier->at(i)->getPiece()->setPostion(deplacement); // on déplace la pièce
+                                    dernierCSP->getPiece()->setPostion(deplacement); // on déplace la pièce
                                     updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
 
                                     // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
@@ -97,11 +97,12 @@ void traitementCoups(lectureFichier* f){
 
                         Cellule *dernierCSP = getDernierCSP(instancesEchiquier->at(i));
 
-                        for(unsigned int j=0; j<dernierCSP->getListeCoupsPossiblesPiece()->size(); j++){
+                        for(unsigned int j=0; j<instancesEchiquier->at(i)->getPiece()->getListeCoupsPossibles()->size(); j++){
 
-                            if(dernierCSP->getListeCoupsPossiblesPiece()->at(j).getCoord() == deplacementBlanc){
+                            if(instancesEchiquier->at(i)->getPiece()->getListeCoupsPossibles()->at(j).getCoord() == deplacementBlanc){
+
                                 
-                                // Cas de la premiere pièce bougé, forcément un Cavalier
+                                // Cas de la premiere pièce bougé, forcément un Pion
                                 if(nbCoup == 1){
 
                                     // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
@@ -118,10 +119,12 @@ void traitementCoups(lectureFichier* f){
                                     k=c;
                                 }
                                 else{
+                                    
                                     // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
                                     instancesEchiquier->at(i)->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
                                     updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
-
+                                    
+                                    
                                     // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                     Cellule *c = new Cellule(instancesEchiquier->at(i)->getPiece());
                                     nouvellesCellules.push_back(c);
@@ -174,19 +177,11 @@ void traitementCoups(lectureFichier* f){
                 for(unsigned int i=0; i<instancesEchiquier->size(); i++){
                     if(instancesEchiquier->at(i)->getPiece()->getCouleur() == "Noir" && instancesEchiquier->at(i)->getPiece()->getNom() == typePiece){
                         
-                        cout << typePiece << endl;
-                        
                         Cellule *dernierCSP = getDernierCSP(instancesEchiquier->at(i));
 
-                        cout << dernierCSP->getPosition() << endl;
+                        for(unsigned int j=0; j<instancesEchiquier->at(i)->getPiece()->getListeCoupsPossibles()->size(); j++){
 
-                        dernierCSP->printListeCoupsPossiblesPiece();
-
-
-                        for(unsigned int j=0; j<dernierCSP->getListeCoupsPossiblesPiece()->size(); j++){
-
-
-                            if(dernierCSP->getListeCoupsPossiblesPiece()->at(j).getCoord() == deplacement){
+                            if(instancesEchiquier->at(i)->getPiece()->getListeCoupsPossibles()->at(j).getCoord() == deplacement){
                                 // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
 
                                 
@@ -220,14 +215,17 @@ void traitementCoups(lectureFichier* f){
                         Cellule *dernierCSP = getDernierCSP(instancesEchiquier->at(i));
 
 
-                        for(unsigned int j=0; j<dernierCSP->getListeCoupsPossiblesPiece()->size(); j++){
+                        for(unsigned int j=0; j<instancesEchiquier->at(i)->getPiece()->getListeCoupsPossibles()->size(); j++){
 
-                            if(dernierCSP->getListeCoupsPossiblesPiece()->at(j).getCoord() == deplacementNoir){
+                            if(instancesEchiquier->at(i)->getPiece()->getListeCoupsPossibles()->at(j).getCoord() == deplacementNoir){
                                 // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
 
                                 
                                 instancesEchiquier->at(i)->getPiece()->setPostion(deplacementNoir); // on déplace la pièce
                                 updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+
+                                cout << instancesEchiquier->at(i)->getPiece()->toString() << endl;
+                                instancesEchiquier->at(i)->getPiece()->printListeCoupsPossibles();
 
                                 // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                 Cellule *c = new Cellule(instancesEchiquier->at(i)->getPiece());

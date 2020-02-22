@@ -103,6 +103,7 @@ vector<Piece*>* getListePiece(){
 }
 
 void updateListeCoupsPossiblesAll(){
+
 	for(unsigned int i=0; i<getListePiece()->size(); i++){
 		getListePiece()->at(i)->updateListeCoupsPossibles();
 	}
