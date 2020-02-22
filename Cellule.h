@@ -1,6 +1,7 @@
 #ifndef Cellule_H
 #define Cellule_H
 
+#include <sstream> // Permet notamment de fournir une adresse sous la forme d'une string
 #include "EcritureFichier.h"
 #include "Piece.h"
 
@@ -20,6 +21,8 @@ class Cellule{
         Cellule *CSP; // Coup suivant pièce
         Cellule *CSE; // Coup suivant échiquier 
 
+        vector<Position> listeCoupsPossiblesPiece;
+
     public:
         Cellule(Piece*);
 
@@ -28,7 +31,11 @@ class Cellule{
         Piece* getPiece() const;
         Cellule* getCSP() const;
         Cellule* getCSE() const;
-        string getPositionPiece() const; // Renvoi la position courante de la pièce
+
+        vector<Position>* getListeCoupsPossiblesPiece();
+        void printListeCoupsPossiblesPiece() const;
+
+        string getPosition() const; // Renvoi la position courante de la pièce
         string getTypePiece() const;
         
         string toString() const;

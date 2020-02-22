@@ -141,9 +141,10 @@ void Dame::updateListeCoupsPossibles(){
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
     // On vérifie qu'aucune Pièce n'est présente sur la case
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
-
+    
     x = positionPiece.getX()-1;
     y = positionPiece.getY()+1;
+
 
     while(x>=1 && y<=8){
         if(estCorrectPoint(Point(x,y))){

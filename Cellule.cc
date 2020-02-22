@@ -1,8 +1,12 @@
 #include "Cellule.h"
 
 Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CSE(NULL), pos(p->getPositionString()){
+
+    for(unsigned int i=0; i<p->getListeCoupsPossibles()->size(); i++){
+        listeCoupsPossiblesPiece.push_back(p->getListeCoupsPossibles()->at(i));
+    }
+
     listeCellule.push_back(this);
-    ecritureFichier(this->getJSON() + ","); // On ajoute les infos de la cellule dans le fichier
 }
 
 Piece* Cellule::getPiece() const{
@@ -17,7 +21,31 @@ Cellule* Cellule::getCSE() const{
     return CSE;
 }
 
-string Cellule::getPositionPiece() const{
+vector<Position>* Cellule::getListeCoupsPossiblesPiece(){
+    return &listeCoupsPossiblesPiece;
+}
+
+void Cellule::printListeCoupsPossiblesPiece() const{
+
+	cout << "{";
+
+	if(listeCoupsPossiblesPiece.size() > 0){ // car erreur compilation si la liste est vide
+		for(unsigned int i=0; i<=listeCoupsPossiblesPiece.size()-1; i++){
+
+			if(i==listeCoupsPossiblesPiece.size()-1){
+				cout << listeCoupsPossiblesPiece.at(i).getCoord();
+			}
+			else{
+				cout << listeCoupsPossiblesPiece.at(i).getCoord() << ",";
+			}
+		}
+	}
+
+	cout << "}" << endl;
+}
+
+
+string Cellule::getPosition() const{
     return pos.getCoord();
 }
 
@@ -30,18 +58,26 @@ string Cellule::toString() const{
 }
 
 string Cellule::getJSON() const{
-    string json = "{\"type\":\"Cellule\",";
+
+    ostringstream adrCSP, adrCSE, instanceCourante;
+    adrCSP << CSP;
+    adrCSE << CSE;
+    instanceCourante << this;
+
+    string json = "{\"adr\":\"" + instanceCourante.str() + "\",";
+    json += "\"csp\":\"" + adrCSP.str() + "\",";
+    json += "\"cse\":\"" + adrCSE.str() + "\",";
     json += "\"piece\":\"" + getTypePiece() + "\",";
     json += "\"couleur\":\"" + piece->getCouleur() + "\",";
     json += "\"position\":\"" + pos.getCoord() + "\",";
     json += "\"lcp\":\""; 
 
-    for(unsigned int i=0; i<piece->getListeCoupsPossibles()->size(); i++){
-        if(i == piece->getListeCoupsPossibles()->size()-1){
-            json += piece->getListeCoupsPossibles()->at(i).getCoord();
+    for(unsigned int i=0; i<listeCoupsPossiblesPiece.size(); i++){
+        if(i == listeCoupsPossiblesPiece.size()-1){
+            json += listeCoupsPossiblesPiece.at(i).getCoord();
         }
         else{
-            json += piece->getListeCoupsPossibles()->at(i).getCoord() + " ";
+            json += listeCoupsPossiblesPiece.at(i).getCoord() + " ";
         }
     }
 

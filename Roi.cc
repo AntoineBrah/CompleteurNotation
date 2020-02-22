@@ -33,7 +33,7 @@ void Roi::updateListeCoupsPossibles(){
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point haut = positionPiece + Point(1,0);
-    /*
+    
     if(estCorrectPoint(haut) && !posDansLCPAdverse(convertPointToPosition(haut)) && !this->possedePionAdverseEnDiagonaleSup(haut)){
         if(existePieceSurPosition(convertPointToPosition(haut))){
             if(existePieceSurPosition(convertPointToPosition(haut))->getCouleur() != this->getCouleur()){
@@ -44,7 +44,7 @@ void Roi::updateListeCoupsPossibles(){
             listeCoupsPossibles.push_back(convertPointToPosition(haut));
         }
     }
-    */
+    
     
 
     // Tout Roi peut se déplacer d'une case vers la diagonale supérieure droite ➚ (ligne+1, colonne+1)
@@ -53,7 +53,7 @@ void Roi::updateListeCoupsPossibles(){
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point diagonaleSupDroite = positionPiece + Point(1,1);
-    /*
+    
     if(estCorrectPoint(diagonaleSupDroite) && !posDansLCPAdverse(convertPointToPosition(diagonaleSupDroite)) && !this->possedePionAdverseEnDiagonaleSup(diagonaleSupDroite)){
         if(existePieceSurPosition(convertPointToPosition(diagonaleSupDroite))){
             if(existePieceSurPosition(convertPointToPosition(diagonaleSupDroite))->getCouleur() != this->getCouleur()){
@@ -64,7 +64,7 @@ void Roi::updateListeCoupsPossibles(){
             listeCoupsPossibles.push_back(convertPointToPosition(diagonaleSupDroite));
         }
     }
-    */
+    
     
 
     // Tout Roi peut se déplacer d'une case vers la droite → (colonne+1)
@@ -73,7 +73,7 @@ void Roi::updateListeCoupsPossibles(){
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point droite = positionPiece + Point(0,1);
-    /*
+    
     if(estCorrectPoint(droite) && !posDansLCPAdverse(convertPointToPosition(droite)) && !this->possedePionAdverseEnDiagonaleSup(droite)){
         if(existePieceSurPosition(convertPointToPosition(droite))){
             if(existePieceSurPosition(convertPointToPosition(droite))->getCouleur() != this->getCouleur()){
@@ -84,7 +84,7 @@ void Roi::updateListeCoupsPossibles(){
             listeCoupsPossibles.push_back(convertPointToPosition(droite));
         }
     }
-    */
+    
 
     // Tout Roi peut se déplacer d'une case vers la diagonale inférieure droite ➘ (ligne-1, colonne+1)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
@@ -92,7 +92,7 @@ void Roi::updateListeCoupsPossibles(){
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point diagonaleInfDroite = positionPiece + Point(-1,1);
-    /*
+    
     if(estCorrectPoint(diagonaleInfDroite) && !posDansLCPAdverse(convertPointToPosition(diagonaleInfDroite)) && !this->possedePionAdverseEnDiagonaleSup(diagonaleInfDroite)){
         if(existePieceSurPosition(convertPointToPosition(diagonaleInfDroite))){
             if(existePieceSurPosition(convertPointToPosition(diagonaleInfDroite))->getCouleur() != this->getCouleur()){
@@ -103,7 +103,7 @@ void Roi::updateListeCoupsPossibles(){
             listeCoupsPossibles.push_back(convertPointToPosition(diagonaleInfDroite));
         }
     }
-    */
+    
 
     // Tout Roi peut se déplacer d'une case vers le bas ↓ (ligne-1)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
@@ -111,7 +111,7 @@ void Roi::updateListeCoupsPossibles(){
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point bas = positionPiece + Point(-1,0);
-    /*
+    
     if(estCorrectPoint(bas) && !posDansLCPAdverse(convertPointToPosition(bas)) && !this->possedePionAdverseEnDiagonaleSup(bas)){
         if(existePieceSurPosition(convertPointToPosition(bas))){
             if(existePieceSurPosition(convertPointToPosition(bas))->getCouleur() != this->getCouleur()){
@@ -122,7 +122,7 @@ void Roi::updateListeCoupsPossibles(){
             listeCoupsPossibles.push_back(convertPointToPosition(bas));
         }
     }
-    */
+    
 
     // Tout Roi peut se déplacer d'une case vers la diagonale inférieure gauche ↙ (ligne-1, colonne-1)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
@@ -130,7 +130,7 @@ void Roi::updateListeCoupsPossibles(){
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point diagonaleInfGauche = positionPiece + Point(-1,-1);
-    /*
+    
     if(estCorrectPoint(diagonaleInfGauche) && !posDansLCPAdverse(convertPointToPosition(diagonaleInfGauche)) && !this->possedePionAdverseEnDiagonaleSup(diagonaleInfGauche)){
         if(existePieceSurPosition(convertPointToPosition(diagonaleInfGauche))){
             if(existePieceSurPosition(convertPointToPosition(diagonaleInfGauche))->getCouleur() != this->getCouleur()){
@@ -141,7 +141,7 @@ void Roi::updateListeCoupsPossibles(){
             listeCoupsPossibles.push_back(convertPointToPosition(diagonaleInfGauche));
         }
     }
-    */
+    
 
     // Tout Roi peut se déplacer d'une case vers la gauche ← (colonne-1)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
@@ -170,7 +170,7 @@ void Roi::updateListeCoupsPossibles(){
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
     // On effectue les vérifications du Problème1 (Problème entre Roi et Pion adverse)
     Point diagonaleSupGauche = positionPiece + Point(1,-1);
-    /*
+    
     if(estCorrectPoint(diagonaleSupGauche) && !posDansLCPAdverse(convertPointToPosition(diagonaleSupGauche)) && !this->possedePionAdverseEnDiagonaleSup(diagonaleSupGauche)){
         if(existePieceSurPosition(convertPointToPosition(diagonaleSupGauche))){
             if(existePieceSurPosition(convertPointToPosition(diagonaleSupGauche))->getCouleur() != this->getCouleur()){
@@ -181,7 +181,7 @@ void Roi::updateListeCoupsPossibles(){
             listeCoupsPossibles.push_back(convertPointToPosition(diagonaleSupGauche));
         }
     }
-    */
+    
     
 }
 
