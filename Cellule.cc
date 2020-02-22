@@ -52,12 +52,12 @@ string Cellule::getJSON() const{
 
 
 
-void Cellule::setCSP(Cellule c){
-    CSP=&c;
+void Cellule::setCSP(Cellule *c){
+    CSP=c;
 }
 
-void Cellule::setCSE(Cellule c){
-    CSE=&c;
+void Cellule::setCSE(Cellule *c){
+    CSE=c;
 }
 
 Cellule::~Cellule(){
@@ -66,4 +66,8 @@ Cellule::~Cellule(){
 
 vector<Cellule*>* getListeCellule(){
 	return &listeCellule;
+}
+
+Cellule* getDernierCSP(Cellule* c){
+    return c->getCSP() != NULL? getDernierCSP(c->getCSP()):c;
 }

@@ -77,7 +77,6 @@ vector<Piece*>* getListePiece();
 *	!existePieceSurPosition(pos) renvoit 1
 */
 Piece* existePieceSurPosition(string);
-
 // Met à jour la liste des coups possibles de toutes les pièces instanciés
 void updateListeCoupsPossiblesAll();
 

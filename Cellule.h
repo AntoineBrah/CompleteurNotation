@@ -35,8 +35,8 @@ class Cellule{
 
         string getJSON() const; // Renvoi toutes les infos sur la cellule au format JSON
 
-        void setCSP(Cellule);
-        void setCSE(Cellule);
+        void setCSP(Cellule*);
+        void setCSE(Cellule*);
 
         ~Cellule();
 
@@ -50,5 +50,9 @@ static vector<Cellule*> listeCellule;
 // renvoi un pointeur vers le vector listeCellule
 // car ce vector ne peut pas être manipuler en dehors du fichier (static)
 vector<Cellule*>* getListeCellule();
+
+
+// renvoi la derniere cellule de CSP 
+Cellule* getDernierCSP(Cellule*);
 
 #endif
