@@ -171,7 +171,7 @@ string convertPointToPosition(Point p){
             colonne = "h";
             break;
         default:
-            cout << "Il faudra gérer le fait qu'un utilisateur déplace une pièce en dehors de l'échiquier (colonne)" << endl;
+            cout << "Il faudra gérer le fait qu'un utilisateur déplace une pièce en dehors de l'échiquier (colonne) [ici : " << p.getY() << endl;
             break;
     }
 
@@ -204,6 +204,7 @@ string convertPointToPosition(Point p){
             break;
         default:
             cout << "Il faudra gérer le fait qu'un utilisateur déplace une pièce en dehors de l'échiquier (ligne)" << endl;
+            cout << "ici : " << p.getX() << endl;
             break;
     }
 

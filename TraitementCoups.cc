@@ -46,8 +46,6 @@ void traitementCoups(lectureFichier* f){
                         break;
                 }
 
-                cout << typePiece << endl;
-
                 for(unsigned int i=0; i<instancesEchiquier->size(); i++){
                     if(instancesEchiquier->at(i)->getPiece()->getCouleur() == "Blanc" && instancesEchiquier->at(i)->getPiece()->getNom() == typePiece){
 
@@ -57,7 +55,6 @@ void traitementCoups(lectureFichier* f){
                                 Cellule *dernierCSP = getDernierCSP(instancesEchiquier->at(i));
 
                                 // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
-                                cout << "deplacement : " << deplacement << endl;
                                 instancesEchiquier->at(i)->getPiece()->setPostion(deplacement); // on déplace la pièce
                                 updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
 
@@ -105,9 +102,7 @@ void traitementCoups(lectureFichier* f){
                 }
             }
         }
-        else{
-            cout << "fin coup blanc" << endl;
-        }
+
 
 
         if(deplacementNoir != ""){
@@ -194,9 +189,6 @@ void traitementCoups(lectureFichier* f){
                     }
                 }
             }
-        }
-        else{
-            cout << "fin coup noir" << endl;
         }
         
 
