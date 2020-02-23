@@ -79,3 +79,16 @@ div{
     left: 0;
     margin-left: 2px;
 }
+
+#chess-console{
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+#chess-console button{
+    margin: 10px;
+}
