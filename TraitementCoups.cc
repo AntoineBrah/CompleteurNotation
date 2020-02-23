@@ -3,7 +3,6 @@
 void traitementCoups(lectureFichier* f){
 
     vector<Cellule*> *instancesEchiquier = initialiserCellules();
-    vector<Cellule*> nouvellesCellules;
 
     lectureFichier *File = f;
 
@@ -58,7 +57,6 @@ void traitementCoups(lectureFichier* f){
 
                                     // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                     Cellule *c = new Cellule(cell->getPiece());
-                                    nouvellesCellules.push_back(c);
 
                                     dernierCSP->setCSP(c);
                                     dernierCSP->setCSE(c);
@@ -73,7 +71,6 @@ void traitementCoups(lectureFichier* f){
                                     
                                     // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                     Cellule *c = new Cellule(cell->getPiece());
-                                    nouvellesCellules.push_back(c);
 
                                     dernierCSP->setCSP(c);
                                     k->setCSE(c);
@@ -99,7 +96,6 @@ void traitementCoups(lectureFichier* f){
 
                                     // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                     Cellule *c = new Cellule(cell->getPiece());
-                                    nouvellesCellules.push_back(c);
 
 
                                     dernierCSP->setCSP(c);
@@ -115,7 +111,6 @@ void traitementCoups(lectureFichier* f){
                                     
                                     // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                     Cellule *c = new Cellule(cell->getPiece());
-                                    nouvellesCellules.push_back(c);
 
                                     dernierCSP->setCSP(c);
                                     k->setCSE(c);
@@ -169,7 +164,6 @@ void traitementCoups(lectureFichier* f){
 
                                 // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                 Cellule *c = new Cellule(cell->getPiece());
-                                nouvellesCellules.push_back(c);
 
                                 dernierCSP->setCSP(c);
                                 k->setCSE(c);
@@ -196,7 +190,6 @@ void traitementCoups(lectureFichier* f){
                                 
                                 // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                 Cellule *c = new Cellule(cell->getPiece());
-                                nouvellesCellules.push_back(c);
 
                                 dernierCSP->setCSP(c);
                                 k->setCSE(c);
