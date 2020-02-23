@@ -187,17 +187,19 @@ void Roi::updateListeCoupsPossibles(){
 
 
 /*
-* On vérifie que la position ou souhaite allez le Roi est dans aucune listePositionPiece de 
+* On vérifie que la position ou souhaite allez le Roi est dans aucune listeCoupsPossibles de 
 * toutes les pièces adverses.
 */
-bool Roi::posDansLCPAdverse(const string &p) const{
-    for(unsigned int i=0; i<getListePiece()->size(); i++){
-        for(unsigned int j=0; j<getListePiece()->at(i)->getListeCoupsPossibles()->size(); j++){
-            if((p == getListePiece()->at(i)->getListeCoupsPossibles()->at(j).getCoord()) && (this->getCouleur() != getListePiece()->at(i)->getCouleur() && getListePiece()->at(i)->getNom() != "Pion")){
-                // On vérifie la liste des coups possibles de la pièce
-                // Que la pièce est bien de couleur opposée
-                // Qu'il ne s'agit d'un Pion (car un Pion n'est pas une menace pour le Roi dans sa liste des coups possibles)
-                return true;
+bool Roi::posDansLCPAdverse(const string &position) const{
+    for(Piece *p : getListePiece()){
+        if(p->getCouleur() != this->getCouleur() && p->getNom() != "Pion"){
+            for(Position pos : p->getListeCoupsPossibles()){
+                if(position == pos.getCoord()){
+                    // On vérifie la liste des coups possibles de la pièce
+                    // Que la pièce est bien de couleur opposée
+                    // Qu'il ne s'agit d'un Pion (car un Pion n'est pas une menace pour le Roi dans sa liste des coups possibles)
+                    return true;
+                }
             }
         }
     }

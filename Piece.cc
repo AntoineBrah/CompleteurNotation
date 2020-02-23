@@ -57,8 +57,8 @@ void Piece::setPostion(string position){
 	pos.setCoord(position);
 }
 
-vector<Position>* Piece::getListeCoupsPossibles(){
-	return &listeCoupsPossibles;
+vector<Position>& Piece::getListeCoupsPossibles(){
+	return listeCoupsPossibles;
 }
 
 void Piece::printListeCoupsPossibles() const{
@@ -87,24 +87,20 @@ string Piece::toString() const{
 Piece::~Piece(){}
 
 Piece* existePieceSurPosition(string p){
-	for(unsigned int i=0; i<=listePiece.size()-1; i++){
-
-		// On renvoit la première pièce qu'on trouve à la position donnée
-		if(listePiece.at(i)->getPositionString() == p){
-			return listePiece.at(i);
+	for(Piece *piece : listePiece){
+		if(piece->getPosition().getCoord() == p){
+			return piece;
 		}
 	}
-
 	return NULL;
 }
 
-vector<Piece*>* getListePiece(){
-	return &listePiece;
+vector<Piece*>& getListePiece(){
+	return listePiece;
 }
 
 void updateListeCoupsPossiblesAll(){
-
-	for(unsigned int i=0; i<getListePiece()->size(); i++){
-		getListePiece()->at(i)->updateListeCoupsPossibles();
+	for(Piece *p : getListePiece()){
+		p->updateListeCoupsPossibles();
 	}
 }

@@ -2,8 +2,8 @@
 
 Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CSE(NULL), pos(p->getPositionString()){
 
-    for(unsigned int i=0; i<p->getListeCoupsPossibles()->size(); i++){
-        listeCoupsPossiblesPiece.push_back(p->getListeCoupsPossibles()->at(i));
+    for(Position pos : p->getListeCoupsPossibles()){
+        listeCoupsPossiblesPiece.push_back(pos);
     }
 
     listeCellule.push_back(this);

@@ -46,7 +46,7 @@ class Piece{
 		virtual void updateListeCoupsPossibles() = 0; // Méthode (abstraite) virtuelle pure
 
 		void setPostion(string);
-		vector<Position>* getListeCoupsPossibles(); // Renvoi un pointeur vers la liste des coups possibles d'une pièce
+		vector<Position>& getListeCoupsPossibles(); // Renvoi un pointeur vers la liste des coups possibles d'une pièce
 		void printListeCoupsPossibles() const;
 
 		string toString() const;
@@ -61,7 +61,7 @@ static vector<Piece*> listePiece;
 
 // renvoi un pointeur vers le vector listePiece
 // car ce vector ne peut pas être manipuler en dehors du fichier (static)
-vector<Piece*>* getListePiece();
+vector<Piece*>& getListePiece();
 
 // fonction qui prend en parametre une position et renvoi la première pièce présente sur cette position
 // renvoi NULL si aucune pièce présente sur la position donnée

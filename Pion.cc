@@ -21,6 +21,7 @@ void Pion::updateListeCoupsPossibles(){
     Position currentPosition(pos);
     Point positionPion = convertPositionToPoint(currentPosition);
 
+
     /*
     * On est obligé de vérifier que le pion est toujours dans l'échiquier...
     * Exemple : si on prendre le pion en a2 augmenter x de :
