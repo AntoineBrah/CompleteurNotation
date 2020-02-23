@@ -46,7 +46,7 @@ requete.onload = function(){
                 indexCoup = cellulesNouvelles.length-1;
             }
             else{
-                putAPieceOnAPosition(cellulesNouvelles[indexCoup].position, cellulesNouvelles[indexCoup].piece, cellulesNouvelles[indexCoup].couleur, cellulesNouvelles[indexCoup].adr, cellulesNouvelles[indexCoup].csp);
+                putAPieceOnAPosition(cellulesNouvelles[indexCoup].position, cellulesNouvelles[indexCoup].piece, cellulesNouvelles[indexCoup].couleur, cellulesNouvelles[indexCoup].adr, cellulesNouvelles[indexCoup].csp, cellulesNouvelles[indexCoup].lcp);
                 indexCoup++;
             }
         });
@@ -77,7 +77,7 @@ function instanciationPlateau(cellulesInitiales){
     }
 }
 
-function putAPieceOnAPosition(position, piece, couleur, adr, csp){
+function putAPieceOnAPosition(position, piece, couleur, adr, csp, lcp){
     for(var i=0; i<chessboard.length; i++){
         if(chessboard[i].getAttribute('id') === position){
             for(var j=0; j<chessboard.length; j++){
@@ -87,6 +87,7 @@ function putAPieceOnAPosition(position, piece, couleur, adr, csp){
                 }
             }
             chessboard[i].setAttribute('class', adr + ',' + csp);
+            chessboard[i].setAttribute('lcp', lcp);
             chessboard[i].style.backgroundImage = 'url(' + 'images/pieces/' + couleur + '/' + piece + '.svg)';
         }
     }
