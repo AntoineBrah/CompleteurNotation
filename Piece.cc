@@ -1,7 +1,7 @@
 #include "Piece.h"
 
-Piece::Piece() : couleur(Null), nom(type::Null), pos(""){}
-Piece::Piece(Couleur c, type::Nom n, string p) : couleur(c), nom(n), pos(p){
+Piece::Piece() : couleur(Null), nom(type::Null), pos(""), aBouge(false){}
+Piece::Piece(Couleur c, type::Nom n, string p) : couleur(c), nom(n), pos(p), aBouge(false){
 	listePiece.push_back(this);
 }
 
@@ -55,6 +55,9 @@ string Piece::getPositionString() const{
 
 void Piece::setPostion(string position){
 	pos.setCoord(position);
+
+	if(!aBouge)
+		aBouge = true;
 }
 
 vector<Position>& Piece::getListeCoupsPossibles(){

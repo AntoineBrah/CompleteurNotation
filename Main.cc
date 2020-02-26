@@ -14,6 +14,8 @@ int main(int argc, char* argv[]){
 
     viderFichier();
 
+    bool estTraite = false;
+
     if(argc != 2){
         if(argc < 2){
             cout << "ERREUR : Vous devez passer un fichier en argument." << endl;
@@ -28,13 +30,18 @@ int main(int argc, char* argv[]){
         lectureFichier File(argv[1]); // On ouvre le fichier txt en lecture
         
         if(File.getEstCorrectementOuvert()){ // Si le fichier est correctement ouvert alors, on le traite
-
             traitementCoups(&File);
+            estTraite = true;
         }
     }
 
     correctionSyntaxe();
-    //system("cd Interface ; electron .");
+    
+    /*
+    if(estTraite){
+        system("cd Interface ; electron .");
+    }
+    */
 
     return 0;
 }

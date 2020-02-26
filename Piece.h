@@ -33,6 +33,7 @@ class Piece{
 		type::Nom nom;
 		Position pos;
 		vector<Position> listeCoupsPossibles;
+		bool aBouge; // true si la pièce a déjà bougé, false sinon
 
 
 	public :

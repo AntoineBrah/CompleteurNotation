@@ -9,6 +9,4 @@
 
 void traitementCoups(lectureFichier*);
 
-
-
 #endif
