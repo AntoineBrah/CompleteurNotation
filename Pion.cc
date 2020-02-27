@@ -90,6 +90,7 @@ void Pion::updateListeCoupsPossibles(){
     // Tout pion peut avancer 1 case (ligne-1) devant lui (↓ vers le bas)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
     // On vérifie qu'aucune Pièce n'est présent sur la case ligne-1
+
     if(estCorrectPoint(positionPion+Point(-1,0)) && (!existePieceSurPosition(convertPointToPosition(positionPion+Point(-1,0)))))
         listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(-1,0)));
 

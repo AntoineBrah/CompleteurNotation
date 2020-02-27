@@ -19,7 +19,11 @@ string Piece::getCouleur() const{
 	}
 }
 
-string Piece::getNom() const{
+type::Nom Piece::getNom() const{
+	return nom;
+}
+
+string Piece::getNomString() const{
 	switch(nom){
 		case type::Pion : 
 			return "Pion";
@@ -84,7 +88,7 @@ void Piece::printListeCoupsPossibles() const{
 }
 
 string Piece::toString() const{
-	return "Type pièce : " + getNom() + "\nCouleur pièce : " + getCouleur() + "\nPosition pièce : " + getPositionString();
+	return "Type pièce : " + getNomString() + "\nCouleur pièce : " + getCouleur() + "\nPosition pièce : " + getPositionString();
 }
 
 Piece::~Piece(){}

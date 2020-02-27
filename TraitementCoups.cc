@@ -12,6 +12,7 @@ void traitementCoups(lectureFichier* f){
     do{
         nbCoup++;
 
+        f->printLigne();
 
         string deplacementBlanc = f->getCoupBlanc();
         string deplacementNoir = f->getCoupNoir();
@@ -45,7 +46,7 @@ void traitementCoups(lectureFichier* f){
                 }
 
                 for(Cellule* cell : (*instancesEchiquier)){
-                    if(cell->getPiece()->getCouleur() == "Blanc" && cell->getPiece()->getNom() == typePiece){
+                    if(cell->getPiece()->getCouleur() == "Blanc" && cell->getPiece()->getNomString() == typePiece){
                         Cellule *dernierCSP = getDernierCSP(cell);
 
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
@@ -85,7 +86,7 @@ void traitementCoups(lectureFichier* f){
             else if(File->getCoupBlanc().size() == 2){
             // C'est donc forcément un pion blanc
                 for(Cellule* cell : (*instancesEchiquier)){
-                    if(cell->getPiece()->getCouleur() == "Blanc" && cell->getPiece()->getNom() == "Pion"){
+                    if(cell->getPiece()->getCouleur() == "Blanc" && cell->getPiece()->getNomString() == "Pion"){
                         Cellule *dernierCSP = getDernierCSP(cell);
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
                             if(pos.getCoord() == deplacementBlanc){
@@ -153,11 +154,13 @@ void traitementCoups(lectureFichier* f){
                 }
                 
                 for(Cellule* cell : (*instancesEchiquier)){
-                    if(cell->getPiece()->getCouleur() == "Noir" && cell->getPiece()->getNom() == typePiece){
+                    if(cell->getPiece()->getCouleur() == "Noir" && cell->getPiece()->getNomString() == typePiece){
                         Cellule *dernierCSP = getDernierCSP(cell);
 
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
+                            
                             if(pos.getCoord() == deplacement){
+                                
                                 // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
                                 cell->getPiece()->setPostion(deplacement); // on déplace la pièce
                                 updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
@@ -178,13 +181,14 @@ void traitementCoups(lectureFichier* f){
             // C'est donc forcément un pion noir
 
                 for(Cellule* cell : (*instancesEchiquier)){
-                    if(cell->getPiece()->getCouleur() == "Noir" && cell->getPiece()->getNom() == "Pion"){
+                    if(cell->getPiece()->getCouleur() == "Noir" && cell->getPiece()->getNomString() == "Pion"){
                         Cellule *dernierCSP = getDernierCSP(cell);
 
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
                             if(pos.getCoord() == deplacementNoir){
                                 // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
                                 cell->getPiece()->setPostion(deplacementNoir); // on déplace la pièce
+                                cout << cell->getPiece()->toString() << endl;
                                 updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                 
                                 

@@ -1,6 +1,6 @@
 #include "Cellule.h"
 
-Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CSE(NULL), pos(p->getPositionString()){
+Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CSE(NULL), type(p->getNom()), pos(p->getPositionString()){
 
     for(Position pos : p->getListeCoupsPossibles()){
         listeCoupsPossiblesPiece.push_back(pos);
@@ -27,11 +27,33 @@ string Cellule::getPosition() const{
 }
 
 string Cellule::getTypePiece() const{
-    return piece->getNom();
+    switch(type){
+		case type::Pion : 
+			return "Pion";
+			break;
+		case type::Tour : 
+			return "Tour";
+			break;
+		case type::Cavalier : 
+			return "Cavalier";
+			break;
+		case type::Fou : 
+			return "Fou";
+			break;
+		case type::Dame : 
+			return "Dame";
+			break;
+		case type::Roi : 
+			return "Roi";
+			break;
+		default:
+			return "Erreur";
+			break;
+	}
 }
 
 string Cellule::toString() const{
-    return "La cellule contient :\n- Un " + piece->getNom() + "\n- De couleur : " + piece->getCouleur() + "\n- Dont la position est : " + pos.getCoord();
+    return "La cellule contient :\n- Un " + this->getTypePiece() + "\n- De couleur : " + piece->getCouleur() + "\n- Dont la position est : " + pos.getCoord();
 }
 
 string Cellule::getJSON() const{

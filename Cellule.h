@@ -19,13 +19,14 @@ class Cellule{
     private:
         Piece *piece;
         Cellule *CSP; // Coup suivant pièce
-        Cellule *CSE; // Coup suivant échiquier 
+        Cellule *CSE; // Coup suivant échiquier  
 
         vector<Position> listeCoupsPossiblesPiece;
 
     public:
         Cellule(Piece*);
 
+        const type::Nom type; // Contient le type de la pièce vers laquelle pointe la cellule (utile pour la promotion des pions)
         const Position pos; // Position de la cellule (cad de la pièce à un moment donné)
 
         Piece* getPiece() const;

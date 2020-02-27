@@ -192,7 +192,7 @@ void Roi::updateListeCoupsPossibles(){
 */
 bool Roi::posDansLCPAdverse(const string &position) const{
     for(Piece *p : getListePiece()){
-        if(p->getCouleur() != this->getCouleur() && p->getNom() != "Pion"){
+        if(p->getCouleur() != this->getCouleur() && p->getNomString() != "Pion"){
             for(Position pos : p->getListeCoupsPossibles()){
                 if(position == pos.getCoord()){
                     // On vérifie la liste des coups possibles de la pièce
@@ -208,42 +208,91 @@ bool Roi::posDansLCPAdverse(const string &position) const{
 
 bool Roi::possedePionAdverseEnDiagonaleSup(const Point &p){
 
-    bool diagoSupGauche(false);
-    bool diagoSupDroite(false);
+    if(this->getCouleur() == "Blanc"){
 
-    // Diagonale gauche supérieure ↖
-    if(estCorrectPoint(p) && estCorrectPoint(p+Point(1,-1)) && existePieceSurPosition(convertPointToPosition(p+Point(1,-1)))){
-        if(existePieceSurPosition(convertPointToPosition(p+Point(1,-1)))->getNom() == "Pion" && existePieceSurPosition(convertPointToPosition(p+Point(1,-1)))->getCouleur() != this->getCouleur()){
-            // Il existe une pièce et il s'agit d'un Pion adverse
-            diagoSupGauche = true;
+        bool diagoSupGauche(false);
+        bool diagoSupDroite(false);
+
+        // Diagonale gauche supérieure ↖
+        if(estCorrectPoint(p) && estCorrectPoint(p+Point(1,-1)) && existePieceSurPosition(convertPointToPosition(p+Point(1,-1)))){
+            if(existePieceSurPosition(convertPointToPosition(p+Point(1,-1)))->getNomString() == "Pion" && existePieceSurPosition(convertPointToPosition(p+Point(1,-1)))->getCouleur() != this->getCouleur()){
+                // Il existe une pièce et il s'agit d'un Pion adverse
+                diagoSupGauche = true;
+            }
+            else{
+                // Il existe une pièce et il ne s'agit pas d'un Pion adverse
+                diagoSupGauche = false;
+            }
         }
         else{
-            // Il existe une pièce et il ne s'agit pas d'un Pion adverse
+            // La position n'est pas correcte OU il n'existe pas de pièce sur cette position
             diagoSupGauche = false;
         }
-    }
-    else{
-        // La position n'est pas correcte OU il n'existe pas de pièce sur cette position
-        diagoSupGauche = false;
-    }
 
-    // Diagonale droite supérieure ➚
-    if(estCorrectPoint(p) && estCorrectPoint(p+Point(1,1)) && existePieceSurPosition(convertPointToPosition(p+Point(1,1)))){
-        if(existePieceSurPosition(convertPointToPosition(p+Point(1,1)))->getNom() == "Pion" && existePieceSurPosition(convertPointToPosition(p+Point(1,1)))->getCouleur() != this->getCouleur()){
-            // Il existe une pièce et il s'agit d'un Pion adverse
-            diagoSupDroite = true;
+        // Diagonale droite supérieure ➚
+        if(estCorrectPoint(p) && estCorrectPoint(p+Point(1,1)) && existePieceSurPosition(convertPointToPosition(p+Point(1,1)))){
+            if(existePieceSurPosition(convertPointToPosition(p+Point(1,1)))->getNomString() == "Pion" && existePieceSurPosition(convertPointToPosition(p+Point(1,1)))->getCouleur() != this->getCouleur()){
+                // Il existe une pièce et il s'agit d'un Pion adverse
+                diagoSupDroite = true;
+            }
+            else{
+                // Il existe une pièce et il ne s'agit pas d'un Pion adverse
+                diagoSupDroite = false;
+            }
         }
         else{
-            // Il existe une pièce et il ne s'agit pas d'un Pion adverse
+            // La position n'est pas correcte OU il n'existe pas de pièce sur cette position
             diagoSupDroite = false;
         }
+
+        return diagoSupGauche || diagoSupDroite;
+    }
+    else if(this->getCouleur() == "Noir"){
+
+        bool diagoInfGauche(false);
+        bool diagoInfDroite(false);
+
+
+        // Diagonale gauche inférieure ↙
+        if(estCorrectPoint(p) && estCorrectPoint(p+Point(-1,-1)) && existePieceSurPosition(convertPointToPosition(p+Point(-1,-1)))){
+            if(existePieceSurPosition(convertPointToPosition(p+Point(-1,-1)))->getNomString() == "Pion" && existePieceSurPosition(convertPointToPosition(p+Point(-1,-1)))->getCouleur() != this->getCouleur()){
+                // Il existe une pièce et il s'agit d'un Pion adverse
+                diagoInfGauche = true;
+            }
+            else{
+                // Il existe une pièce et il ne s'agit pas d'un Pion adverse
+                diagoInfGauche = false;
+            }
+        }
+        else{
+            // La position n'est pas correcte OU il n'existe pas de pièce sur cette position
+            diagoInfGauche = false;
+        }
+
+        // Diagonale droite supérieure ➚
+        if(estCorrectPoint(p) && estCorrectPoint(p+Point(-1,1)) && existePieceSurPosition(convertPointToPosition(p+Point(-1,1)))){
+            if(existePieceSurPosition(convertPointToPosition(p+Point(-1,1)))->getNomString() == "Pion" && existePieceSurPosition(convertPointToPosition(p+Point(-1,1)))->getCouleur() != this->getCouleur()){
+                // Il existe une pièce et il s'agit d'un Pion adverse
+                diagoInfDroite = true;
+            }
+            else{
+                // Il existe une pièce et il ne s'agit pas d'un Pion adverse
+                diagoInfDroite = false;
+            }
+        }
+        else{
+            // La position n'est pas correcte OU il n'existe pas de pièce sur cette position
+            diagoInfDroite = false;
+        }
+
+        return diagoInfGauche || diagoInfDroite;
     }
     else{
-        // La position n'est pas correcte OU il n'existe pas de pièce sur cette position
-        diagoSupDroite = false;
+        cout << "Erreur : impossible déterminer si le roi possède un pion en diagonaleSup/diagonaleInf." << endl;
+        return false;
     }
 
-    return diagoSupGauche || diagoSupDroite;
+    
 }
 
 Roi::~Roi(){}

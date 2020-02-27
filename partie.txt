@@ -1,4 +1,3 @@
 e4 e5
-Fc4 Ca6
-Df3 d6
-Df7
+Dh5 Fc5
+Dh7 a6
