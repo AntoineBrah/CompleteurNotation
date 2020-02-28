@@ -36,7 +36,10 @@ int main(int argc, char* argv[]){
     }
 
     correctionSyntaxe();
+<<<<<<< HEAD
     
+=======
+>>>>>>> 7006a7206495c41a454fb2e759d9d51c48a65db4
     /*
     if(estTraite){
         system("cd Interface ; electron .");
