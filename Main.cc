@@ -36,10 +36,11 @@ int main(int argc, char* argv[]){
     }
 
     correctionSyntaxe();
-    
+    /*
     if(estTraite){
         system("cd Interface ; electron .");
     }
+    */
 
     return 0;
 }

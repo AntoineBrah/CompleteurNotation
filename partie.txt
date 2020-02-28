@@ -1,3 +1,8 @@
-e4 e5
-Dh5 Fc5
-Dh7 a6
+h4 h6
+d3 Ca6
+Fh6 b6
+Fg7 c6
+h5 Fg7
+h6 Fb7
+g7 Db8
+h8 Cf6
