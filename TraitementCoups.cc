@@ -12,8 +12,6 @@ void traitementCoups(lectureFichier* f){
     do{
         nbCoup++;
 
-        f->printLigne();
-
         string deplacementBlanc = f->getCoupBlanc();
         string deplacementNoir = f->getCoupNoir();
 

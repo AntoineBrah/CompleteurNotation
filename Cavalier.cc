@@ -98,12 +98,9 @@ void Cavalier::updateListeCoupsPossibles(){
     // On vérifie qu'aucune Pièce n'est présente sur la case (ligne-2, col-1)
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
     
-
-
-    // LE PROBLEME VIENT D'ICI
     if(estCorrectPoint(positionPiece+Point(-2,-1))){
         if(existePieceSurPosition(convertPointToPosition(positionPiece+Point(-2,-1)))){
-            if(existePieceSurPosition(convertPointToPosition(positionPiece+Point(1,2)))->getCouleur() != this->getCouleur()){
+            if(existePieceSurPosition(convertPointToPosition(positionPiece+Point(-2,-1)))->getCouleur() != this->getCouleur()){
                 listeCoupsPossibles.push_back(convertPointToPosition(positionPiece+Point(-2,-1)));
             }
         }
