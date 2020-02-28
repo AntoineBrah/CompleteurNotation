@@ -107,7 +107,19 @@ vector<Piece*>& getListePiece(){
 }
 
 void updateListeCoupsPossiblesAll(){
+
 	for(Piece *p : getListePiece()){
+
+		separator();
+		cout << p->toString() << endl;
+		cout << "Avant update : "; 
+		p->printListeCoupsPossibles();
+
 		p->updateListeCoupsPossibles();
+		
+		cout << "Après update : ";
+		p->printListeCoupsPossibles();
+		separator();
+
 	}
 }

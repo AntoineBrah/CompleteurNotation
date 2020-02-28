@@ -39,7 +39,7 @@ void Cavalier::updateListeCoupsPossibles(){
         }
     }
 
-    
+
     
     // Tout cavalier peut se déplacer en en L vertical droit : →↑ (ligne+1, col+2)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
@@ -56,7 +56,7 @@ void Cavalier::updateListeCoupsPossibles(){
         }
     }
 
-    
+
 
     // Tout cavalier peut se déplacer en en L vertical droit : →↓ (ligne-1, col+2)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
@@ -73,7 +73,7 @@ void Cavalier::updateListeCoupsPossibles(){
         }
     }
 
-    
+
 
     // Tout cavalier peut se déplacer en en L vertical droit : ↓→ (ligne-2, col+1)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
@@ -92,10 +92,15 @@ void Cavalier::updateListeCoupsPossibles(){
     }
     
 
+
     // Tout cavalier peut se déplacer en en L vertical droit : ←↓ (ligne-2, col-1)
     // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
     // On vérifie qu'aucune Pièce n'est présente sur la case (ligne-2, col-1)
     // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
+    
+
+
+    // LE PROBLEME VIENT D'ICI
     if(estCorrectPoint(positionPiece+Point(-2,-1))){
         if(existePieceSurPosition(convertPointToPosition(positionPiece+Point(-2,-1)))){
             if(existePieceSurPosition(convertPointToPosition(positionPiece+Point(1,2)))->getCouleur() != this->getCouleur()){

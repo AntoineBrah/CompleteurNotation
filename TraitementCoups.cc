@@ -188,7 +188,6 @@ void traitementCoups(lectureFichier* f){
                             if(pos.getCoord() == deplacementNoir){
                                 // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
                                 cell->getPiece()->setPostion(deplacementNoir); // on déplace la pièce
-                                cout << cell->getPiece()->toString() << endl;
                                 updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                 
                                 

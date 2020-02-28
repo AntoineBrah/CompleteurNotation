@@ -1,3 +1,4 @@
 e4 e5
-Dh5 Fc5
-Dh7 a6
+Dh5 Fa3
+d4 Dh4
+Cf3 Cc6

@@ -9,6 +9,8 @@
 
 using namespace std;
 
+#define separator() cout << "-------------" << endl
+
 namespace type{
 	enum Nom{
 		Null,
