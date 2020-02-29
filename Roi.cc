@@ -296,3 +296,52 @@ bool Roi::possedePionAdverseEnDiagonaleSup(const Point &p){
 }
 
 Roi::~Roi(){}
+
+
+bool estEnEchecRoiBlanc(){
+
+    bool estEnEchec = false;
+
+    for(Piece *p : getListePiece()){
+		if(p->getNomString() == "Roi" && p->getCouleur() == "Blanc"){
+
+            Position posRoiBlanc = p->getPosition();
+
+            for(Piece *q : getListePiece()){
+                if(q->getCouleur() != "Blanc"){
+                    for(Position pos : q->getListeCoupsPossibles()){
+                        if(pos.getCoord() == posRoiBlanc.getCoord()){
+                            estEnEchec = true;
+                        }
+                    }
+                }
+            }
+        }
+	}
+
+    return estEnEchec;
+}
+
+bool estEnEchecRoiNoir(){
+
+    bool estEnEchec = false;
+
+    for(Piece *p : getListePiece()){
+		if(p->getNomString() == "Roi" && p->getCouleur() == "Noir"){
+
+            Position posRoiBlanc = p->getPosition();
+
+            for(Piece *q : getListePiece()){
+                if(q->getCouleur() != "Noir"){
+                    for(Position pos : q->getListeCoupsPossibles()){
+                        if(pos.getCoord() == posRoiBlanc.getCoord()){
+                            estEnEchec = true;
+                        }
+                    }
+                }
+            }
+        }
+	}
+
+    return estEnEchec;
+}

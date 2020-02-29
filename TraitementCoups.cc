@@ -63,18 +63,32 @@ void traitementCoups(lectureFichier* f){
                                     k=c;
                                 }
                                 else{
-                                    // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
+                                    Position pos = cell->getPiece()->getPosition();
+
                                     cell->getPiece()->setPostion(deplacement); // on déplace la pièce
                                     updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                     
-                                    
-                                    // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
-                                    Cellule *c = new Cellule(cell->getPiece());
+                                    if(estEnEchecRoiBlanc()){
+                                        // Si malgré le déplacement de la pièce, le roi est toujours en échec (ou devient en échec) alors on annule le déplacement de la pièce
+                                        // et on ne créé pas de nouvelle cellule
+                                        cell->getPiece()->setPostion(pos.getCoord());
+                                        updateListeCoupsPossiblesAll();
+                                        cout << cell->getPiece()->getNomString() << " " << cell->getPiece()->getCouleur() << " ne peut pas être déplacé en " << deplacement << " car sinon son Roi est (ou reste) en échec." << endl;
+                                    }
+                                    else{
+                                        // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
+                                        // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
+                                        cell->getPiece()->setPostion(deplacement); // on déplace la pièce
+                                        updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+                                        
+                                        // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
+                                        Cellule *c = new Cellule(cell->getPiece());
 
-                                    dernierCSP->setCSP(c);
-                                    k->setCSE(c);
+                                        dernierCSP->setCSP(c);
+                                        k->setCSE(c);
 
-                                    k=c;
+                                        k=c;
+                                    }
                                 }
                             }
                         }
@@ -103,18 +117,32 @@ void traitementCoups(lectureFichier* f){
                                     k=c;
                                 }
                                 else{
-                                    // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
+                                    Position pos = cell->getPiece()->getPosition();
+
                                     cell->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
                                     updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                     
-                                    
-                                    // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
-                                    Cellule *c = new Cellule(cell->getPiece());
+                                    if(estEnEchecRoiBlanc()){
+                                        // Si malgré le déplacement de la pièce, le roi est toujours en échec (ou devient en échec) alors on annule le déplacement de la pièce
+                                        // et on ne créé pas de nouvelle cellule
+                                        cell->getPiece()->setPostion(pos.getCoord());
+                                        updateListeCoupsPossiblesAll();
+                                        cout << cell->getPiece()->getNomString() << " " << cell->getPiece()->getCouleur() << " ne peut pas être déplacé en " << deplacementBlanc << " car sinon son Roi est (ou reste) en échec." << endl;
+                                    }
+                                    else{
+                                        // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
+                                        // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
+                                        cell->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
+                                        updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+                                        
+                                        // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
+                                        Cellule *c = new Cellule(cell->getPiece());
 
-                                    dernierCSP->setCSP(c);
-                                    k->setCSE(c);
+                                        dernierCSP->setCSP(c);
+                                        k->setCSE(c);
 
-                                    k=c;
+                                        k=c;
+                                    }
                                 }
                             }
                         }
@@ -159,17 +187,32 @@ void traitementCoups(lectureFichier* f){
                             
                             if(pos.getCoord() == deplacement){
                                 
-                                // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
+                                Position pos = cell->getPiece()->getPosition();
+
                                 cell->getPiece()->setPostion(deplacement); // on déplace la pièce
                                 updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+                                
+                                if(estEnEchecRoiNoir()){
+                                    // Si malgré le déplacement de la pièce, le roi est toujours en échec (ou devient en échec) alors on annule le déplacement de la pièce
+                                    // et on ne créé pas de nouvelle cellule
+                                    cell->getPiece()->setPostion(pos.getCoord());
+                                    updateListeCoupsPossiblesAll();
+                                    cout << cell->getPiece()->getNomString() << " " << cell->getPiece()->getCouleur() << " ne peut pas être déplacé en " << deplacement << " car sinon son Roi est (ou reste) en échec." << endl;
+                                }
+                                else{
+                                    // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
+                                    // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
+                                    cell->getPiece()->setPostion(deplacement); // on déplace la pièce
+                                    updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+                                    
+                                    // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
+                                    Cellule *c = new Cellule(cell->getPiece());
 
-                                // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
-                                Cellule *c = new Cellule(cell->getPiece());
+                                    dernierCSP->setCSP(c);
+                                    k->setCSE(c);
 
-                                dernierCSP->setCSP(c);
-                                k->setCSE(c);
-
-                                k=c;
+                                    k=c;
+                                }
                             }
                         }
                     }
@@ -184,18 +227,32 @@ void traitementCoups(lectureFichier* f){
 
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
                             if(pos.getCoord() == deplacementNoir){
-                                // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
+                                Position pos = cell->getPiece()->getPosition();
+
                                 cell->getPiece()->setPostion(deplacementNoir); // on déplace la pièce
                                 updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                 
-                                
-                                // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
-                                Cellule *c = new Cellule(cell->getPiece());
+                                if(estEnEchecRoiNoir()){
+                                    // Si malgré le déplacement de la pièce, le roi est toujours en échec (ou devient en échec) alors on annule le déplacement de la pièce
+                                    // et on ne créé pas de nouvelle cellule
+                                    cell->getPiece()->setPostion(pos.getCoord());
+                                    updateListeCoupsPossiblesAll();
+                                    cout << cell->getPiece()->getNomString() << " " << cell->getPiece()->getCouleur() << " ne peut pas être déplacé en " << deplacementNoir << " car sinon son Roi est (ou reste) en échec." << endl;
+                                }
+                                else{
+                                    // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
+                                    // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
+                                    cell->getPiece()->setPostion(deplacementNoir); // on déplace la pièce
+                                    updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+                                    
+                                    // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
+                                    Cellule *c = new Cellule(cell->getPiece());
 
-                                dernierCSP->setCSP(c);
-                                k->setCSE(c);
+                                    dernierCSP->setCSP(c);
+                                    k->setCSE(c);
 
-                                k=c;
+                                    k=c;
+                                }
                             }
                         }
                     }

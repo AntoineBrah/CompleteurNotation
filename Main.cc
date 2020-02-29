@@ -1,11 +1,13 @@
 #include <iostream>
 #include <cstdlib>
+#include <sstream>
 #include "LectureFichier.h"
 #include "Initialisation.h"
 #include "TraitementCoups.h"
 #include "EcritureFichier.h"
 #include "Point.h"
 #include "Pion.h"
+
 
 #define separator() cout << "---------------------------------" << endl
 
@@ -37,7 +39,6 @@ int main(int argc, char* argv[]){
 
     correctionSyntaxe();
 
-    
     if(estTraite){
         system("cd Interface ; electron .");
     }
