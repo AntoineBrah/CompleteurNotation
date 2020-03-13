@@ -63,4 +63,8 @@ vector<Cellule*>* getListeCellule();
 // renvoi la derniere cellule de CSP 
 Cellule* getDernierCSP(Cellule*);
 
+// Met la position à NULL (en dehors du plateau) de la pièce qui se fait manger
+// Et renvoi un pointeur vers une nouvelle Cellule (que l'on chaine à la liste CSP de la pièce qui se fait manger) avec les valeurs CSP,CSE,Position toutes à NULL
+void seFaitMangerPiece(string pos);
+
 #endif

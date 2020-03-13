@@ -109,3 +109,24 @@ Cellule* getDernierCSP(Cellule* c){
 
     return c;
 }
+
+void seFaitMangerPiece(string pos){
+    if(existePieceSurPosition(pos)){
+        existePieceSurPosition(pos)->setPostion("NULL"); // On sort la pièce du plateau
+        
+        // On parcourt toutes les cellules et on regarde laquelle contient la pièce
+        // On obtiendra la toute première cellule de la pièce
+        for(Cellule *cell : (*getListeCellule())){
+            if(cell->getPiece() == existePieceSurPosition(pos)){
+
+                // On créér la cellule qui représente la mort de la pièce (Position : NULL, CSP : NULL, CSE : NULL)
+                Cellule *mortPiece = new Cellule(cell->getPiece());
+                mortPiece->setCSP(NULL);
+                mortPiece->setCSE(NULL);
+
+                Cellule *dernierCSP = getDernierCSP(cell);
+                dernierCSP->setCSP(mortPiece); // On chaine l'avant dernière cellule de la pièce avec la dernière (la dernière représentant la mort de la pièce)
+            }
+        }
+    }
+}

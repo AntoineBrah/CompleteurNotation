@@ -58,10 +58,16 @@ string Piece::getPositionString() const{
 }
 
 void Piece::setPostion(string position){
-	pos.setCoord(position);
 
-	if(!aBouge)
-		aBouge = true;
+	if(position == "NULL"){
+		cout << "-> " << this->getNomString() << " " << this->getCouleur() << " en position : " << this->getPosition().getCoord() << " vient de se faire manger." << endl;
+	}
+	else{
+		pos.setCoord(position);
+
+		if(!aBouge)
+			aBouge = true;
+	}
 }
 
 vector<Position>& Piece::getListeCoupsPossibles(){
@@ -107,7 +113,6 @@ vector<Piece*>& getListePiece(){
 }
 
 void updateListeCoupsPossiblesAll(){
-
 	for(Piece *p : getListePiece()){
 		p->updateListeCoupsPossibles();
 	}

@@ -78,6 +78,9 @@ void traitementCoups(lectureFichier* f){
                                     else{
                                         // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
                                         // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
+
+                                        seFaitMangerPiece(deplacement); // Si une pièce est présente sur la position du déplacement, alors elle se fait manger
+
                                         cell->getPiece()->setPostion(deplacement); // on déplace la pièce
                                         updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                         
@@ -131,7 +134,10 @@ void traitementCoups(lectureFichier* f){
                                     }
                                     else{
                                         // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
-                                        // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
+                                        // Dans cette situation tout se déroule comme quand le Roi n'est pas en 
+                                        
+                                        //seFaitMangerPiece(deplacementBlanc); // Si une pièce est présente sur la position du déplacement, alors elle se fait manger
+
                                         cell->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
                                         updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                         
@@ -202,6 +208,9 @@ void traitementCoups(lectureFichier* f){
                                 else{
                                     // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
                                     // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
+
+                                    seFaitMangerPiece(deplacement); // Si une pièce est présente sur la position du déplacement, alors elle se fait manger
+
                                     cell->getPiece()->setPostion(deplacement); // on déplace la pièce
                                     updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                     
@@ -242,6 +251,9 @@ void traitementCoups(lectureFichier* f){
                                 else{
                                     // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
                                     // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
+
+                                    //seFaitMangerPiece(deplacementNoir); // Si une pièce est présente sur la position du déplacement, alors elle se fait manger
+
                                     cell->getPiece()->setPostion(deplacementNoir); // on déplace la pièce
                                     updateListeCoupsPossiblesAll(); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                     
@@ -262,9 +274,13 @@ void traitementCoups(lectureFichier* f){
 
     }while(File->lireLigneSuivante());
 
+
+    /*
+    * Affichage console des différents coups de la partie
+    */
+
     // On ajoute les infos de chaque cellules dans notre fichier JSON
     for(Cellule* cell : (*getListeCellule())){
-        //cout << cell->toString() << endl;
         ecritureFichier(cell->getJSON() + ",");
     }
 

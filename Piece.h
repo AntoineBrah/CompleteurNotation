@@ -25,7 +25,6 @@ namespace type{
 * Pièce est une classe abstraite, de fait elle ne peut pas être instancié
 */
 
-
 class Piece{
 
 	protected :
@@ -34,7 +33,6 @@ class Piece{
 		Position pos;
 		vector<Position> listeCoupsPossibles;
 		bool aBouge; // true si la pièce a déjà bougé, false sinon
-
 
 	public :
 		Piece();
@@ -79,6 +77,7 @@ vector<Piece*>& getListePiece();
 *	!existePieceSurPosition(pos) renvoit 1
 */
 Piece* existePieceSurPosition(string);
+
 // Met à jour la liste des coups possibles de toutes les pièces instanciés
 void updateListeCoupsPossiblesAll();
 
