@@ -25,6 +25,11 @@ namespace type{
 * Pièce est une classe abstraite, de fait elle ne peut pas être instancié
 */
 
+class Piece;
+class Cellule;
+
+#include "Cellule.h"
+
 class Piece{
 
 	protected :
@@ -33,6 +38,7 @@ class Piece{
 		Position pos;
 		vector<Position> listeCoupsPossibles;
 		bool aBouge; // true si la pièce a déjà bougé, false sinon
+		Cellule* firstCell;
 
 	public :
 		Piece();
@@ -42,9 +48,11 @@ class Piece{
 		string getNomString() const;
 		Position getPosition() const; // Renvoi la position de la pièce
 		string getPositionString() const; // Renvoi la position de la pièce sous forme de string
+		Cellule* getFirstCell() const; // Renvoi l'adresse de la première cellule de la pièce
 
 		virtual void updateListeCoupsPossibles() = 0; // Méthode (abstraite) virtuelle pure
 
+		void setFirstCell(Cellule*);
 		void setPostion(string);
 		vector<Position>& getListeCoupsPossibles(); // Renvoi un pointeur vers la liste des coups possibles d'une pièce
 		void printListeCoupsPossibles() const;
@@ -79,6 +87,6 @@ vector<Piece*>& getListePiece();
 Piece* existePieceSurPosition(string);
 
 // Met à jour la liste des coups possibles de toutes les pièces instanciés
-void updateListeCoupsPossiblesAll();
+void updateListeCoupsPossiblesAll(bool);
 
 #endif

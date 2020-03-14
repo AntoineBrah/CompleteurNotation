@@ -15,6 +15,7 @@ class Position{
 
         Couleur couleurCase;
     public:
+        Position();
         Position(string);
 
         void setCoord(string);

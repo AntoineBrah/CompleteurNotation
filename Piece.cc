@@ -1,8 +1,8 @@
 #include "Piece.h"
 #include "Cellule.h"
 
-Piece::Piece() : couleur(Null), nom(type::Null), pos(""), aBouge(false){}
-Piece::Piece(Couleur c, type::Nom n, string p) : couleur(c), nom(n), pos(p), aBouge(false){
+Piece::Piece() : couleur(Null), nom(type::Null), pos(""), aBouge(false), firstCell(NULL){}
+Piece::Piece(Couleur c, type::Nom n, string p) : couleur(c), nom(n), pos(p), aBouge(false), firstCell(NULL){
 	listePiece.push_back(this);
 }
 
@@ -58,6 +58,14 @@ string Piece::getPositionString() const{
 	return pos.getCoord();
 }
 
+Cellule* Piece::getFirstCell() const{
+	return firstCell;
+}
+
+void Piece::setFirstCell(Cellule* c){
+	firstCell = c;
+}
+
 void Piece::setPostion(string position){
 	pos.setCoord(position);
 
@@ -107,15 +115,13 @@ vector<Piece*>& getListePiece(){
 	return listePiece;
 }
 
-void updateListeCoupsPossiblesAll(){
+void updateListeCoupsPossiblesAll(bool lcpCellToo){
 	for(Piece *p : getListePiece()){
 		p->updateListeCoupsPossibles();
 
-		// On récupère la dernière cellule de la pièce et on la met à jour
-		for(Cellule* cell : (*getListeCellule())){
-			if(cell->getPiece() == p && cell->getPosition() == p->getPositionString()){
-				cell->updateListeCoupsPossibles();
-			}
+		if(lcpCellToo){
+			// On récupère la dernière cellule de la pièce et on la met à jour
+			getDernierCSP(p->getFirstCell())->updateListeCoupsPossibles();
 		}
 	}
 }

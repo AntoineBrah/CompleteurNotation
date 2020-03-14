@@ -57,8 +57,6 @@ vector<Cellule*>* initialiserCellules(){
     Piece *Dn1 = new Dame(Noir, type::Dame, "d8"); 
     Piece *Rn = new Roi(Noir, type::Roi, "e8"); 
 
-    updateListeCoupsPossiblesAll(); // On met à jour la liste des coups possibles de toutes les pièces instanciées
-
     /* Création listeCellules */
 
     // Ce vector contient les 32 cellules initiales qui elles mêmes contiennent chacune 1 pièce.
@@ -67,44 +65,138 @@ vector<Cellule*>* initialiserCellules(){
     vector<Cellule*> *listeCellules = new vector<Cellule*>;
 
     // Les pions noirs
-    listeCellules->push_back(new Cellule(Pn1));
-    listeCellules->push_back(new Cellule(Pn2));
-    listeCellules->push_back(new Cellule(Pn3));
-    listeCellules->push_back(new Cellule(Pn4));
-    listeCellules->push_back(new Cellule(Pn5));
-    listeCellules->push_back(new Cellule(Pn6));
-    listeCellules->push_back(new Cellule(Pn7));
-    listeCellules->push_back(new Cellule(Pn8));
+    Cellule* cPn1 = new Cellule(Pn1);
+    listeCellules->push_back(cPn1);
+    Pn1->setFirstCell(cPn1);
+
+    Cellule* cPn2 = new Cellule(Pn2);
+    listeCellules->push_back(cPn2);
+    Pn2->setFirstCell(cPn2);
+
+    Cellule* cPn3 = new Cellule(Pn3);
+    listeCellules->push_back(cPn3);
+    Pn3->setFirstCell(cPn3);
+
+    Cellule* cPn4 = new Cellule(Pn4);
+    listeCellules->push_back(cPn4);
+    Pn4->setFirstCell(cPn4);
+
+    Cellule* cPn5 = new Cellule(Pn5);
+    listeCellules->push_back(cPn5);
+    Pn5->setFirstCell(cPn5);
+
+    Cellule* cPn6 = new Cellule(Pn6);
+    listeCellules->push_back(cPn6);
+    Pn6->setFirstCell(cPn6);
+
+    Cellule* cPn7 = new Cellule(Pn7);
+    listeCellules->push_back(cPn7);
+    Pn7->setFirstCell(cPn7);
+
+    Cellule* cPn8 = new Cellule(Pn8);
+    listeCellules->push_back(cPn8);
+    Pn8->setFirstCell(cPn8);
 
     // Les pièces noires
-    listeCellules->push_back(new Cellule(Tn1));
-    listeCellules->push_back(new Cellule(Tn2));
-    listeCellules->push_back(new Cellule(Cn1));
-    listeCellules->push_back(new Cellule(Cn2));
-    listeCellules->push_back(new Cellule(Fn1));
-    listeCellules->push_back(new Cellule(Fn2));
-    listeCellules->push_back(new Cellule(Dn1));
-    listeCellules->push_back(new Cellule(Rn));
+    Cellule* cTn1 = new Cellule(Tn1);
+    listeCellules->push_back(cTn1);
+    Tn1->setFirstCell(cTn1);
+
+    Cellule* cTn2 = new Cellule(Tn2);
+    listeCellules->push_back(cTn2);
+    Tn2->setFirstCell(cTn2);
+
+    Cellule* cCn1 = new Cellule(Cn1);
+    listeCellules->push_back(cCn1);
+    Cn1->setFirstCell(cCn1);
+
+    Cellule* cCn2 = new Cellule(Cn2);
+    listeCellules->push_back(cCn2);
+    Cn2->setFirstCell(cCn2);
+
+    Cellule* cFn1 = new Cellule(Fn1);
+    listeCellules->push_back(cFn1);
+    Fn1->setFirstCell(cFn1);
+
+    Cellule* cFn2 = new Cellule(Fn2);
+    listeCellules->push_back(cFn2);
+    Fn2->setFirstCell(cFn2);
+
+    Cellule* cDn1 = new Cellule(Dn1);
+    listeCellules->push_back(cDn1);
+    Dn1->setFirstCell(cDn1);
+
+    Cellule* cRn = new Cellule(Rn);
+    listeCellules->push_back(cRn);
+    Rn->setFirstCell(cRn);
 
     // Les pions blancs
-    listeCellules->push_back(new Cellule(Pb1));
-    listeCellules->push_back(new Cellule(Pb2));
-    listeCellules->push_back(new Cellule(Pb3));
-    listeCellules->push_back(new Cellule(Pb4));
-    listeCellules->push_back(new Cellule(Pb5));
-    listeCellules->push_back(new Cellule(Pb6));
-    listeCellules->push_back(new Cellule(Pb7));
-    listeCellules->push_back(new Cellule(Pb8));
+    Cellule* cPb1 = new Cellule(Pb1);
+    listeCellules->push_back(cPb1);
+    Pb1->setFirstCell(cPb1);
+
+    Cellule* cPb2 = new Cellule(Pb2);
+    listeCellules->push_back(cPb2);
+    Pb2->setFirstCell(cPb2);
+
+    Cellule* cPb3 = new Cellule(Pb3);
+    listeCellules->push_back(cPb3);
+    Pb3->setFirstCell(cPb3);
+
+    Cellule* cPb4 = new Cellule(Pb4);
+    listeCellules->push_back(cPb4);
+    Pb4->setFirstCell(cPb4);
+
+    Cellule* cPb5 = new Cellule(Pb5);
+    listeCellules->push_back(cPb5);
+    Pb5->setFirstCell(cPb5);
+
+    Cellule* cPb6 = new Cellule(Pb6);
+    listeCellules->push_back(cPb6);
+    Pb6->setFirstCell(cPb6);
+
+    Cellule* cPb7 = new Cellule(Pb7);
+    listeCellules->push_back(cPb7);
+    Pb7->setFirstCell(cPb7);
+
+    Cellule* cPb8 = new Cellule(Pb8);
+    listeCellules->push_back(cPb8);
+    Pb8->setFirstCell(cPb8);
 
     // Les pièces blanches
-    listeCellules->push_back(new Cellule(Tb1));
-    listeCellules->push_back(new Cellule(Tb2));
-    listeCellules->push_back(new Cellule(Cb1));
-    listeCellules->push_back(new Cellule(Cb2));
-    listeCellules->push_back(new Cellule(Fb1));
-    listeCellules->push_back(new Cellule(Fb2));
-    listeCellules->push_back(new Cellule(Db1));
-    listeCellules->push_back(new Cellule(Rb));
+    Cellule* cTb1 = new Cellule(Tb1);
+    listeCellules->push_back(cTb1);
+    Tb1->setFirstCell(cTb1);
+
+    Cellule* cTb2 = new Cellule(Tb2);
+    listeCellules->push_back(cTb2);
+    Tb2->setFirstCell(cTb2);
+
+    Cellule* cCb1 = new Cellule(Cb1);
+    listeCellules->push_back(cCb1);
+    Cb1->setFirstCell(cCb1);
+
+    Cellule* cCb2 = new Cellule(Cb2);
+    listeCellules->push_back(cCb2);
+    Cb2->setFirstCell(cCb2);
+
+    Cellule* cFb1 = new Cellule(Fb1);
+    listeCellules->push_back(cFb1);
+    Fb1->setFirstCell(cFb1);
+
+    Cellule* cFb2 = new Cellule(Fb2);
+    listeCellules->push_back(cFb2);
+    Fb2->setFirstCell(cFb2);
+
+    Cellule* cDb1 = new Cellule(Db1);
+    listeCellules->push_back(cDb1);
+    Db1->setFirstCell(cDb1);
+
+    Cellule* cRb = new Cellule(Rb);
+    listeCellules->push_back(cRb);
+    Rb->setFirstCell(cRb);
+
+    updateListeCoupsPossiblesAll(true); // On met à jour la liste des coups possibles de toutes les pièces instanciées
     
     return listeCellules;
 }

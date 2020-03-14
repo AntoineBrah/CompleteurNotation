@@ -1,5 +1,7 @@
 #include "Position.h"
 
+Position::Position() : colonne(""), ligne(","){}
+
 Position::Position(string pos) : colonne(""), ligne(""){
 
     if(pos.size() != 2 && pos != "NULL"){

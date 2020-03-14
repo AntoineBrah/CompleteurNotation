@@ -1,10 +1,6 @@
 #include "Cellule.h"
 
-Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CSE(NULL), type(p->getNom()), pos(p->getPositionString()){
-
-    for(Position pos : p->getListeCoupsPossibles()){
-        listeCoupsPossibles.push_back(pos);
-    }
+Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CPP(NULL), CSE(NULL), type(p->getNom()), pos(p->getPositionString()){
 
     listeCellule.push_back(this);
 }
@@ -17,34 +13,29 @@ Cellule* Cellule::getCSP() const{
     return CSP;
 }
 
+Cellule* Cellule::getCPP() const{
+    return CPP;
+}
+
 Cellule* Cellule::getCSE() const{
     return CSE;
 }
 
-void Cellule::updateListeCoupsPossibles(){
-    listeCoupsPossibles.clear();
-    for(Position pos : piece->getListeCoupsPossibles()){
-        listeCoupsPossibles.push_back(pos);
+vector<vector<Position> >& Cellule::getListeCoupsPossibles(){
+    return listeCoupsPossibles;
+}
+
+void Cellule::copieListeCoupsPossibles(Cellule *c){
+    if(c != NULL){
+        for(vector<Position> vect : c->getListeCoupsPossibles()){
+            listeCoupsPossibles.push_back(vect);
+        }
     }
 }
 
-void Cellule::printListeCoupsPossibles() const{
-
-	cout << "{";
-
-	if(listeCoupsPossibles.size() > 0){ // car erreur compilation si la liste est vide
-		for(unsigned int i=0; i<=listeCoupsPossibles.size()-1; i++){
-
-			if(i==listeCoupsPossibles.size()-1){
-				cout << listeCoupsPossibles.at(i).getCoord();
-			}
-			else{
-				cout << listeCoupsPossibles.at(i).getCoord() << ",";
-			}
-		}
-	}
-
-	cout << "}" << endl;
+void Cellule::updateListeCoupsPossibles(){
+    // On ajoute le vector de la liste des coups possibles de la pièce vers laquelle la cellule pointe
+    listeCoupsPossibles.push_back(piece->getListeCoupsPossibles());
 }
 
 string Cellule::getPosition() const{
@@ -83,12 +74,14 @@ string Cellule::toString() const{
 
 string Cellule::getJSON() const{
 
-    ostringstream adrCSP, adrCSE, instanceCourante;
+    ostringstream adrCSP, adrCPP, adrCSE, instanceCourante;
     adrCSP << CSP;
+    adrCPP << CPP;
     adrCSE << CSE;
     instanceCourante << this;
 
     string json = "{\"adr\":\"" + instanceCourante.str() + "\",";
+    json += "\"cpp\":\"" + adrCPP.str() + "\",";
     json += "\"csp\":\"" + adrCSP.str() + "\",";
     json += "\"cse\":\"" + adrCSE.str() + "\",";
     json += "\"piece\":\"" + getTypePiece() + "\",";
@@ -96,12 +89,35 @@ string Cellule::getJSON() const{
     json += "\"position\":\"" + pos.getCoord() + "\",";
     json += "\"lcp\":\""; 
 
-    for(unsigned int i=0; i<listeCoupsPossibles.size(); i++){
-        if(i == listeCoupsPossibles.size()-1){
-            json += listeCoupsPossibles.at(i).getCoord();
-        }
-        else{
-            json += listeCoupsPossibles.at(i).getCoord() + " ";
+    if(!listeCoupsPossibles.empty()){
+        for(unsigned int i=0; i<listeCoupsPossibles.size(); i++){
+            if(!listeCoupsPossibles.at(i).empty()){
+                if(i != listeCoupsPossibles.size()-1){
+                    for(unsigned int j=0; j<listeCoupsPossibles.at(i).size(); j++){
+                        if(j != listeCoupsPossibles.at(i).size()-1){
+                            json += listeCoupsPossibles.at(i).at(j).getCoord() + " ";
+                        }
+                        else{
+                            json += listeCoupsPossibles.at(i).at(j).getCoord();
+                        }
+                    }
+                    json += ",";
+                }
+                else{
+                   for(unsigned int j=0; j<listeCoupsPossibles.at(i).size(); j++){
+                        if(j != listeCoupsPossibles.at(i).size()-1){
+                            json += listeCoupsPossibles.at(i).at(j).getCoord() + " ";
+                        }
+                        else{
+                            json += listeCoupsPossibles.at(i).at(j).getCoord();
+                        }
+                    } 
+                }
+            }
+            else{
+                if(i != listeCoupsPossibles.size()-1)
+                    json += ",";
+            }
         }
     }
 
@@ -114,6 +130,10 @@ string Cellule::getJSON() const{
 
 void Cellule::setCSP(Cellule *c){
     CSP=c;
+}
+
+void Cellule::setCPP(Cellule *c){
+    CPP=c;
 }
 
 void Cellule::setCSE(Cellule *c){
@@ -146,4 +166,3 @@ Cellule* getDernierCSP(Cellule* c){
 
     return c;
 }
-

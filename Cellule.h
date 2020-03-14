@@ -4,6 +4,7 @@
 #include <sstream> // Permet notamment de fournir une adresse sous la forme d'une string
 #include "EcritureFichier.h"
 #include "Piece.h"
+#include "vector"
 
 using namespace std;
 
@@ -19,9 +20,10 @@ class Cellule{
     private:
         Piece *piece;
         Cellule *CSP; // Coup suivant pièce
+        Cellule *CPP; // Coup précédent pièce
         Cellule *CSE; // Coup suivant échiquier  
 
-        vector<Position> listeCoupsPossibles;
+        vector<vector<Position> > listeCoupsPossibles;
 
     public:
         Cellule(Piece*);
@@ -31,11 +33,14 @@ class Cellule{
 
         Piece* getPiece() const;
         Cellule* getCSP() const;
+        Cellule* getCPP() const;
         Cellule* getCSE() const;
 
-        vector<Position>* getListeCoupsPossiblesCellule();
         void updateListeCoupsPossibles();
-        void printListeCoupsPossibles() const;
+
+        vector<vector<Position> >& getListeCoupsPossibles();
+
+        void copieListeCoupsPossibles(Cellule*);
 
         string getPosition() const; // Renvoi la position courante de la pièce
         string getTypePiece() const;
@@ -45,6 +50,7 @@ class Cellule{
         string getJSON() const; // Renvoi toutes les infos sur la cellule au format JSON
 
         void setCSP(Cellule*);
+        void setCPP(Cellule*);
         void setCSE(Cellule*);
 
         ~Cellule();
