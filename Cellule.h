@@ -21,7 +21,7 @@ class Cellule{
         Cellule *CSP; // Coup suivant pièce
         Cellule *CSE; // Coup suivant échiquier  
 
-        vector<Position> listeCoupsPossiblesPiece;
+        vector<Position> listeCoupsPossibles;
 
     public:
         Cellule(Piece*);
@@ -33,8 +33,9 @@ class Cellule{
         Cellule* getCSP() const;
         Cellule* getCSE() const;
 
-        vector<Position>* getListeCoupsPossiblesPiece();
-        void printListeCoupsPossiblesPiece() const;
+        vector<Position>* getListeCoupsPossiblesCellule();
+        void updateListeCoupsPossibles();
+        void printListeCoupsPossibles() const;
 
         string getPosition() const; // Renvoi la position courante de la pièce
         string getTypePiece() const;

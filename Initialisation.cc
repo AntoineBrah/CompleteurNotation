@@ -38,7 +38,7 @@ vector<Cellule*>* initialiserCellules(){
     Piece *Rb = new Roi(Blanc, type::Roi, "e1"); // Roi blanc situé en e1
 
     /* Pièces joueur noir */
-
+    
     Piece *Pn1 = new Pion(Noir, type::Pion, "h7"); // Pion noir n°1 situé en h7
     Piece *Pn2 = new Pion(Noir, type::Pion, "g7"); 
     Piece *Pn3 = new Pion(Noir, type::Pion, "f7");
@@ -63,7 +63,7 @@ vector<Cellule*>* initialiserCellules(){
 
     // Ce vector contient les 32 cellules initiales qui elles mêmes contiennent chacune 1 pièce.
     // Chaque fois qu'on créera une nouvelle cellule on la "rangera" dans ce vector
-
+    
     vector<Cellule*> *listeCellules = new vector<Cellule*>;
 
     // Les pions noirs
@@ -105,6 +105,6 @@ vector<Cellule*>* initialiserCellules(){
     listeCellules->push_back(new Cellule(Fb2));
     listeCellules->push_back(new Cellule(Db1));
     listeCellules->push_back(new Cellule(Rb));
-
+    
     return listeCellules;
 }

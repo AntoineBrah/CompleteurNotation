@@ -1,4 +1,5 @@
 #include "Piece.h"
+#include "Cellule.h"
 
 Piece::Piece() : couleur(Null), nom(type::Null), pos(""), aBouge(false){}
 Piece::Piece(Couleur c, type::Nom n, string p) : couleur(c), nom(n), pos(p), aBouge(false){
@@ -58,16 +59,10 @@ string Piece::getPositionString() const{
 }
 
 void Piece::setPostion(string position){
+	pos.setCoord(position);
 
-	if(position == "NULL"){
-		cout << "-> " << this->getNomString() << " " << this->getCouleur() << " en position : " << this->getPosition().getCoord() << " vient de se faire manger." << endl;
-	}
-	else{
-		pos.setCoord(position);
-
-		if(!aBouge)
-			aBouge = true;
-	}
+	if(!aBouge)
+		aBouge = true;
 }
 
 vector<Position>& Piece::getListeCoupsPossibles(){
@@ -115,5 +110,12 @@ vector<Piece*>& getListePiece(){
 void updateListeCoupsPossiblesAll(){
 	for(Piece *p : getListePiece()){
 		p->updateListeCoupsPossibles();
+
+		// On récupère la dernière cellule de la pièce et on la met à jour
+		for(Cellule* cell : (*getListeCellule())){
+			if(cell->getPiece() == p && cell->getPosition() == p->getPositionString()){
+				cell->updateListeCoupsPossibles();
+			}
+		}
 	}
 }

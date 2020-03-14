@@ -1,4 +1,5 @@
-d4 e5
-g3 a6
-Fg2 Fb4
-Rf1
+e3 d6
+e4 d5
+d3 c6
+Ca3 Da5
+d5

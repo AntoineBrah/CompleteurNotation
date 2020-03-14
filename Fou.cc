@@ -6,140 +6,138 @@ void Fou::updateListeCoupsPossibles(){
 
     listeCoupsPossibles.clear(); // On vide la liste actuelle des coups possibles 
 
-    Position currentPosition(pos);
-    Point positionPiece = convertPositionToPoint(currentPosition);
+    if(this->getPositionString() != "NULL"){
 
-    /*
-    * Il faudra toujours vérifier que la position de la pièce
-    * est toujours dans l'échiquier. Pour se faire on utilise
-    * la fonction 'estCorrectPoint(Point)'.
-    */
-   
+        Position currentPosition(pos);
+        Point positionPiece = convertPositionToPoint(currentPosition);
 
-    // Tout Fou peut se déplacer en diagonale haut/droit ➚ (ligne➚ et colonne➚)
-    // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
-    // On vérifie qu'aucune Pièce n'est présente sur la case
-    // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
+        /*
+        * Il faudra toujours vérifier que la position de la pièce
+        * est toujours dans l'échiquier. Pour se faire on utilise
+        * la fonction 'estCorrectPoint(Point)'.
+        */
+    
 
-    int x = positionPiece.getX()+1;
-    int y = positionPiece.getY()+1;
+        // Tout Fou peut se déplacer en diagonale haut/droit ➚ (ligne➚ et colonne➚)
+        // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
+        // On vérifie qu'aucune Pièce n'est présente sur la case
+        // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
 
-    while(x<=8 && y<=8){
-        if(estCorrectPoint(Point(x,y))){
-            if(existePieceSurPosition(convertPointToPosition(Point(x,y)))){
-                if(existePieceSurPosition(convertPointToPosition(Point(x,y)))->getCouleur() != this->getCouleur()){
-                    listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
-                    break;
+        int x = positionPiece.getX()+1;
+        int y = positionPiece.getY()+1;
+
+        while(x<=8 && y<=8){
+            if(estCorrectPoint(Point(x,y))){
+                if(existePieceSurPosition(convertPointToPosition(Point(x,y)))){
+                    if(existePieceSurPosition(convertPointToPosition(Point(x,y)))->getCouleur() != this->getCouleur()){
+                        listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
+                        break;
+                    }
+                    else{
+                        break;
+                    }
                 }
                 else{
-                    break;
+                    listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
+                    x++;
+                    y++;
                 }
             }
             else{
-                listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
-                x++;
-                y++;
+                break;
             }
         }
-        else{
-            break;
-        }
-    }
 
-    // Tout Fou peut se déplacer en diagonale bas/droit ➘ (ligne➘ et colonne➚)
-    // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
-    // On vérifie qu'aucune Pièce n'est présente sur la case
-    // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
+        // Tout Fou peut se déplacer en diagonale bas/droit ➘ (ligne➘ et colonne➚)
+        // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
+        // On vérifie qu'aucune Pièce n'est présente sur la case
+        // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
 
-    x = positionPiece.getX()-1;
-    y = positionPiece.getY()+1;
+        x = positionPiece.getX()-1;
+        y = positionPiece.getY()+1;
 
-    while(x>=1 && y<=8){
-        if(estCorrectPoint(Point(x,y))){
-            if(existePieceSurPosition(convertPointToPosition(Point(x,y)))){
-                if(existePieceSurPosition(convertPointToPosition(Point(x,y)))->getCouleur() != this->getCouleur()){
-                    listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
-                    break;
+        while(x>=1 && y<=8){
+            if(estCorrectPoint(Point(x,y))){
+                if(existePieceSurPosition(convertPointToPosition(Point(x,y)))){
+                    if(existePieceSurPosition(convertPointToPosition(Point(x,y)))->getCouleur() != this->getCouleur()){
+                        listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
+                        break;
+                    }
+                    else{
+                        break;
+                    }
                 }
                 else{
-                    break;
+                    listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
+                    x--;
+                    y++;
                 }
             }
             else{
-                listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
-                x--;
-                y++;
+                break;
             }
         }
-        else{
-            break;
-        }
-    }
 
-    // Tout Fou peut se déplacer en diagonale bas/gauche ↙ (ligne➘ et colonne➘)
-    // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
-    // On vérifie qu'aucune Pièce n'est présente sur la case
-    // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
+        // Tout Fou peut se déplacer en diagonale bas/gauche ↙ (ligne➘ et colonne➘)
+        // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
+        // On vérifie qu'aucune Pièce n'est présente sur la case
+        // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
 
-    x = positionPiece.getX()-1;
-    y = positionPiece.getY()-1;
+        x = positionPiece.getX()-1;
+        y = positionPiece.getY()-1;
 
-    while(x>=1 && y>=1){
-        if(estCorrectPoint(Point(x,y))){
-            if(existePieceSurPosition(convertPointToPosition(Point(x,y)))){
-                if(existePieceSurPosition(convertPointToPosition(Point(x,y)))->getCouleur() != this->getCouleur()){
-                    listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
-                    break;
+        while(x>=1 && y>=1){
+            if(estCorrectPoint(Point(x,y))){
+                if(existePieceSurPosition(convertPointToPosition(Point(x,y)))){
+                    if(existePieceSurPosition(convertPointToPosition(Point(x,y)))->getCouleur() != this->getCouleur()){
+                        listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
+                        break;
+                    }
+                    else{
+                        break;
+                    }
                 }
                 else{
-                    break;
+                    listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
+                    x--;
+                    y--;
                 }
             }
             else{
-                listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
-                x--;
-                y--;
+                break;
             }
         }
-        else{
-            break;
-        }
-    }
 
-    // Tout Fou peut se déplacer en diagonale haut/gauche ↖ (ligne➚ et colonne➘)
-    // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
-    // On vérifie qu'aucune Pièce n'est présente sur la case
-    // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
+        // Tout Fou peut se déplacer en diagonale haut/gauche ↖ (ligne➚ et colonne➘)
+        // On vérifie que la case existe bien (en gros qu'on sort pas du plateau)
+        // On vérifie qu'aucune Pièce n'est présente sur la case
+        // Si une Pièce et présente, on vérifie qu'elle est de couleur opposée
 
-    x = positionPiece.getX()+1;
-    y = positionPiece.getY()-1;
+        x = positionPiece.getX()+1;
+        y = positionPiece.getY()-1;
 
-    while(x<=8 && y>=1){
-        if(estCorrectPoint(Point(x,y))){
-            if(existePieceSurPosition(convertPointToPosition(Point(x,y)))){
-                if(existePieceSurPosition(convertPointToPosition(Point(x,y)))->getCouleur() != this->getCouleur()){
-                    listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
-                    break;
+        while(x<=8 && y>=1){
+            if(estCorrectPoint(Point(x,y))){
+                if(existePieceSurPosition(convertPointToPosition(Point(x,y)))){
+                    if(existePieceSurPosition(convertPointToPosition(Point(x,y)))->getCouleur() != this->getCouleur()){
+                        listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
+                        break;
+                    }
+                    else{
+                        break;
+                    }
                 }
                 else{
-                    break;
+                    listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
+                    x++;
+                    y--;
                 }
             }
             else{
-                listeCoupsPossibles.push_back(convertPointToPosition(Point(x,y)));
-                x++;
-                y--;
+                break;
             }
         }
-        else{
-            break;
-        }
     }
-
-
-
-
-
 }
 
 Fou::~Fou(){}

@@ -4,9 +4,12 @@
 #include <vector>
 #include "Initialisation.h"
 #include "LectureFichier.h"
+#include "Piece.h"
+#include "Cellule.h"
 #include <iostream>
 
-
 void traitementCoups(lectureFichier*);
+void seFaitMangerPiece(string pos);
+void annulationSeFaitMangerPiece(Piece*,Position);
 
 #endif

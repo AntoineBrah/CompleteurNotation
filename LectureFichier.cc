@@ -5,7 +5,7 @@ lectureFichier::lectureFichier(string fichier) : ligne(""), cb(""), cn(""), estC
     monFlux.open(fichier.c_str()); // obligé de rajouter '.c_str()' car le constructeur de ifstream prend un 'const char*' et non pas un 'string' en paramètre.
 
     if(monFlux){
-        cout << fichier << " : ouverture en lecture réussie." << endl;
+        cout << "[i] " << fichier << " : ouverture en lecture réussie.\n" << endl;
         estCorrectementOuvert = true;
         getline(monFlux, ligne);
         traiterLigne();

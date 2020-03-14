@@ -3,7 +3,7 @@
 Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CSE(NULL), type(p->getNom()), pos(p->getPositionString()){
 
     for(Position pos : p->getListeCoupsPossibles()){
-        listeCoupsPossiblesPiece.push_back(pos);
+        listeCoupsPossibles.push_back(pos);
     }
 
     listeCellule.push_back(this);
@@ -21,6 +21,31 @@ Cellule* Cellule::getCSE() const{
     return CSE;
 }
 
+void Cellule::updateListeCoupsPossibles(){
+    listeCoupsPossibles.clear();
+    for(Position pos : piece->getListeCoupsPossibles()){
+        listeCoupsPossibles.push_back(pos);
+    }
+}
+
+void Cellule::printListeCoupsPossibles() const{
+
+	cout << "{";
+
+	if(listeCoupsPossibles.size() > 0){ // car erreur compilation si la liste est vide
+		for(unsigned int i=0; i<=listeCoupsPossibles.size()-1; i++){
+
+			if(i==listeCoupsPossibles.size()-1){
+				cout << listeCoupsPossibles.at(i).getCoord();
+			}
+			else{
+				cout << listeCoupsPossibles.at(i).getCoord() << ",";
+			}
+		}
+	}
+
+	cout << "}" << endl;
+}
 
 string Cellule::getPosition() const{
     return pos.getCoord();
@@ -71,12 +96,12 @@ string Cellule::getJSON() const{
     json += "\"position\":\"" + pos.getCoord() + "\",";
     json += "\"lcp\":\""; 
 
-    for(unsigned int i=0; i<listeCoupsPossiblesPiece.size(); i++){
-        if(i == listeCoupsPossiblesPiece.size()-1){
-            json += listeCoupsPossiblesPiece.at(i).getCoord();
+    for(unsigned int i=0; i<listeCoupsPossibles.size(); i++){
+        if(i == listeCoupsPossibles.size()-1){
+            json += listeCoupsPossibles.at(i).getCoord();
         }
         else{
-            json += listeCoupsPossiblesPiece.at(i).getCoord() + " ";
+            json += listeCoupsPossibles.at(i).getCoord() + " ";
         }
     }
 
@@ -95,7 +120,19 @@ void Cellule::setCSE(Cellule *c){
     CSE=c;
 }
 
-Cellule::~Cellule(){}
+Cellule::~Cellule(){
+
+    int cpt = 0;
+
+    for(Cellule* cell : listeCellule){
+        
+        if(cell == this){
+            listeCellule.erase(listeCellule.begin()+cpt);
+        }
+
+        cpt++;
+    }
+}
 
 vector<Cellule*>* getListeCellule(){
 	return &listeCellule;
@@ -110,23 +147,3 @@ Cellule* getDernierCSP(Cellule* c){
     return c;
 }
 
-void seFaitMangerPiece(string pos){
-    if(existePieceSurPosition(pos)){
-        existePieceSurPosition(pos)->setPostion("NULL"); // On sort la pièce du plateau
-        
-        // On parcourt toutes les cellules et on regarde laquelle contient la pièce
-        // On obtiendra la toute première cellule de la pièce
-        for(Cellule *cell : (*getListeCellule())){
-            if(cell->getPiece() == existePieceSurPosition(pos)){
-
-                // On créér la cellule qui représente la mort de la pièce (Position : NULL, CSP : NULL, CSE : NULL)
-                Cellule *mortPiece = new Cellule(cell->getPiece());
-                mortPiece->setCSP(NULL);
-                mortPiece->setCSE(NULL);
-
-                Cellule *dernierCSP = getDernierCSP(cell);
-                dernierCSP->setCSP(mortPiece); // On chaine l'avant dernière cellule de la pièce avec la dernière (la dernière représentant la mort de la pièce)
-            }
-        }
-    }
-}
