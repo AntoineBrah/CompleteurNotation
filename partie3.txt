@@ -1,5 +1,5 @@
-Rd2 h6
+Cb3 h6
 Rd1 h5
 Rd2 h4
-Rd3 h3
-Th3
+Rd3
+

@@ -25,9 +25,14 @@ void annulationSeFaitMangerPiece(Piece* p, Position pos){
     p->setPostion(pos.getCoord()); // On remet la pièce à sa position
     updateListeCoupsPossiblesAll(false); // On met à jour la liste des coups possibles de tout le monde
 
+
+
+    /* CETTE BOUCLE POSE PROBLEME, A VERIFIER..................................................................................*/
+    /*
     for(Piece* p : getListePiece()){
         getDernierCSP(p->getFirstCell())->getListeCoupsPossibles().pop_back();
     }
+    */
 
     cout << "[-] -> " << p->getNomString() << " " << p->getCouleur() << " en position : " << pos.getCoord() << " annulation du fait qu'il se soit fait manger.\n" << endl;
 
@@ -44,7 +49,7 @@ void annulationSeFaitMangerPiece(Piece* p, Position pos){
 }
 
 void traitementCoups(lectureFichier* f){
-
+    
     vector<Cellule*> *instancesEchiquier = initialiserCellules();
 
     lectureFichier *File = f;
@@ -208,13 +213,13 @@ void traitementCoups(lectureFichier* f){
                                     else{
                                         // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
                                         // Dans cette situation tout se déroule comme quand le Roi n'est pas en 
-
+                                        
                                         cell->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
                                         
                                         // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                         Cellule *c = new Cellule(cell->getPiece());
                                         c->copieListeCoupsPossibles(dernierCSP);
-
+                                        
                                         dernierCSP->setCSP(c);
                                         k->setCSE(c);
                                         c->setCPP(dernierCSP);
@@ -228,6 +233,12 @@ void traitementCoups(lectureFichier* f){
                     }
                 }
             }
+        }
+
+        // Si le tout premier coup joué (coup blanc) est faux, les listes ne peuvent pas être générées correctement
+        if(nbCoup == 1 && k == NULL){
+            cout << "[!] : ARRÊT DU PROGRAMME : Le premier coup de la partie (joueur blanc) étant faux, il est impossible générer la structure de chaînage correctement." << endl;
+            break;
         }
 
         if(deplacementNoir != ""){
@@ -323,7 +334,7 @@ void traitementCoups(lectureFichier* f){
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
                             if(pos.getCoord() == deplacementNoir){
                                 Position pos = cell->getPiece()->getPosition(); // On stock la position initiale de la pièce
-
+                                
                                 Piece *p = NULL; // On récupère la pièce qui se situe sur le déplacement
                                     
                                 if(existePieceSurPosition(deplacementNoir)){

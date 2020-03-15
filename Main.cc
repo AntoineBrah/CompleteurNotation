@@ -35,24 +35,6 @@ int main(int argc, char* argv[]){
             traitementCoups(&File);
             estTraite = true;
         }
-
-        /*
-        Piece *Tb1 = new Tour(Blanc, type::Tour, "a1"); // Tour blanche n°1 situé en a1
-        Cellule* cTb1 = new Cellule(Tb1);
-        Tb1->setFirstCell(cTb1);
-
-
-        // On déplace la tour
-        Tb1->setPostion("a5");
-        Cellule* cTb1_2 = new Cellule(Tb1);
-
-        cTb1->setCSP(cTb1_2);
-
-        cout << Tb1->getFirstCell()->toString() << endl;
-        */
-
-
-        //cout << "cTb1 : " << cTb1 << "\nTb1->setFirstCell() : " << Tb1->getFirstCell() << endl;
         
     }
 

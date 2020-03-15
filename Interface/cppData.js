@@ -148,6 +148,7 @@ var getCPP = (piece) => {
     return 0;
 }
 
+/* CETTE FONCTION BOUCLE A L INFINIE ........................................................*/
 var getCSE = (piece) => {
     for(let i=0; i<toutesLesCellules.length; i++){
         if(piece.cse === toutesLesCellules[i].adr){
