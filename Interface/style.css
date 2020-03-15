@@ -3,7 +3,7 @@ body{
     height: 800px;
 }
 
-button {
+button, #chessboard{
     -webkit-app-region: no-drag;
 }
 

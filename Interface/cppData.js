@@ -1,5 +1,12 @@
 var chessboard = document.querySelectorAll('#chessboard div');
 
+var chessboardColor = [];
+
+chessboard.forEach(x => {
+    var divColor = window.getComputedStyle(x, null).getPropertyValue("background-color");
+    chessboardColor.push(divColor);
+});
+
 var rightButton = document.querySelector('.right-button');
 var leftButton = document.querySelector('.left-button');
 
@@ -55,6 +62,9 @@ requete.onload = function(){
         initialiserPlateau(cellulesInitiales);
 
         rightButton.onclick = function(){
+
+            removeColorCase();
+
             cpt++;
 
             if(cpt === cellulesCSE.length){
@@ -67,21 +77,25 @@ requete.onload = function(){
 
         leftButton.onclick = function(){
 
+            removeColorCase();
+
             if(cpt <= 0){
                 cpt = 1;
             }
-
-
 
             console.log(cpt);
             deplacerPieceArriere(cellulesCSE[cpt]);
 
             cpt--;
         }
+
+        chessboard.forEach(x => {
+            x.addEventListener('click', function(){
+                printListesCoupPossibles(x);
+            });
+        });
     }
 }
-
-
 
 var instancierPiece = (piece) => {
     var cell = getCase(piece.position);
@@ -131,15 +145,14 @@ var initialiserPlateau = (pieces) => {
     });
 }
 
-
 var getPiece = (adr) => {
     for(let i=0; i<toutesLesCellules.length; i++){
         if(adr === toutesLesCellules[i].adr){
             return toutesLesCellules[i];
         }
     }
+    return 0;
 }
-
 
 var getCSP = (piece) => {
     for(let i=0; i<toutesLesCellules.length; i++){
@@ -173,5 +186,42 @@ function getCase(position){
         if(chessboard[i].getAttribute('id') === position){
             return chessboard[i];
         }
+    }
+}
+
+
+/************************/
+/*     AFFICHAGE LCP    */
+/************************/
+
+function printListesCoupPossibles(cell){
+    if(cell.getAttribute('currentcell') != 0){
+
+        let p = getPiece(cell.getAttribute('currentcell'));
+        let lcp = p.lcp.split(',');
+
+        console.log(lcp[cpt], "| cpt = ", cpt);
+        
+        removeColorCase();
+        colorierCase(lcp[cpt].split(' '));   
+    }
+    else{
+        removeColorCase();
+    }
+}
+
+function colorierCase(posTab){
+    chessboard.forEach(x => {
+        posTab.forEach(y => {
+            if(x.getAttribute('id') === y){
+                x.style.backgroundColor = 'yellow';
+            }
+        })
+    });
+}
+
+function removeColorCase(){
+    for(let i=0; i<chessboard.length; i++){
+        chessboard[i].style.backgroundColor = chessboardColor[i];
     }
 }

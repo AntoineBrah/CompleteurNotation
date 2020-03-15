@@ -1,0 +1,11 @@
+e4 d5
+d5 Dd5
+Fa6 Fh3
+Fb7 Fg2
+Fa8 Fh1
+Dh5 Da2
+Dh7 Da1
+Dg8 Db1
+Dh8 Dc2
+Dg7 Fa8
+Dh8
