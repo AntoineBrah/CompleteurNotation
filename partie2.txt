@@ -1,5 +1,5 @@
 e3 d6
 e4 d5
 d3 c6
-Ca3 Da5
+Ca3 Dc7
 d5

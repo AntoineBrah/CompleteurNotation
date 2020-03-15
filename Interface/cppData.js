@@ -18,6 +18,7 @@ var cellulesNouvelles = [];
 var toutesLesCellules = [];
 var cellulesCSE = [];
 
+var cpt = 0;
 
 requete.onload = function(){
     if(requete.readyState == 4 && requete.status == 200){
@@ -53,39 +54,30 @@ requete.onload = function(){
 
         initialiserPlateau(cellulesInitiales);
 
-        var cpt = 0;
-
-        console.log(cpt);
-
         rightButton.onclick = function(){
             cpt++;
 
             if(cpt === cellulesCSE.length){
                 cpt--;
             }
-            
-            if(cpt < cellulesCSE.length){
-                deplacerPieceAvant(cellulesCSE[cpt]);
-            }
 
             console.log(cpt);
+            deplacerPieceAvant(cellulesCSE[cpt]);
         }
 
         leftButton.onclick = function(){
-            cpt--;
 
-            if(cpt === -1){
-                cpt = 0;
+            if(cpt <= 0){
+                cpt = 1;
             }
 
-            if(cpt >= 0){
-                deplacerPieceArriere(cellulesCSE[cpt]);
-            }
+
 
             console.log(cpt);
+            deplacerPieceArriere(cellulesCSE[cpt]);
+
+            cpt--;
         }
-
-
     }
 }
 
@@ -99,6 +91,11 @@ var instancierPiece = (piece) => {
 var deplacerPieceAvant = (piece) => {
     // Position actuelle
     var cell = getCase(piece.position);
+
+    if(cell.getAttribute('currentcell') !== piece.adr && cell.getAttribute('currentcell') != 0){
+        cell.setAttribute('i' + cpt, cell.getAttribute('currentcell'));
+    }
+
     cell.style.backgroundImage = 'url(images/pieces/' + piece.couleur + '/' + piece.piece + '.svg)';
     cell.setAttribute('currentcell', piece.adr);
 
@@ -106,27 +103,41 @@ var deplacerPieceAvant = (piece) => {
     var cellPrec = getCase(getCPP(piece).position);
     cellPrec.style.backgroundImage = '';
     cellPrec.setAttribute('currentcell', '0');
-    cellPrec.setAttribute('previousCell', getCPP(piece).adr);
 }
 
 var deplacerPieceArriere = (piece) => {
     // Position actuelle
     var cell = getCase(piece.position);
-    cell.style.backgroundImage = 'url(images/pieces/' + piece.couleur + '/' + piece.piece + '.svg)';
+    cell.style.backgroundImage = '';
+    cell.setAttribute('currentcell', '0');
 
-    // Position suivante
-    var cellSuiv = getCase(getCSP(piece).position);
-    console.log("ok : ", cellSuiv);
-    cellSuiv.style.backgroundImage = '';
+    if(cell.getAttribute('i'+cpt) != null){
+        let p = getPiece(cell.getAttribute('i'+cpt));
+        cell.style.backgroundImage = 'url(images/pieces/' + p.couleur + '/' + p.piece + '.svg)';
+    }
+
+
+    // Position précédente
+    var cellPrec = getCase(getCPP(piece).position);
+    cellPrec.setAttribute('currentcell', getCPP(piece).adr);
+    cellPrec.style.backgroundImage = 'url(images/pieces/' + piece.couleur + '/' + piece.piece + '.svg)';
 } 
-
 
 var initialiserPlateau = (pieces) => {
     pieces.forEach(x => {
         var cell = getCase(x.position);
-        cell.setAttribute('previousCell', x.cpp);
+        cell.setAttribute('currentcell', x.adr);
         instancierPiece(x);
     });
+}
+
+
+var getPiece = (adr) => {
+    for(let i=0; i<toutesLesCellules.length; i++){
+        if(adr === toutesLesCellules[i].adr){
+            return toutesLesCellules[i];
+        }
+    }
 }
 
 
@@ -148,7 +159,6 @@ var getCPP = (piece) => {
     return 0;
 }
 
-/* CETTE FONCTION BOUCLE A L INFINIE ........................................................*/
 var getCSE = (piece) => {
     for(let i=0; i<toutesLesCellules.length; i++){
         if(piece.cse === toutesLesCellules[i].adr){
