@@ -25,15 +25,6 @@ void annulationSeFaitMangerPiece(Piece* p, Position pos){
     p->setPostion(pos.getCoord()); // On remet la pièce à sa position
     updateListeCoupsPossiblesAll(false); // On met à jour la liste des coups possibles de tout le monde
 
-
-
-    /* CETTE BOUCLE POSE PROBLEME, A VERIFIER..................................................................................*/
-    /*
-    for(Piece* p : getListePiece()){
-        getDernierCSP(p->getFirstCell())->getListeCoupsPossibles().pop_back();
-    }
-    */
-
     cout << "[-] -> " << p->getNomString() << " " << p->getCouleur() << " en position : " << pos.getCoord() << " annulation du fait qu'il se soit fait manger.\n" << endl;
 
     Cellule *c1 = p->getFirstCell();
