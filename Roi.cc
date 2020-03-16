@@ -270,7 +270,7 @@ bool Roi::possedePionAdverseEnDiagonaleSup(const Point &p){
             diagoInfGauche = false;
         }
 
-        // Diagonale droite supérieure ➚
+        // Diagonale droite inférieure ↘
         if(estCorrectPoint(p) && estCorrectPoint(p+Point(-1,1)) && existePieceSurPosition(convertPointToPosition(p+Point(-1,1)))){
             if(existePieceSurPosition(convertPointToPosition(p+Point(-1,1)))->getNomString() == "Pion" && existePieceSurPosition(convertPointToPosition(p+Point(-1,1)))->getCouleur() != this->getCouleur()){
                 // Il existe une pièce et il s'agit d'un Pion adverse

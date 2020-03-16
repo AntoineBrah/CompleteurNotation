@@ -23,6 +23,13 @@ Point Point::operator+(const Point &p) const{
     return p2;
 }
 
+Point Point::operator-(const Point &p) const{
+    Point p2(*this);
+    p2.x -= p.x;
+    p2.y -= p.y;
+    return p2;
+}
+
 void Point::operator+=(const Point& p){
     x += p.getX();
     y += p.getY();

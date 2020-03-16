@@ -38,6 +38,10 @@ void Cellule::updateListeCoupsPossibles(){
     listeCoupsPossibles.push_back(piece->getListeCoupsPossibles());
 }
 
+Position Cellule::getPositionCell() const{
+    return pos;
+}
+
 string Cellule::getPosition() const{
     return pos.getCoord();
 }
@@ -165,4 +169,21 @@ Cellule* getDernierCSP(Cellule* c){
     }
 
     return c;
+}
+
+
+Cellule* getDernierCSE(){
+    for(Piece* p : getListePiece()){
+        if(p->getFirstCell()->getCSE() != NULL){
+
+            Cellule* c = p->getFirstCell();
+            
+            while(c->getCSE()){
+                c=c->getCSE();
+            }
+            
+            return c;
+        }
+    }
+    return NULL; // C'est censé ne jamais arriver
 }

@@ -26,6 +26,7 @@ class Point{
         Point (const Point &p);
         Point& operator=(const Point &p);
         Point operator+(const Point&) const;
+        Point operator-(const Point&) const;
         void operator+=(const Point&);
         ostream& affiche(ostream& os) const;
 };

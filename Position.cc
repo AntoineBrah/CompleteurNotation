@@ -88,6 +88,14 @@ string Position::getCouleur() const{
 	}
 }
 
+string Position::getColonne() const{
+    return colonne;
+}
+
+string Position::getLigne() const{
+    return ligne;
+}
+
 string Position::toString() const{
     return "Coordonnées : " + this->getCoord() + "\nCouleur : " + this->getCouleur();
 }

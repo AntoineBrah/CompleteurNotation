@@ -32,8 +32,7 @@ int main(int argc, char* argv[]){
         lectureFichier File(argv[1]); // On ouvre le fichier txt en lecture
         
         if(File.getEstCorrectementOuvert()){ // Si le fichier est correctement ouvert alors, on le traite
-            traitementCoups(&File);
-            estTraite = true;
+            estTraite = traitementCoups(&File);
         }
         
     }

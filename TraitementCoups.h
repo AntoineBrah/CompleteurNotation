@@ -8,7 +8,7 @@
 #include "Cellule.h"
 #include <iostream>
 
-void traitementCoups(lectureFichier*);
+bool traitementCoups(lectureFichier*);
 void seFaitMangerPiece(string pos);
 void annulationSeFaitMangerPiece(Piece*,Position);
 

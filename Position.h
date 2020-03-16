@@ -22,6 +22,8 @@ class Position{
 
         string getCoord() const;
         string getCouleur() const;
+        string getColonne() const;
+        string getLigne() const;
         string toString() const;
     
 };

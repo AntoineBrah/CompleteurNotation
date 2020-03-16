@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <cmath>
 #include "Couleur.h"
 #include "Position.h"
 #include "Point.h"

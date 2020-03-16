@@ -61,41 +61,57 @@ requete.onload = function(){
 
         initialiserPlateau(cellulesInitiales);
 
-        rightButton.onclick = function(){
+        rightButton.onclick = rightMove;
+        leftButton.onclick = leftMove;
 
-            removeColorCase();
-
-            cpt++;
-
-            if(cpt === cellulesCSE.length){
-                cpt--;
+        document.onkeydown = function(event){
+            switch(event.keyCode){
+                case 37:
+                    leftMove();
+                    break;
+                case 39:
+                    rightMove();
+                    break;
             }
-
-            console.log(cpt);
-            deplacerPieceAvant(cellulesCSE[cpt]);
         }
-
-        leftButton.onclick = function(){
-
-            removeColorCase();
-
-            if(cpt <= 0){
-                cpt = 1;
-            }
-
-            console.log(cpt);
-            deplacerPieceArriere(cellulesCSE[cpt]);
-
-            cpt--;
-        }
-
-        chessboard.forEach(x => {
-            x.addEventListener('click', function(){
-                printListesCoupPossibles(x);
-            });
-        });
+        
     }
 }
+
+function rightMove(){
+
+    removeColorCase();
+
+    cpt++;
+
+    if(cpt === cellulesCSE.length){
+        cpt--;
+    }
+
+    console.log(cpt);
+    deplacerPieceAvant(cellulesCSE[cpt]);
+}
+
+function leftMove(){
+
+    removeColorCase();
+
+    if(cpt <= 0){
+        cpt = 1;
+    }
+
+    console.log(cpt);
+    deplacerPieceArriere(cellulesCSE[cpt]);
+
+    cpt--;
+}
+
+chessboard.forEach(x => {
+    x.addEventListener('click', function(){
+        printListesCoupPossibles(x);
+    });
+});
+
 
 var instancierPiece = (piece) => {
     var cell = getCase(piece.position);
@@ -128,8 +144,8 @@ var deplacerPieceArriere = (piece) => {
     if(cell.getAttribute('i'+cpt) != null){
         let p = getPiece(cell.getAttribute('i'+cpt));
         cell.style.backgroundImage = 'url(images/pieces/' + p.couleur + '/' + p.piece + '.svg)';
+        cell.setAttribute('currentcell', cell.getAttribute('i'+cpt));
     }
-
 
     // Position précédente
     var cellPrec = getCase(getCPP(piece).position);

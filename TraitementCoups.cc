@@ -39,7 +39,7 @@ void annulationSeFaitMangerPiece(Piece* p, Position pos){
     delete c1; // On supprime la dernière cellule 
 }
 
-void traitementCoups(lectureFichier* f){
+bool traitementCoups(lectureFichier* f){
     
     vector<Cellule*> *instancesEchiquier = initialiserCellules();
 
@@ -229,7 +229,7 @@ void traitementCoups(lectureFichier* f){
         // Si le tout premier coup joué (coup blanc) est faux, les listes ne peuvent pas être générées correctement
         if(nbCoup == 1 && k == NULL){
             cout << "[!] : ARRÊT DU PROGRAMME : Le premier coup de la partie (joueur blanc) étant faux, il est impossible générer la structure de chaînage correctement." << endl;
-            break;
+            return false;
         }
 
         if(deplacementNoir != ""){
@@ -380,7 +380,6 @@ void traitementCoups(lectureFichier* f){
         ecritureFichier(cell->getJSON() + ",");
     }
 
-
     // On efface le contenu des vectors (mémoire dynamique)
     for(Cellule* cell : (*instancesEchiquier)){
         delete cell->getPiece(); // On efface la pièce contenu dans la cellule
@@ -388,4 +387,6 @@ void traitementCoups(lectureFichier* f){
     }
     
     instancesEchiquier->clear();
+
+    return true;
 }
