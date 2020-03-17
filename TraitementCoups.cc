@@ -179,10 +179,19 @@ bool traitementCoups(lectureFichier* f){
                                     Position pos = cell->getPiece()->getPosition(); // On stock la position initiale de la pièce
                                     
                                     Piece *p = NULL; // On récupère la pièce qui se situe sur le déplacement
+
+                                    bool prendEnPassant = false;
                                     
                                     if(existePieceSurPosition(deplacementBlanc)){
                                         p = existePieceSurPosition(deplacementBlanc);
                                         seFaitMangerPiece(p); // Si une pièce est présente sur la position du déplacement, alors elle se fait manger
+                                    }
+                                    else if(existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0))) && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0)))->getCouleur() == "Noir" && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0)))->getNomString() == "Pion"){
+                                        // Cas ou on prend en passant
+                                        p = existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0)));
+                                        cout << "Prise en passant : " << endl;
+                                        seFaitMangerPiece(p);
+                                        prendEnPassant = true;
                                     }
 
                                     cell->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
@@ -195,7 +204,10 @@ bool traitementCoups(lectureFichier* f){
                                         cell->getPiece()->setPostion(pos.getCoord());
 
                                         if(p != NULL){
-                                            annulationSeFaitMangerPiece(p, deplacementBlanc);
+                                            if(!prendEnPassant)
+                                                annulationSeFaitMangerPiece(p, deplacementBlanc);
+                                            else
+                                                annulationSeFaitMangerPiece(p, convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0)));
                                         }
 
                                         updateListeCoupsPossiblesAll(false);

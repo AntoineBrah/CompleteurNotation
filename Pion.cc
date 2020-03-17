@@ -85,6 +85,8 @@ void Pion::updateListeCoupsPossibles(){
                     }
                 }
             }
+
+            // [Il faut finir la prise en passant.....]
     
         }
 
