@@ -90,6 +90,8 @@ function rightMove(){
 
     console.log(cpt);
     deplacerPieceAvant(cellulesCSE[cpt]);
+
+    estPrisEnPassantRight();
 }
 
 function leftMove(){
@@ -103,6 +105,8 @@ function leftMove(){
     console.log(cpt);
     deplacerPieceArriere(cellulesCSE[cpt]);
 
+    estPrisEnPassantLeft();
+
     cpt--;
 }
 
@@ -111,6 +115,41 @@ chessboard.forEach(x => {
         printListesCoupPossibles(x);
     });
 });
+
+
+function estPrisEnPassantRight(){
+    chessboard.forEach(x => {
+
+        if(x.getAttribute('currentcell') != 0){
+
+            let p = getPiece(x.getAttribute('currentcell'));
+            let lcp = p.lcp.split(',');
+
+            if(lcp[cpt] == undefined){
+                console.log("-> Le pion ", p.couleur, " en ", p.position, " s'est fait prendre en passant.");
+                x.setAttribute('i' + cpt, x.getAttribute('currentcell'));
+                x.setAttribute('currentcell', 0);
+                x.style.backgroundImage = '';
+            }
+        }
+
+    });
+}
+
+
+function estPrisEnPassantLeft(){
+    chessboard.forEach(x => {
+
+        if(x.getAttribute('i'+cpt) !== null && x.getAttribute('currentcell') == 0){
+
+            let p = getPiece(x.getAttribute('i'+cpt));
+
+            x.setAttribute('currentcell', p.adr);
+            x.style.backgroundImage = 'url(images/pieces/' + p.couleur + '/' + p.piece + '.svg)';
+        }
+
+    });
+}
 
 
 var instancierPiece = (piece) => {
