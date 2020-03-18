@@ -86,8 +86,20 @@ void Pion::updateListeCoupsPossibles(){
                 }
             }
 
-            // [Il faut finir la prise en passant.....]
-    
+            // Implémentation de la prise en passant (↗ diagonale supérieure droite)
+            if(this->getPosition().getLigne() == "5" && estCorrectPoint(positionPion+Point(0,1)) && existePieceSurPosition(convertPointToPosition(positionPion+Point(0,1))) && existePieceSurPosition(convertPointToPosition(positionPion+Point(0,1)))->getNomString() == "Pion" &&  existePieceSurPosition(convertPointToPosition(positionPion+Point(0,1)))->getCouleur() == "Noir" && !existePieceSurPosition(convertPointToPosition(positionPion+Point(1,1)))){
+                Piece *p = existePieceSurPosition(convertPointToPosition(positionPion+Point(0,1)));
+                
+                // Ici on vérifie que le pion noir est bien le dernier coup qui a été joué jusqu'à présent (car la prise en passant ne dure qu'1 tour...)
+                if(getDernierCSP(p->getFirstCell()) == getDernierCSE()){
+                
+                    // Maintenant on vérifie que le pion noir a bien avancé de 2 cases d'un coup
+                    if(abs((convertPositionToPoint(getDernierCSP(p->getFirstCell())->getPositionCell())-convertPositionToPoint(getDernierCSP(p->getFirstCell())->getCPP()->getPositionCell())).getX()) == 2){
+                        listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(1,1)));
+                    }
+                }
+            }
+
         }
 
         /*****************/
@@ -125,6 +137,37 @@ void Pion::updateListeCoupsPossibles(){
             // On vérifie que la Pièce est de couleur opposé
             if(estCorrectPoint(positionPion+Point(-1,1)) && existePieceSurPosition(convertPointToPosition(positionPion+Point(-1,1))) && existePieceSurPosition(convertPointToPosition(positionPion+Point(-1,1)))->getCouleur() != this->getCouleur())
                 listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(-1,1)));
+
+
+            // Implémentation de la prise en passant (↙ diagonale inférieure gauche)
+            if(this->getPosition().getLigne() == "4" && estCorrectPoint(positionPion+Point(0,-1)) && existePieceSurPosition(convertPointToPosition(positionPion+Point(0,-1))) && existePieceSurPosition(convertPointToPosition(positionPion+Point(0,-1)))->getNomString() == "Pion" &&  existePieceSurPosition(convertPointToPosition(positionPion+Point(0,-1)))->getCouleur() == "Blanc" && !existePieceSurPosition(convertPointToPosition(positionPion+Point(-1,-1)))){
+                Piece *p = existePieceSurPosition(convertPointToPosition(positionPion+Point(0,-1)));
+
+                // Ici on vérifie que le pion blanc est bien le dernier coup qui a été joué jusqu'à présent (car la prise en passant ne dure qu'1 tour...)
+                if(getDernierCSP(p->getFirstCell()) == getDernierCSE()){
+                
+                    // Maintenant on vérifie que le pion blanc a bien avancé de 2 cases d'un coup
+                    if(abs((convertPositionToPoint(getDernierCSP(p->getFirstCell())->getPositionCell())-convertPositionToPoint(getDernierCSP(p->getFirstCell())->getCPP()->getPositionCell())).getX()) == 2){
+                        listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(-1,-1)));
+                    }
+                }
+            }
+
+            // Implémentation de la prise en passant (↘ diagonale inférieure droite)
+            if(this->getPosition().getLigne() == "4" && estCorrectPoint(positionPion+Point(0,1)) && existePieceSurPosition(convertPointToPosition(positionPion+Point(0,1))) && existePieceSurPosition(convertPointToPosition(positionPion+Point(0,1)))->getNomString() == "Pion" &&  existePieceSurPosition(convertPointToPosition(positionPion+Point(0,1)))->getCouleur() == "Blanc" && !existePieceSurPosition(convertPointToPosition(positionPion+Point(-1,1)))){
+                Piece *p = existePieceSurPosition(convertPointToPosition(positionPion+Point(0,1)));
+            
+                // Ici on vérifie que le pion blanc est bien le dernier coup qui a été joué jusqu'à présent (car la prise en passant ne dure qu'1 tour...)
+                if(getDernierCSP(p->getFirstCell()) == getDernierCSE()){
+                
+                    // Maintenant on vérifie que le pion blanc a bien avancé de 2 cases d'un coup
+                    if(abs((convertPositionToPoint(getDernierCSP(p->getFirstCell())->getPositionCell())-convertPositionToPoint(getDernierCSP(p->getFirstCell())->getCPP()->getPositionCell())).getX()) == 2){
+                        listeCoupsPossibles.push_back(convertPointToPosition(positionPion+Point(-1,1)));
+                    }
+                }
+            }
+
+
         }
     }
 }
