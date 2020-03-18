@@ -49,6 +49,7 @@ class Piece{
 		string getNomString() const;
 		Position getPosition() const; // Renvoi la position de la pièce
 		string getPositionString() const; // Renvoi la position de la pièce sous forme de string
+		bool getABouge() const; // Renvoi true si une pièce a déjà bougé, false sinon
 		Cellule* getFirstCell() const; // Renvoi l'adresse de la première cellule de la pièce
 
 		virtual void updateListeCoupsPossibles() = 0; // Méthode (abstraite) virtuelle pure

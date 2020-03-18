@@ -183,6 +183,71 @@ void Roi::updateListeCoupsPossibles(){
                 listeCoupsPossibles.push_back(convertPointToPosition(diagonaleSupGauche));
             }
         }
+
+
+        /*
+        *   Pour le ROQUE :
+        * 
+        *  Il faut vérifier que :
+        *   - Le Roi et la Tour avec laquelle on souhaite roquer n'aient jamais bougé (1)
+        *   - Il n'y ait aucune pièce entre le Roi et la Tour (2)
+        *   - Que le Roi ne soit pas en échec (car s'il est en échec il n'a pas le droit de Roquer) (2bis)
+        *   - Aucune pièce noir n'a dans sa lcp les cases de Roque du Roi (car sinon ça interdit le Roque) (3)
+        *   - Gérer le fait que ça soit un Pion adverse (3bis)
+        */
+
+
+        /*********************/
+        /* ROQUE : ROI BLANC */
+        /*********************/
+
+        if(this->getCouleur() == "Blanc"){
+
+            // Petit roque (1) et (2)
+            if(this->getABouge() == false && !existePieceSurPosition("f1") && !existePieceSurPosition("g1") && existePieceSurPosition("h1") && existePieceSurPosition("h1")->getCouleur() == "Blanc" && existePieceSurPosition("h1")->getNomString() == "Tour" && existePieceSurPosition("h1")->getABouge() == false){
+                //(2bis) et (3) : On regarde qu'aucune pièce adverse vise f1 et g1
+                if(!estEnEchecRoiBlanc() && !this->posDansLCPAdverse("f1") && !this->posDansLCPAdverse("g1") && !this->possedePionAdverseEnDiagonaleSup(Point(1,6)) &&!this->possedePionAdverseEnDiagonaleSup(Point(1,7))){
+                    listeCoupsPossibles.push_back(Position("g1")); // Case du petit roque
+                }
+            }
+
+            // Grand roque (1) et (2)
+            if(this->getABouge() == false && !existePieceSurPosition("b1") && !existePieceSurPosition("c1") && !existePieceSurPosition("d1") && existePieceSurPosition("a1") && existePieceSurPosition("a1")->getCouleur() == "Blanc" && existePieceSurPosition("a1")->getNomString() == "Tour" && existePieceSurPosition("a1")->getABouge() == false){
+                //(2bis) et (3) : On regarde qu'aucune pièce adverse vise b1 et c1 et d1
+                if(!estEnEchecRoiBlanc() && !this->posDansLCPAdverse("b1") && !this->posDansLCPAdverse("c1") && !this->posDansLCPAdverse("d1") && !this->possedePionAdverseEnDiagonaleSup(Point(1,2)) && !this->possedePionAdverseEnDiagonaleSup(Point(1,3)) && !this->possedePionAdverseEnDiagonaleSup(Point(1,4))){
+                    listeCoupsPossibles.push_back(Position("c1")); // Case du grand roque
+                }
+            }
+            
+        }
+
+
+
+        /********************/
+        /* ROQUE : ROI NOIR */
+        /********************/
+
+        if(this->getCouleur() == "Noir"){
+
+            // Petit roque (1) et (2)
+            if(this->getABouge() == false && !existePieceSurPosition("f8") && !existePieceSurPosition("g8") && existePieceSurPosition("h8") && existePieceSurPosition("h8")->getCouleur() == "Noir" && existePieceSurPosition("h8")->getNomString() == "Tour" && existePieceSurPosition("h8")->getABouge() == false){
+                //(2bis) et (3) : On regarde qu'aucune pièce adverse vise f8 et g8
+                if(!estEnEchecRoiNoir() && !this->posDansLCPAdverse("f8") && !this->posDansLCPAdverse("g8") && !this->possedePionAdverseEnDiagonaleSup(Point(8,6)) &&!this->possedePionAdverseEnDiagonaleSup(Point(8,7))){
+                    listeCoupsPossibles.push_back(Position("g8")); // Case du petit roque
+                }
+            }
+
+            // Grand roque (1) et (2)
+            if(this->getABouge() == false && !existePieceSurPosition("b8") && !existePieceSurPosition("c8") && !existePieceSurPosition("d8") && existePieceSurPosition("a8") && existePieceSurPosition("a8")->getCouleur() == "Noir" && existePieceSurPosition("a8")->getNomString() == "Tour" && existePieceSurPosition("a8")->getABouge() == false){
+                //(2bis) et (3) : On regarde qu'aucune pièce adverse vise b1 et c1 et d1
+                if(!estEnEchecRoiNoir() && !this->posDansLCPAdverse("b8") && !this->posDansLCPAdverse("c8") && !this->posDansLCPAdverse("d8") && !this->possedePionAdverseEnDiagonaleSup(Point(8,2)) && !this->possedePionAdverseEnDiagonaleSup(Point(8,3)) && !this->possedePionAdverseEnDiagonaleSup(Point(8,4))){
+                    listeCoupsPossibles.push_back(Position("c8")); // Case du grand roque
+                }
+            }
+
+
+        }
+
     }
 }
 

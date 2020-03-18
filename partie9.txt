@@ -1,0 +1,14 @@
+e4 d5
+Dh5 Dd6
+b3 Ff5
+Ca3 g6
+Dh4 Fg7
+Dh3 Ch6
+c4 Rg8
+c5 b5
+b6 Db6
+
+
+Cas ou Roi blanc et Roi noir sont en échec, du coup ils ne peuvent pas se déplacer.
+
+Rc8 et Rc1 ne fonctionnent donc pas

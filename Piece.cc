@@ -58,6 +58,10 @@ string Piece::getPositionString() const{
 	return pos.getCoord();
 }
 
+bool Piece::getABouge() const{
+	return aBouge;
+}
+
 Cellule* Piece::getFirstCell() const{
 	return firstCell;
 }

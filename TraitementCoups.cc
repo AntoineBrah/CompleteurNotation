@@ -145,6 +145,37 @@ bool traitementCoups(lectureFichier* f){
                                         c->setCPP(dernierCSP);
 
                                         k=c;
+
+                                        /* Cas ou le Roi Blanc Roque */
+                                        if(cell->getPiece()->getNomString() == "Roi" && deplacement == "g1"){ // Petit Roque
+
+                                            Piece *t = existePieceSurPosition("h1"); // La Tour en h1 qu'on bouge (elle existe forcément car si le roi possède g1 dans sa LCP alors beaucoup de conditions ont été vérifié au préalable)
+                                            t->setPostion("f1"); // On déplace la tour en f1
+
+                                            // On s'occupe des cellules de la Tour
+                                            Cellule *deplacementTour = new Cellule(t); // On créer la Cellule avec la nouvelle position de la tour qu'on chaine à sa LCP
+                                            Cellule *tmp = getDernierCSP(t->getFirstCell()); // On récupère la dernière cellule CSP de la tour et on effectue le chainage
+
+                                            tmp->setCSP(deplacementTour);
+                                            deplacementTour->setCPP(tmp);
+                                            deplacementTour->copieListeCoupsPossibles(tmp);
+
+                                        }
+                                        else if(cell->getPiece()->getNomString() == "Roi" && deplacement == "c1"){ // Grand Roque
+
+                                            Piece *t = existePieceSurPosition("a1"); // La Tour en a1 qu'on bouge (elle existe forcément car si le roi possède c1 dans sa LCP alors beaucoup de conditions ont été vérifié au préalable)
+                                            t->setPostion("d1"); // On déplace la tour en d1
+
+                                            // On s'occupe des cellules de la Tour
+                                            Cellule *deplacementTour = new Cellule(t); // On créer la Cellule avec la nouvelle position de la tour qu'on chaine à sa LCP 
+                                            Cellule *tmp = getDernierCSP(t->getFirstCell()); // On récupère la dernière cellule CSP de la tour et on effectue le chainage
+
+                                            tmp->setCSP(deplacementTour);
+                                            deplacementTour->setCPP(tmp);
+                                            deplacementTour->copieListeCoupsPossibles(tmp);
+
+                                        }
+
                                         updateListeCoupsPossiblesAll(true); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                     }
                                 }
@@ -321,6 +352,37 @@ bool traitementCoups(lectureFichier* f){
                                     c->setCPP(dernierCSP);
 
                                     k=c;
+
+                                    /* Cas ou le Roi Noir Roque */
+                                    if(cell->getPiece()->getNomString() == "Roi" && deplacement == "g8"){ // Petit Roque
+
+                                        Piece *t = existePieceSurPosition("h8"); // La Tour en h8 qu'on bouge (elle existe forcément car si le roi possède g8 dans sa LCP alors beaucoup de conditions ont été vérifié au préalable)
+                                        t->setPostion("f8"); // On déplace la tour en f8
+
+                                        // On s'occupe des cellules de la Tour
+                                        Cellule *deplacementTour = new Cellule(t); // On créer la Cellule avec la nouvelle position de la tour qu'on chaine à sa LCP
+                                        Cellule *tmp = getDernierCSP(t->getFirstCell()); // On récupère la dernière cellule CSP de la tour et on effectue le chainage
+
+                                        tmp->setCSP(deplacementTour);
+                                        deplacementTour->setCPP(tmp);
+                                        deplacementTour->copieListeCoupsPossibles(tmp);
+
+                                    }
+                                    else if(cell->getPiece()->getNomString() == "Roi" && deplacement == "c8"){ // Grand Roque
+
+                                        Piece *t = existePieceSurPosition("a8"); // La Tour en a8 qu'on bouge (elle existe forcément car si le roi possède g1 dans sa LCP alors beaucoup de conditions ont été vérifié au préalable)
+                                        t->setPostion("d8"); // On déplace la tour en d8
+
+                                        // On s'occupe des cellules de la Tour
+                                        Cellule *deplacementTour = new Cellule(t); // On créer la Cellule avec la nouvelle position de la tour qu'on chaine à sa LCP 
+                                        Cellule *tmp = getDernierCSP(t->getFirstCell()); // On récupère la dernière cellule CSP de la tour et on effectue le chainage
+
+                                        tmp->setCSP(deplacementTour);
+                                        deplacementTour->setCPP(tmp);
+                                        deplacementTour->copieListeCoupsPossibles(tmp);
+
+                                    }
+
                                     updateListeCoupsPossiblesAll(true); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                 }
                             }
