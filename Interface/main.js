@@ -7,6 +7,10 @@ const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
+const nativeImage = require('electron').nativeImage;
+var image = nativeImage.createFromPath(__dirname + '/images/icones/icon.png');
+image.setTemplateImage(true);
+
 /*
 * Code d'initialisation d'une fenêtre
 */
@@ -21,7 +25,7 @@ function createWindow(){
         height: 800,
         resizable: false,
         frame: false,
-        icon: "images/icones/icon.png",
+        icon: image,
         title: 'Completeur de Notation'
     });
 

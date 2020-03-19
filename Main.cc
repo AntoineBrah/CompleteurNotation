@@ -40,7 +40,7 @@ int main(int argc, char* argv[]){
     correctionSyntaxe();
 
     if(estTraite){
-        system("cd Interface ; electron .");
+        system("./Interface/ChessCompletor-linux-x64/ChessCompletor");
     }
 
     return 0;

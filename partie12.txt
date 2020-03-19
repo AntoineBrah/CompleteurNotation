@@ -1,0 +1,10 @@
+e4 d5
+Dh5 Dd6
+b3 Ff5
+Fb2 Ca6
+Ca3 Cb4
+h3 Dg3
+Dg6 Rc8
+Fc3 Rb8
+Rd1 Ra8
+Rc1 b6
