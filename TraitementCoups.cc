@@ -133,9 +133,9 @@ bool traitementCoups(lectureFichier* f){
                                     else{
                                         // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
                                         // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
-
+                                
                                         cell->getPiece()->setPostion(deplacement); // on déplace la pièce
-                                        
+
                                         // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                         Cellule *c = new Cellule(cell->getPiece());
                                         c->copieListeCoupsPossibles(dernierCSP);
@@ -145,10 +145,10 @@ bool traitementCoups(lectureFichier* f){
                                         c->setCPP(dernierCSP);
 
                                         k=c;
-
+                                        
                                         /* Cas ou le Roi Blanc Roque */
-                                        if(cell->getPiece()->getNomString() == "Roi" && deplacement == "g1"){ // Petit Roque
-
+                                        if(cell->getPiece()->getNomString() == "Roi" && deplacement == "g1" && (Point(1,7)-convertPositionToPoint(getDernierCSP(cell)->getCPP()->getPositionCell())).getY() == 2){ // Petit Roque
+                                            
                                             Piece *t = existePieceSurPosition("h1"); // La Tour en h1 qu'on bouge (elle existe forcément car si le roi possède g1 dans sa LCP alors beaucoup de conditions ont été vérifié au préalable)
                                             t->setPostion("f1"); // On déplace la tour en f1
 
@@ -161,7 +161,7 @@ bool traitementCoups(lectureFichier* f){
                                             deplacementTour->copieListeCoupsPossibles(tmp);
 
                                         }
-                                        else if(cell->getPiece()->getNomString() == "Roi" && deplacement == "c1"){ // Grand Roque
+                                        else if(cell->getPiece()->getNomString() == "Roi" && deplacement == "c1" && (convertPositionToPoint(getDernierCSP(cell)->getCPP()->getPositionCell())-Point(1,3)).getY() == 2){ // Grand Roque
 
                                             Piece *t = existePieceSurPosition("a1"); // La Tour en a1 qu'on bouge (elle existe forcément car si le roi possède c1 dans sa LCP alors beaucoup de conditions ont été vérifié au préalable)
                                             t->setPostion("d1"); // On déplace la tour en d1
@@ -354,7 +354,7 @@ bool traitementCoups(lectureFichier* f){
                                     k=c;
 
                                     /* Cas ou le Roi Noir Roque */
-                                    if(cell->getPiece()->getNomString() == "Roi" && deplacement == "g8"){ // Petit Roque
+                                    if(cell->getPiece()->getNomString() == "Roi" && deplacement == "g8" && (Point(8,7)-convertPositionToPoint(getDernierCSP(cell)->getCPP()->getPositionCell())).getY() == 2){ // Petit Roque
 
                                         Piece *t = existePieceSurPosition("h8"); // La Tour en h8 qu'on bouge (elle existe forcément car si le roi possède g8 dans sa LCP alors beaucoup de conditions ont été vérifié au préalable)
                                         t->setPostion("f8"); // On déplace la tour en f8
@@ -368,7 +368,7 @@ bool traitementCoups(lectureFichier* f){
                                         deplacementTour->copieListeCoupsPossibles(tmp);
 
                                     }
-                                    else if(cell->getPiece()->getNomString() == "Roi" && deplacement == "c8"){ // Grand Roque
+                                    else if(cell->getPiece()->getNomString() == "Roi" && deplacement == "c8" && (convertPositionToPoint(getDernierCSP(cell)->getCPP()->getPositionCell())-Point(8,3)).getY() == 2){ // Grand Roque
 
                                         Piece *t = existePieceSurPosition("a8"); // La Tour en a8 qu'on bouge (elle existe forcément car si le roi possède g1 dans sa LCP alors beaucoup de conditions ont été vérifié au préalable)
                                         t->setPostion("d8"); // On déplace la tour en d8

@@ -116,7 +116,7 @@ chessboard.forEach(x => {
     });
 });
 
-
+//prise en passant et roque
 function estPrisEnPassantRight(){
     chessboard.forEach(x => {
 
@@ -125,27 +125,47 @@ function estPrisEnPassantRight(){
             let p = getPiece(x.getAttribute('currentcell'));
             let lcp = p.lcp.split(',');
 
-            if(lcp[cpt] == undefined){
-                console.log("-> Le pion ", p.couleur, " en ", p.position, " s'est fait prendre en passant.");
+            if(lcp[cpt] == undefined){ // Pion ou Tour qu'on efface quand on avance dans la partie
+
                 x.setAttribute('i' + cpt, x.getAttribute('currentcell'));
                 x.setAttribute('currentcell', 0);
                 x.style.backgroundImage = '';
+
+                if(p.piece === "Tour"){ // Tour qu'on fait apparaitre au moment du roque
+                    let p2 = getPiece(p.csp);
+                    let cell = getCase(p2.position);
+
+                    console.log(p2);
+
+                    cell.setAttribute('currentcell', p2.adr);
+                    cell.setAttribute('r'+cpt, p2.adr);
+                    cell.style.backgroundImage = 'url(images/pieces/' + p2.couleur + '/' + p2.piece + '.svg)';
+
+                }
+
             }
         }
 
     });
 }
 
-
+//prise en passant et roque
 function estPrisEnPassantLeft(){
     chessboard.forEach(x => {
 
-        if(x.getAttribute('i'+cpt) !== null && x.getAttribute('currentcell') == 0){
+        if(x.getAttribute('i'+cpt) !== null && x.getAttribute('currentcell') == 0){//Tour ou pion qu'on fait réapparaitre quand on revient en arriere
 
             let p = getPiece(x.getAttribute('i'+cpt));
-
             x.setAttribute('currentcell', p.adr);
             x.style.backgroundImage = 'url(images/pieces/' + p.couleur + '/' + p.piece + '.svg)';
+        }
+
+        if(x.getAttribute('r'+cpt) !== null && x.getAttribute('currentcell') != 0){ //Tour qu'on efface quand on revient en arrière
+
+            let p = getPiece(x.getAttribute('r'+cpt));
+            x.removeAttribute('r'+cpt);
+            x.setAttribute('currentcell', 0);
+            x.style.backgroundImage = '';
         }
 
     });
