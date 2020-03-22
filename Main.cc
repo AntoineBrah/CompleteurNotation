@@ -7,6 +7,7 @@
 #include "EcritureFichier.h"
 #include "Point.h"
 #include "Pion.h"
+#include <regex>
 
 
 #define separator() cout << "---------------------------------" << endl

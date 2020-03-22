@@ -62,5 +62,147 @@ lectureFichier::~lectureFichier(){
 }
 
 
+void detecterCoup(string coup, vector<string> &description){
+
+    regex pion("[a-h]?x?[a-h]{1}[1-8]{1}(=[DFCT])?[+#]?"); // regex pour un pion
+    regex piece("[RDFCT]{1}[a-h1-8]?x?[a-h]{1}[1-8]{1}[+#]?"); // regex pour une piece
+    regex roque("O-O(-O)?"); // regex pour le roque
+
+    if(regex_match(coup, pion)){
+        
+        regex deplacementPion("[a-h]{1}[1-8]{1}(=[DFCT])?[+#]?");
+        regex mangePion("[a-h]{1}x{1}[a-h]{1}[1-8]{1}(=[DFCT])?[+#]?");
+
+        if(regex_match(coup, deplacementPion)){ // Si le pion ne fait que se déplacer (colonne vide)
+
+            regex promotionPion("[a-h]{1}[1-8]{1}(=[DFCT]){1}[+#]?");
+
+            if(regex_match(coup, promotionPion)){ // S'il y a promotion...
+
+                regex echecOuMatPion("[a-h]{1}[1-8]{1}(=[DFCT]){1}[+#]{1}");
+
+                if(regex_match(coup, echecOuMatPion)){ // S'il y a échec ou mat
+
+                    description.push_back("Pion"); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(0,2)); // Déplacement
+                    description.push_back(coup.substr(2,2)); // Promotion
+                    description.push_back(coup.substr(4,1)); // echec
+
+                }
+                else{ // S'il n'y a pas échec ou mat
+
+                    description.push_back("Pion"); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(0,2)); // Déplacement
+                    description.push_back(coup.substr(2,2)); // Promotion
+                    description.push_back(""); // echec
+                }
+
+            }
+            else{ // S'il n'y a pas promotion...
+
+                regex echecOuMatPion("[a-h]{1}[1-8]{1}[+#]{1}");
+
+                if(regex_match(coup, echecOuMatPion)){ // S'il y a échec ou mat
+
+                    description.push_back("Pion"); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(0,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(coup.substr(2,1)); // echec
+
+                }
+                else{ // S'il n'y a pas échec ou mat
+
+                    description.push_back("Pion"); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(0,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(""); // echec
+                    
+                }
+
+            }
+        }
+        else if(regex_match(coup, mangePion)){ // Si le pion mange une pièce (colonne non vide)
+
+            regex promotionPion("[a-h]{1}x{1}[a-h]{1}[1-8]{1}(=[DFCT]){1}[+#]?");
+
+            if(regex_match(coup, promotionPion)){ // S'il y a promotion...
+
+                regex echecOuMatPion("[a-h]{1}x{1}[a-h]{1}[1-8]{1}(=[DFCT]){1}[+#]{1}");
+
+                if(regex_match(coup, echecOuMatPion)){ // S'il y a échec ou mat
+
+                    description.push_back("Pion"); // Piece
+                    description.push_back(coup.substr(0,1)); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(coup.substr(4,2)); // Promotion
+                    description.push_back(coup.substr(6,1)); // echec
+
+                }
+                else{ // S'il n'y a pas échec ou mat
+
+                    description.push_back("Pion"); // Piece
+                    description.push_back(coup.substr(0,1)); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(coup.substr(4,2)); // Promotion
+                    description.push_back(""); // echec
+                }
+
+            }
+            else{ // S'il n'y a pas promotion...
+
+                regex echecOuMatPion("[a-h]{1}x{1}[a-h]{1}[1-8]{1}[+#]{1}");
+
+                if(regex_match(coup, echecOuMatPion)){ // S'il y a échec ou mat
+
+                    description.push_back("Pion"); // Piece
+                    description.push_back(coup.substr(0,1)); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(coup.substr(4,1)); // echec
+
+                }
+                else{ // S'il n'y a pas échec ou mat
+
+                    description.push_back("Pion"); // Piece
+                    description.push_back(coup.substr(0,1)); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(""); // echec
+                    
+                }
+
+            }
+
+        }
+
+    }
+    else if(regex_match(coup, piece)){
+
+        // 22/03/20 : pour les Pions OK, continuer pour les pièces maintenant
+
+    }
+    else if(regex_match(coup, roque)){
+
+    }
+    else{
+        coup = "";
+        cout << "[!] La syntaxe PGN du coup : " << coup << " étant fausse, le coup vient d'être annulé\n" << endl;
+    }
+
+}
+
+
 
 
