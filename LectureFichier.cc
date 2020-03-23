@@ -48,13 +48,25 @@ void lectureFichier::traiterLigne(){
     
     cb = s.substr(0,pos);
 
+    detecterCoup(cb, descriptionCb, "Blanc");
+
     // Cas ou il n'y a pas d'espace et donc on finit avec un coup blanc
     if(pos == -1){
         cn = "";
     }
     else{
         cn = s.substr(pos+1); // si on précise pas le deuxième paramètre, ça va jusqu'à la fin de la chaine
+
+        detecterCoup(cn, descriptionCn, "Noir");
     }
+}
+
+vector<string>& lectureFichier::getDescriptionCb(){
+    return descriptionCb;
+}
+
+vector<string>& lectureFichier::getDescriptionCn(){
+    return descriptionCn;
 }
 
 lectureFichier::~lectureFichier(){
@@ -62,7 +74,10 @@ lectureFichier::~lectureFichier(){
 }
 
 
-void detecterCoup(string coup, vector<string> &description){
+void detecterCoup(string &coup, vector<string> &description, string couleurPiece){
+
+    description.clear();
+
 
     regex pion("[a-h]?x?[a-h]{1}[1-8]{1}(=[DFCT])?[+#]?"); // regex pour un pion
     regex piece("[RDFCT]{1}[a-h1-8]?x?[a-h]{1}[1-8]{1}[+#]?"); // regex pour une piece
@@ -190,15 +205,239 @@ void detecterCoup(string coup, vector<string> &description){
     }
     else if(regex_match(coup, piece)){
 
-        // 22/03/20 : pour les Pions OK, continuer pour les pièces maintenant
+        regex deplacementPiece("[RDFCT]{1}[a-h1-8]?[a-h]{1}[1-8]{1}[+#]?");
+        regex mangePiece("[RDFCT]{1}[a-h1-8]?x{1}[a-h]{1}[1-8]{1}[+#]?");
+
+        string typePiece = "NULL";
+
+        switch(coup[0]){
+            case 'T':
+                typePiece = "Tour";
+                break;
+            case 'C':
+                typePiece = "Cavalier";
+                break;
+            case 'F':
+                typePiece = "Fou";
+                break;
+            case 'D':
+                typePiece = "Dame";
+                break;
+            case 'R':
+                typePiece = "Roi";
+                break;
+            default:
+                cout << "ERREUR : Impossible de déterminer de quelle pièce il s'agit." << endl;
+                break;
+        }
+
+
+
+        if(regex_match(coup, deplacementPiece)){ // Si la pièce ne fait que se déplacer
+
+            regex deplacementPieceLigne("[RDFCT]{1}[1-8]{1}[a-h]{1}[1-8]{1}[+#]?"); // 2 pièce sur la même colonne se déplace sur la même case
+            regex deplacementPieceColonne("[RDFCT]{1}[a-h]{1}[a-h]{1}[1-8]{1}[+#]?"); // 2 pièce sur la même ligne se déplace sur la même case
+            regex deplacementPieceAucun("[RDFCT]{1}[a-h]{1}[1-8]{1}[+#]?"); // Aucune ambigüité
+
+            if(regex_match(coup, deplacementPieceLigne)){ 
+
+                regex deplacementPieceLigneEchecOuMat("[RDFCT]{1}[1-8]{1}[a-h]{1}[1-8]{1}[+#]{1}");
+
+                if(regex_match(coup, deplacementPieceLigneEchecOuMat)){ // S'il y a échec ou mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(coup.substr(1,1)); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(coup.substr(4,1)); // echec
+                }
+                else{ // S'il n'y a ni échec ni mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(coup.substr(1,1)); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(""); // echec
+                }
+
+
+            }
+            else if(regex_match(coup, deplacementPieceColonne)){
+                
+                regex deplacementPieceColonneEchecOuMat("[RDFCT]{1}[a-h]{1}[a-h]{1}[1-8]{1}[+#]{1}");
+
+                if(regex_match(coup, deplacementPieceColonneEchecOuMat)){ // S'il y a échec ou mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(coup.substr(1,1)); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(coup.substr(4,1)); // echec
+                }
+                else{ // S'il n'y a ni échec ni mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(coup.substr(1,1)); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(""); // echec
+                }
+
+            }
+            else if(regex_match(coup, deplacementPieceAucun)){
+
+                regex deplacementPieceAucunEchecOuMat("[RDFCT]{1}[a-h]{1}[1-8]{1}[+#]{1}");
+
+                if(regex_match(coup, deplacementPieceAucunEchecOuMat)){ // S'il y a échec ou mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(1,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(coup.substr(3,1)); // echec
+                }
+                else{ // S'il n'y a pas échec ou mat 
+                    description.push_back(typePiece); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(1,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(""); // echec
+                }
+            }
+
+        }
+        else if(regex_match(coup, mangePiece)){ // Si la pièce mange une autre pièce
+
+            regex deplacementPieceLigne("[RDFCT]{1}[1-8]{1}x{1}[a-h]{1}[1-8]{1}[+#]?"); // 2 pièce sur la même colonne se déplace sur la même case
+            regex deplacementPieceColonne("[RDFCT]{1}[a-h]{1}x{1}[a-h]{1}[1-8]{1}[+#]?"); // 2 pièce sur la même ligne se déplace sur la même case
+            regex deplacementPieceAucun("[RDFCT]{1}x{1}[a-h]{1}[1-8]{1}[+#]?"); // Aucune ambigüité
+
+            if(regex_match(coup, deplacementPieceLigne)){ 
+
+                regex deplacementPieceLigneEchecOuMat("[RDFCT]{1}[1-8]{1}x{1}[a-h]{1}[1-8]{1}[+#]{1}");
+
+                if(regex_match(coup, deplacementPieceLigneEchecOuMat)){ // S'il y a échec ou mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(coup.substr(1,1)); // Ligne
+                    description.push_back(coup.substr(3,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(coup.substr(5,1)); // echec
+                }
+                else{ // S'il n'y a ni échec ni mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(coup.substr(1,1)); // Ligne
+                    description.push_back(coup.substr(3,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(""); // echec
+                }
+
+
+            }
+            else if(regex_match(coup, deplacementPieceColonne)){
+                
+                regex deplacementPieceColonneEchecOuMat("[RDFCT]{1}[a-h]{1}x{1}[a-h]{1}[1-8]{1}[+#]{1}");
+
+                if(regex_match(coup, deplacementPieceColonneEchecOuMat)){ // S'il y a échec ou mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(coup.substr(1,1)); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(3,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(coup.substr(5,1)); // echec
+                }
+                else{ // S'il n'y a ni échec ni mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(coup.substr(1,1)); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(3,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(""); // echec
+                }
+
+            }
+            else if(regex_match(coup, deplacementPieceAucun)){
+
+                regex deplacementPieceAucunEchecOuMat("[RDFCT]{1}x{1}[a-h]{1}[1-8]{1}[+#]{1}");
+
+                if(regex_match(coup, deplacementPieceAucunEchecOuMat)){ // S'il y a échec ou mat
+                    description.push_back(typePiece); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(coup.substr(4,1)); // echec
+                }
+                else{ // S'il n'y a pas échec ou mat 
+                    description.push_back(typePiece); // Piece
+                    description.push_back(""); // Colonne
+                    description.push_back(""); // Ligne
+                    description.push_back(coup.substr(2,2)); // Déplacement
+                    description.push_back(""); // Promotion
+                    description.push_back(""); // echec
+                }
+            }
+
+        }
+        
 
     }
     else if(regex_match(coup, roque)){
 
+        regex petitRoque("O-O");
+        regex grandRoque("O-O-O");
+
+        if(couleurPiece == "Blanc"){
+
+            if(regex_match(coup, petitRoque)){
+                description.push_back("Roi"); // Piece
+                description.push_back(""); // Colonne
+                description.push_back(""); // Ligne
+                description.push_back("g1"); // Déplacement
+                description.push_back(""); // Promotion
+                description.push_back(""); // echec
+            }
+            else if(regex_match(coup, grandRoque)){
+                description.push_back("Roi"); // Piece
+                description.push_back(""); // Colonne
+                description.push_back(""); // Ligne
+                description.push_back("c1"); // Déplacement
+                description.push_back(""); // Promotion
+                description.push_back(""); // echec
+            }
+        }
+        else if(couleurPiece == "Noir"){
+
+            if(regex_match(coup, petitRoque)){
+                description.push_back("Roi"); // Piece
+                description.push_back(""); // Colonne
+                description.push_back(""); // Ligne
+                description.push_back("g8"); // Déplacement
+                description.push_back(""); // Promotion
+                description.push_back(""); // echec
+            }
+            else if(regex_match(coup, grandRoque)){
+                description.push_back("Roi"); // Piece
+                description.push_back(""); // Colonne
+                description.push_back(""); // Ligne
+                description.push_back("c8"); // Déplacement
+                description.push_back(""); // Promotion
+                description.push_back(""); // echec
+            }
+        }
+        
     }
     else{
+        cout << "[!] La syntaxe PGN du coup : '" << coup << "' étant fausse, le coup vient d'être annulé.\n" << endl;
         coup = "";
-        cout << "[!] La syntaxe PGN du coup : " << coup << " étant fausse, le coup vient d'être annulé\n" << endl;
+    }
+
+    if(coup != ""){
+        //separator();
+        //cout << "Piece : " << description[0] << "\nColonne : " << description[1] << "\nLigne : " << description[2] << "\nDéplacement : " << description[3] << "\nPromotion : " << description[4] << "\nEchec ou mat : " << description[5] << endl;
+        //separator();
     }
 
 }

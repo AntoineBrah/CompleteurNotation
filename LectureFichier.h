@@ -7,6 +7,8 @@
 #include <vector>
 #include <regex>
 
+#define separator() cout << "---------------------------------" << endl
+
 using namespace std;
 
 class lectureFichier{
@@ -35,10 +37,13 @@ class lectureFichier{
         string getCoupBlanc() const;
         string getCoupNoir() const;
 
+        vector<string>& getDescriptionCb();
+        vector<string>& getDescriptionCn();
+
         ~lectureFichier();
 };
 
 
-void detecterCoup(string, vector<string>&);
+void detecterCoup(string&, vector<string>&, string);
 
 #endif

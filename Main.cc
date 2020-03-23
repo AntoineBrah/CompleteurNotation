@@ -7,10 +7,6 @@
 #include "EcritureFichier.h"
 #include "Point.h"
 #include "Pion.h"
-#include <regex>
-
-
-#define separator() cout << "---------------------------------" << endl
 
 
 int main(int argc, char* argv[]){
@@ -35,7 +31,7 @@ int main(int argc, char* argv[]){
         if(File.getEstCorrectementOuvert()){ // Si le fichier est correctement ouvert alors, on le traite
             estTraite = traitementCoups(&File);
         }
-        
+
     }
 
     correctionSyntaxe();

@@ -50,14 +50,25 @@ bool traitementCoups(lectureFichier* f){
     
     do{
         nbCoup++;
-
+        
         string deplacementBlanc = f->getCoupBlanc();
         string deplacementNoir = f->getCoupNoir();
+
+        vector<string> descBlanc = f->getDescriptionCb();
+        vector<string> descNoir = f->getDescriptionCn();
+
+        if(!descBlanc.empty()){
+            cout << "\nPiece : " << descBlanc[0] << "\nColonne : " << descBlanc[1] << "\nLigne : " << descBlanc[2] << "\nDeplacement : " << descBlanc[3] << "\nPromotion : " << descBlanc[4] << "\nEchec : " << descBlanc[5] << endl << endl;
+        }
+
+        if(!descNoir.empty()){
+            cout << "\nPiece : " << descNoir[0] << "\nColonne : " << descNoir[1] << "\nLigne : " << descNoir[2] << "\nDeplacement : " << descNoir[3] << "\nPromotion : " << descNoir[4] << "\nEchec : " << descNoir[5] << endl << endl;
+        }
 
         if(deplacementBlanc != ""){
 
             if(File->getCoupBlanc().size() == 3){
-
+        
                 string typePiece;
                 string deplacement = string{File->getCoupBlanc()[1]} + File->getCoupBlanc()[2];
 
@@ -185,12 +196,14 @@ bool traitementCoups(lectureFichier* f){
                 }
             }
             else if(File->getCoupBlanc().size() == 2){
+            
             // C'est donc forcément un pion blanc
                 for(Cellule* cell : (*instancesEchiquier)){
                     if(cell->getPiece()->getCouleur() == "Blanc" && cell->getPiece()->getNomString() == "Pion"){
                         Cellule *dernierCSP = getDernierCSP(cell);
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
                             if(pos.getCoord() == deplacementBlanc){
+
                                 if(nbCoup == 1){
                                     // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
                                     cell->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
@@ -202,11 +215,12 @@ bool traitementCoups(lectureFichier* f){
                                     dernierCSP->setCSP(c);
                                     dernierCSP->setCSE(c);
                                     c->setCPP(dernierCSP);
-
+                                
                                     k=c;
                                     updateListeCoupsPossiblesAll(true); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                 }
                                 else{
+                                    
                                     Position pos = cell->getPiece()->getPosition(); // On stock la position initiale de la pièce
                                     
                                     Piece *p = NULL; // On récupère la pièce qui se situe sur le déplacement
@@ -240,7 +254,7 @@ bool traitementCoups(lectureFichier* f){
                                             else
                                                 annulationSeFaitMangerPiece(p, convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0)));
                                         }
-
+                                        
                                         updateListeCoupsPossiblesAll(false);
                                         cout << "\n[i] " << cell->getPiece()->getNomString() << " " << cell->getPiece()->getCouleur() << " ne peut pas être déplacé en " << deplacementBlanc << " car sinon son Roi est (ou reste) en échec.\n" << endl;
                                     }
@@ -257,9 +271,10 @@ bool traitementCoups(lectureFichier* f){
                                         dernierCSP->setCSP(c);
                                         k->setCSE(c);
                                         c->setCPP(dernierCSP);
-
+                                        
                                         k=c;
                                         updateListeCoupsPossiblesAll(true); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+                                        
                                     }
                                 }
                             }
@@ -276,7 +291,7 @@ bool traitementCoups(lectureFichier* f){
         }
 
         if(deplacementNoir != ""){
-            
+
             if(File->getCoupNoir().size() == 3){
 
                 string typePiece;
@@ -459,7 +474,6 @@ bool traitementCoups(lectureFichier* f){
                 }
             }
         }
-
     }while(File->lireLigneSuivante());
 
     // On ajoute les infos de chaque cellules dans notre fichier JSON
