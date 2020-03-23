@@ -13,7 +13,7 @@ all : $(PROG)
 	$(MSG_OK)
 
 $(PROG) : $(SOURCE:.cc=.o)
-	$(CXX) $^ $(CXX_FLAGS) -o $(PROG) -lncurses
+	$(CXX) $^ $(CXX_FLAGS) -o $(PROG)
 	$(MSG_OK)
 clear :
 	rm $(SOURCE:.cc=.o)
