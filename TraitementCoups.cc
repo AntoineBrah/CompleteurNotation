@@ -248,6 +248,7 @@ bool traitementCoups(lectureFichier* f){
 
                                         // S'il y a une promotion
                                         if(cell->getPiece()->getPosition().getLigne() == "8" && descBlanc[4] != ""){
+                                            cout << "--> Promotion du pion blanc en " << descBlanc[3] << endl << endl; 
                                             cell->getPiece()->setNom(descBlanc[4]);
                                         } 
 
@@ -426,6 +427,7 @@ bool traitementCoups(lectureFichier* f){
 
                                     // S'il y a une promotion
                                     if(cell->getPiece()->getPosition().getLigne() == "1" && descNoir[4] != ""){
+                                        cout << "--> Promotion du pion noir en " << descNoir[3] << endl << endl;
                                         cell->getPiece()->setNom(descNoir[4]);
                                     } 
                                     

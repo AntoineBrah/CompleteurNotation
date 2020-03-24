@@ -24,25 +24,6 @@ type::Nom Piece::getNom() const{
 	return nom;
 }
 
-void Piece::setNom(string s){
-
-	switch(s[1]){
-		case 'D':
-			nom = type::Dame;
-			break;
-		case 'T':
-			nom = type::Tour;
-			break;
-		case 'C':
-			nom = type::Cavalier;
-			break;
-		case 'F':
-			nom = type::Fou;
-			break;
-	}
-
-}
-
 string Piece::getNomString() const{
 	switch(nom){
 		case type::Pion : 
@@ -96,6 +77,25 @@ void Piece::setPostion(string position){
 		aBouge = true;
 }
 
+void Piece::setNom(string typePiece){
+	
+	switch(typePiece[1]){
+		case 'D':
+			nom = type::Dame;
+			break;
+		case 'C':
+			nom = type::Cavalier;
+			break;
+		case 'T':
+			nom = type::Tour;
+			break;
+		case 'F':
+			nom = type::Fou;
+			break;
+	}
+	
+}
+
 vector<Position>& Piece::getListeCoupsPossibles(){
 	return listeCoupsPossibles;
 }
@@ -123,7 +123,19 @@ string Piece::toString() const{
 	return "Type pièce : " + getNomString() + "\nCouleur pièce : " + getCouleur() + "\nPosition pièce : " + getPositionString();
 }
 
-Piece::~Piece(){}
+Piece::~Piece(){
+
+	int cpt = 0;
+
+    for(Piece* p : listePiece){
+        
+        if(p == this){
+            listePiece.erase(listePiece.begin()+cpt);
+        }
+
+        cpt++;
+    }
+}
 
 Piece* existePieceSurPosition(string p){
 	for(Piece *piece : listePiece){

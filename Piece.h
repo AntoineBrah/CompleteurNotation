@@ -44,9 +44,9 @@ class Piece{
 	public :
 		Piece();
 		Piece(Couleur, type::Nom, string);
+
 		string getCouleur() const;
 		type::Nom getNom() const;
-		void setNom(string);
 		string getNomString() const;
 		Position getPosition() const; // Renvoi la position de la pièce
 		string getPositionString() const; // Renvoi la position de la pièce sous forme de string
@@ -57,6 +57,7 @@ class Piece{
 
 		void setFirstCell(Cellule*);
 		void setPostion(string);
+		void setNom(string);
 		vector<Position>& getListeCoupsPossibles(); // Renvoi un pointeur vers la liste des coups possibles d'une pièce
 		void printListeCoupsPossibles() const;
 

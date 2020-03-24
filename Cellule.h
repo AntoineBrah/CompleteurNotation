@@ -31,7 +31,7 @@ class Cellule{
         const type::Nom type; // Contient le type de la pièce vers laquelle pointe la cellule (utile pour la promotion des pions)
         const Position pos; // Position de la cellule (cad de la pièce à un moment donné)
 
-        Piece* getPiece() const;
+        Piece* getPiece();
         Cellule* getCSP() const;
         Cellule* getCPP() const;
         Cellule* getCSE() const;
@@ -50,6 +50,7 @@ class Cellule{
 
         string getJSON() const; // Renvoi toutes les infos sur la cellule au format JSON
 
+        void setPiece(Piece*);
         void setCSP(Cellule*);
         void setCPP(Cellule*);
         void setCSE(Cellule*);

@@ -209,7 +209,7 @@ var deplacerPieceArriere = (piece) => {
     // Position précédente
     var cellPrec = getCase(getCPP(piece).position);
     cellPrec.setAttribute('currentcell', getCPP(piece).adr);
-    cellPrec.style.backgroundImage = 'url(images/pieces/' + piece.couleur + '/' + piece.piece + '.svg)';
+    cellPrec.style.backgroundImage = 'url(images/pieces/' + getCPP(piece).couleur + '/' + getCPP(piece).piece + '.svg)';
 } 
 
 var initialiserPlateau = (pieces) => {

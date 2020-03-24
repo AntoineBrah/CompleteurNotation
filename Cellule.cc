@@ -5,7 +5,7 @@ Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CPP(NULL), CSE(NULL), type(p->
     listeCellule.push_back(this);
 }
 
-Piece* Cellule::getPiece() const{
+Piece* Cellule::getPiece(){
     return piece;
 }
 
@@ -130,6 +130,10 @@ string Cellule::getJSON() const{
     return json;
 }
 
+
+void Cellule::setPiece(Piece *p){
+    piece = p;
+}
 
 
 void Cellule::setCSP(Cellule *c){

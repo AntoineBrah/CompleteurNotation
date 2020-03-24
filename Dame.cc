@@ -230,6 +230,9 @@ void Dame::updateListeCoupsPossibles(){
             }
         }
     }
+
+
+    
 }
 
 Dame::~Dame(){}
