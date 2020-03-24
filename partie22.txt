@@ -1,0 +1,9 @@
+b4 a5
+bxa5 Ta6
+a3 Tb6
+axb6 h6
+a4 h5
+a5 h4
+a6 h3
+a7 g6
+a8=D

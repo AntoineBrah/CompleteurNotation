@@ -24,6 +24,25 @@ type::Nom Piece::getNom() const{
 	return nom;
 }
 
+void Piece::setNom(string s){
+
+	switch(s[1]){
+		case 'D':
+			nom = type::Dame;
+			break;
+		case 'T':
+			nom = type::Tour;
+			break;
+		case 'C':
+			nom = type::Cavalier;
+			break;
+		case 'F':
+			nom = type::Fou;
+			break;
+	}
+
+}
+
 string Piece::getNomString() const{
 	switch(nom){
 		case type::Pion : 

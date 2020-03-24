@@ -46,6 +46,7 @@ class Piece{
 		Piece(Couleur, type::Nom, string);
 		string getCouleur() const;
 		type::Nom getNom() const;
+		void setNom(string);
 		string getNomString() const;
 		Position getPosition() const; // Renvoi la position de la pièce
 		string getPositionString() const; // Renvoi la position de la pièce sous forme de string

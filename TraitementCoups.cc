@@ -58,43 +58,23 @@ bool traitementCoups(lectureFichier* f){
         vector<string> descNoir = f->getDescriptionCn();
 
         if(!descBlanc.empty()){
-            cout << "\nPiece : " << descBlanc[0] << "\nColonne : " << descBlanc[1] << "\nLigne : " << descBlanc[2] << "\nDeplacement : " << descBlanc[3] << "\nPromotion : " << descBlanc[4] << "\nEchec : " << descBlanc[5] << endl << endl;
+            //cout << "\nPiece : " << descBlanc[0] << "\nColonne : " << descBlanc[1] << "\nLigne : " << descBlanc[2] << "\nDeplacement : " << descBlanc[3] << "\nPromotion : " << descBlanc[4] << "\nEchec : " << descBlanc[5] << endl << endl;
         }
 
         if(!descNoir.empty()){
-            cout << "\nPiece : " << descNoir[0] << "\nColonne : " << descNoir[1] << "\nLigne : " << descNoir[2] << "\nDeplacement : " << descNoir[3] << "\nPromotion : " << descNoir[4] << "\nEchec : " << descNoir[5] << endl << endl;
+            //cout << "\nPiece : " << descNoir[0] << "\nColonne : " << descNoir[1] << "\nLigne : " << descNoir[2] << "\nDeplacement : " << descNoir[3] << "\nPromotion : " << descNoir[4] << "\nEchec : " << descNoir[5] << endl << endl;
         }
 
         if(deplacementBlanc != ""){
 
-            if(File->getCoupBlanc().size() == 3){
-        
-                string typePiece;
-                string deplacement = string{File->getCoupBlanc()[1]} + File->getCoupBlanc()[2];
+            string typePiece = descBlanc[0];
+            string deplacement = descBlanc[3];
 
-                switch(File->getCoupBlanc()[0]){
-                    case 'T':
-                        typePiece = "Tour";
-                        break;
-                    case 'C':
-                        typePiece = "Cavalier";
-                        break;
-                    case 'F':
-                        typePiece = "Fou";
-                        break;
-                    case 'D':
-                        typePiece = "Dame";
-                        break;
-                    case 'R':
-                        typePiece = "Roi";
-                        break;
-                    default:
-                        cout << "ERREUR : Impossible de déterminer de quelle pièce il s'agit (coup blanc)." << endl;
-                        break;
-                }
+            if(descBlanc[0] != "Pion"){
 
                 for(Cellule* cell : (*instancesEchiquier)){
-                    if(cell->getPiece()->getCouleur() == "Blanc" && cell->getPiece()->getNomString() == typePiece){
+                    if(cell->getPiece()->getCouleur() == "Blanc" && cell->getPiece()->getNomString() == typePiece && ((descBlanc[1] == "" || cell->getPiece()->getPosition().getColonne() == descBlanc[1]) && (descBlanc[2] == "" || cell->getPiece()->getPosition().getLigne() == descBlanc[2]))){
+
                         Cellule *dernierCSP = getDernierCSP(cell);
 
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
@@ -195,18 +175,19 @@ bool traitementCoups(lectureFichier* f){
                     }
                 }
             }
-            else if(File->getCoupBlanc().size() == 2){
+            else if(descBlanc[0] == "Pion"){
             
             // C'est donc forcément un pion blanc
                 for(Cellule* cell : (*instancesEchiquier)){
-                    if(cell->getPiece()->getCouleur() == "Blanc" && cell->getPiece()->getNomString() == "Pion"){
+                    if(cell->getPiece()->getCouleur() == "Blanc" && cell->getPiece()->getNomString() == "Pion" && (descBlanc[1] == "" || cell->getPiece()->getPosition().getColonne() == descBlanc[1])){
+
                         Cellule *dernierCSP = getDernierCSP(cell);
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
-                            if(pos.getCoord() == deplacementBlanc){
+                            if(pos.getCoord() == deplacement){
 
                                 if(nbCoup == 1){
                                     // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
-                                    cell->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
+                                    cell->getPiece()->setPostion(deplacement); // on déplace la pièce
 
                                     // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                     Cellule *c = new Cellule(cell->getPiece());
@@ -227,19 +208,19 @@ bool traitementCoups(lectureFichier* f){
 
                                     bool prendEnPassant = false;
                                     
-                                    if(existePieceSurPosition(deplacementBlanc)){
-                                        p = existePieceSurPosition(deplacementBlanc);
+                                    if(existePieceSurPosition(deplacement)){
+                                        p = existePieceSurPosition(deplacement);
                                         seFaitMangerPiece(p); // Si une pièce est présente sur la position du déplacement, alors elle se fait manger
                                     }
-                                    else if(existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0))) && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0)))->getCouleur() == "Noir" && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0)))->getNomString() == "Pion"){
+                                    else if(existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacement)-Point(1,0))) && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacement)-Point(1,0)))->getCouleur() == "Noir" && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacement)-Point(1,0)))->getNomString() == "Pion"){
                                         // Cas ou on prend en passant
-                                        p = existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0)));
+                                        p = existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacement)-Point(1,0)));
                                         cout << "Prise en passant : " << endl;
                                         seFaitMangerPiece(p);
                                         prendEnPassant = true;
                                     }
 
-                                    cell->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
+                                    cell->getPiece()->setPostion(deplacement); // on déplace la pièce
                                     updateListeCoupsPossiblesAll(false); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                     
                                     if(estEnEchecRoiBlanc()){
@@ -250,20 +231,26 @@ bool traitementCoups(lectureFichier* f){
 
                                         if(p != NULL){
                                             if(!prendEnPassant)
-                                                annulationSeFaitMangerPiece(p, deplacementBlanc);
+                                                annulationSeFaitMangerPiece(p, deplacement);
                                             else
-                                                annulationSeFaitMangerPiece(p, convertPointToPosition(convertPositionToPoint(deplacementBlanc)-Point(1,0)));
+                                                annulationSeFaitMangerPiece(p, convertPointToPosition(convertPositionToPoint(deplacement)-Point(1,0)));
                                         }
                                         
                                         updateListeCoupsPossiblesAll(false);
-                                        cout << "\n[i] " << cell->getPiece()->getNomString() << " " << cell->getPiece()->getCouleur() << " ne peut pas être déplacé en " << deplacementBlanc << " car sinon son Roi est (ou reste) en échec.\n" << endl;
+                                        cout << "\n[i] " << cell->getPiece()->getNomString() << " " << cell->getPiece()->getCouleur() << " ne peut pas être déplacé en " << deplacement << " car sinon son Roi est (ou reste) en échec.\n" << endl;
                                     }
                                     else{
                                         // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
                                         // Dans cette situation tout se déroule comme quand le Roi n'est pas en 
                                         
-                                        cell->getPiece()->setPostion(deplacementBlanc); // on déplace la pièce
-                                        
+                                        cell->getPiece()->setPostion(deplacement); // on déplace la pièce
+
+
+                                        // S'il y a une promotion
+                                        if(cell->getPiece()->getPosition().getLigne() == "8" && descBlanc[4] != ""){
+                                            cell->getPiece()->setNom(descBlanc[4]);
+                                        } 
+
                                         // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                         Cellule *c = new Cellule(cell->getPiece());
                                         c->copieListeCoupsPossibles(dernierCSP);
@@ -292,34 +279,13 @@ bool traitementCoups(lectureFichier* f){
 
         if(deplacementNoir != ""){
 
-            if(File->getCoupNoir().size() == 3){
+            string typePiece = descNoir[0];
+            string deplacement = descNoir[3];
 
-                string typePiece;
-                string deplacement = string{File->getCoupNoir()[1]} + File->getCoupNoir()[2];
-                
-                switch(File->getCoupNoir()[0]){
-                    case 'T':
-                        typePiece = "Tour";
-                        break;
-                    case 'C':
-                        typePiece = "Cavalier";
-                        break;
-                    case 'F':
-                        typePiece = "Fou";
-                        break;
-                    case 'D':
-                        typePiece = "Dame";
-                        break;
-                    case 'R':
-                        typePiece = "Roi";
-                        break;
-                    default:
-                        cout << "ERREUR : Impossible de déterminer de quelle pièce il s'agit (coup noir)." << endl;
-                        break;
-                }
+            if(typePiece != "Pion"){
                 
                 for(Cellule* cell : (*instancesEchiquier)){
-                    if(cell->getPiece()->getCouleur() == "Noir" && cell->getPiece()->getNomString() == typePiece){
+                    if(cell->getPiece()->getCouleur() == "Noir" && cell->getPiece()->getNomString() == typePiece && ((descNoir[1] == "" || cell->getPiece()->getPosition().getColonne() == descNoir[1]) && (descNoir[2] == "" || cell->getPiece()->getPosition().getLigne() == descNoir[2]))){
                         Cellule *dernierCSP = getDernierCSP(cell);
 
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
@@ -405,34 +371,34 @@ bool traitementCoups(lectureFichier* f){
                     }
                 }
             }
-            else if(File->getCoupNoir().size() == 2){
+            else if(typePiece == "Pion"){
             // C'est donc forcément un pion noir
 
                 for(Cellule* cell : (*instancesEchiquier)){
-                    if(cell->getPiece()->getCouleur() == "Noir" && cell->getPiece()->getNomString() == "Pion"){
+                    if(cell->getPiece()->getCouleur() == "Noir" && cell->getPiece()->getNomString() == "Pion" && (descNoir[1] == "" || cell->getPiece()->getPosition().getColonne() == descNoir[1])){
                         Cellule *dernierCSP = getDernierCSP(cell);
 
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
-                            if(pos.getCoord() == deplacementNoir){
+                            if(pos.getCoord() == deplacement){
                                 Position pos = cell->getPiece()->getPosition(); // On stock la position initiale de la pièce
                                 
                                 Piece *p = NULL; // On récupère la pièce qui se situe sur le déplacement
 
                                 bool prendEnPassant = false;
                                     
-                                if(existePieceSurPosition(deplacementNoir)){
-                                    p = existePieceSurPosition(deplacementNoir);
+                                if(existePieceSurPosition(deplacement)){
+                                    p = existePieceSurPosition(deplacement);
                                     seFaitMangerPiece(p); // Si une pièce est présente sur la position du déplacement, alors elle se fait manger
                                 }
-                                else if(existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementNoir)+Point(1,0))) && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementNoir)+Point(1,0)))->getCouleur() == "Blanc" && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementNoir)+Point(1,0)))->getNomString() == "Pion"){
+                                else if(existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacement)+Point(1,0))) && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacement)+Point(1,0)))->getCouleur() == "Blanc" && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacement)+Point(1,0)))->getNomString() == "Pion"){
                                     // Cas ou on prend en passant
-                                    p = existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacementNoir)+Point(1,0)));
+                                    p = existePieceSurPosition(convertPointToPosition(convertPositionToPoint(deplacement)+Point(1,0)));
                                     cout << "Prise en passant : " << endl;
                                     seFaitMangerPiece(p);
                                     prendEnPassant = true;
                                 }
 
-                                cell->getPiece()->setPostion(deplacementNoir); // on déplace la pièce
+                                cell->getPiece()->setPostion(deplacement); // on déplace la pièce
                                 updateListeCoupsPossiblesAll(false); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                                 
                                 if(estEnEchecRoiNoir()){
@@ -443,19 +409,25 @@ bool traitementCoups(lectureFichier* f){
 
                                     if(p != NULL){
                                         if(!prendEnPassant)
-                                                annulationSeFaitMangerPiece(p, deplacementNoir);
+                                                annulationSeFaitMangerPiece(p, deplacement);
                                         else
-                                            annulationSeFaitMangerPiece(p, convertPointToPosition(convertPositionToPoint(deplacementNoir)+Point(1,0)));
+                                            annulationSeFaitMangerPiece(p, convertPointToPosition(convertPositionToPoint(deplacement)+Point(1,0)));
                                     }
 
                                     updateListeCoupsPossiblesAll(false);
-                                    cout << "\n[i] " << cell->getPiece()->getNomString() << " " << cell->getPiece()->getCouleur() << " ne peut pas être déplacé en " << deplacementNoir << " car sinon son Roi est (ou reste) en échec.\n" << endl;
+                                    cout << "\n[i] " << cell->getPiece()->getNomString() << " " << cell->getPiece()->getCouleur() << " ne peut pas être déplacé en " << deplacement << " car sinon son Roi est (ou reste) en échec.\n" << endl;
                                 }
                                 else{
                                     // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
                                     // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
 
-                                    cell->getPiece()->setPostion(deplacementNoir); // on déplace la pièce
+                                    cell->getPiece()->setPostion(deplacement); // on déplace la pièce
+
+
+                                    // S'il y a une promotion
+                                    if(cell->getPiece()->getPosition().getLigne() == "1" && descNoir[4] != ""){
+                                        cell->getPiece()->setNom(descNoir[4]);
+                                    } 
                                     
                                     // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
                                     Cellule *c = new Cellule(cell->getPiece());
