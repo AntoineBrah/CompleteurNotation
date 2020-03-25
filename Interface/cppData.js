@@ -208,6 +208,7 @@ var deplacerPieceArriere = (piece) => {
 
     // Position précédente
     var cellPrec = getCase(getCPP(piece).position);
+    console.log(getCPP(piece));
     cellPrec.setAttribute('currentcell', getCPP(piece).adr);
     cellPrec.style.backgroundImage = 'url(images/pieces/' + getCPP(piece).couleur + '/' + getCPP(piece).piece + '.svg)';
 } 
