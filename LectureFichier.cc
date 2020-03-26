@@ -442,6 +442,3 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
 
 }
 
-
-
-

@@ -25,14 +25,14 @@ int main(int argc, char* argv[]){
         return EXIT_FAILURE;
     }
     else{
+
+        system((std::string("nodejs pgnTranslator.js ") + argv[1]).c_str()); // Traduction du fichier PGN
         
         lectureFichier File(argv[1]); // On ouvre le fichier txt en lecture
-        
 
         if(File.getEstCorrectementOuvert()){ // Si le fichier est correctement ouvert alors, on le traite
             estTraite = traitementCoups(&File);
         }
-
 
 
     }
