@@ -58,5 +58,5 @@ int main(int argc, char* argv[]){
             system("./Interface/ChessCompletor-win-x64/ChessCompletor.exe");
     }
 
-    return 0;
+    return 0; 
 }

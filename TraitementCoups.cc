@@ -57,12 +57,13 @@ bool traitementCoups(lectureFichier* f){
         vector<string> descBlanc = f->getDescriptionCb();
         vector<string> descNoir = f->getDescriptionCn();
 
+
         if(!descBlanc.empty()){
-            //cout << "\nPiece : " << descBlanc[0] << "\nColonne : " << descBlanc[1] << "\nLigne : " << descBlanc[2] << "\nDeplacement : " << descBlanc[3] << "\nPromotion : " << descBlanc[4] << "\nEchec : " << descBlanc[5] << endl << endl;
+            cout << "\nPiece : " << descBlanc[0] << "\nColonne : " << descBlanc[1] << "\nLigne : " << descBlanc[2] << "\nDeplacement : " << descBlanc[3] << "\nPromotion : " << descBlanc[4] << "\nEchec : " << descBlanc[5] << endl << endl;
         }
 
         if(!descNoir.empty()){
-            //cout << "\nPiece : " << descNoir[0] << "\nColonne : " << descNoir[1] << "\nLigne : " << descNoir[2] << "\nDeplacement : " << descNoir[3] << "\nPromotion : " << descNoir[4] << "\nEchec : " << descNoir[5] << endl << endl;
+            cout << "\nPiece : " << descNoir[0] << "\nColonne : " << descNoir[1] << "\nLigne : " << descNoir[2] << "\nDeplacement : " << descNoir[3] << "\nPromotion : " << descNoir[4] << "\nEchec : " << descNoir[5] << endl << endl;
         }
 
         if(deplacementBlanc != ""){
@@ -78,7 +79,11 @@ bool traitementCoups(lectureFichier* f){
                         Cellule *dernierCSP = getDernierCSP(cell);
 
                         for(Position pos : cell->getPiece()->getListeCoupsPossibles()){
+                            
+                            /**********************************************************************************************************************************************/
+                            
                             if(pos.getCoord() == deplacement){
+                                
                                 if(nbCoup == 1){
                                     // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
                                     cell->getPiece()->setPostion(deplacement); // on déplace la pièce
@@ -105,8 +110,11 @@ bool traitementCoups(lectureFichier* f){
                                         seFaitMangerPiece(p); // Si une pièce est présente sur la position du déplacement, alors elle se fait manger
                                     }
 
+                                    
+
                                     cell->getPiece()->setPostion(deplacement); // on déplace la pièce
                                     updateListeCoupsPossiblesAll(false); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+
                                     
                                     if(estEnEchecRoiBlanc()){
                                         // Si malgré le déplacement de la pièce, le roi est toujours en échec (ou devient en échec) alors on annule le déplacement de la pièce
@@ -136,6 +144,7 @@ bool traitementCoups(lectureFichier* f){
                                         c->setCPP(dernierCSP);
 
                                         k=c;
+
                                         
                                         /* Cas ou le Roi Blanc Roque */
                                         if(cell->getPiece()->getNomString() == "Roi" && deplacement == "g1" && (Point(1,7)-convertPositionToPoint(getDernierCSP(cell)->getCPP()->getPositionCell())).getY() == 2){ // Petit Roque
@@ -153,7 +162,7 @@ bool traitementCoups(lectureFichier* f){
 
                                         }
                                         else if(cell->getPiece()->getNomString() == "Roi" && deplacement == "c1" && (convertPositionToPoint(getDernierCSP(cell)->getCPP()->getPositionCell())-Point(1,3)).getY() == 2){ // Grand Roque
-
+                                            
                                             Piece *t = existePieceSurPosition("a1"); // La Tour en a1 qu'on bouge (elle existe forcément car si le roi possède c1 dans sa LCP alors beaucoup de conditions ont été vérifié au préalable)
                                             t->setPostion("d1"); // On déplace la tour en d1
 
@@ -166,8 +175,9 @@ bool traitementCoups(lectureFichier* f){
                                             deplacementTour->copieListeCoupsPossibles(tmp);
 
                                         }
-
+                                        
                                         updateListeCoupsPossiblesAll(true); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+                                        
                                     }
                                 }
                             }
@@ -279,7 +289,7 @@ bool traitementCoups(lectureFichier* f){
         }
 
         if(deplacementNoir != ""){
-
+            
             string typePiece = descNoir[0];
             string deplacement = descNoir[3];
 
@@ -374,7 +384,7 @@ bool traitementCoups(lectureFichier* f){
             }
             else if(typePiece == "Pion"){
             // C'est donc forcément un pion noir
-
+                
                 for(Cellule* cell : (*instancesEchiquier)){
                     if(cell->getPiece()->getCouleur() == "Noir" && cell->getPiece()->getNomString() == "Pion" && (descNoir[1] == "" || cell->getPiece()->getPosition().getColonne() == descNoir[1])){
                         Cellule *dernierCSP = getDernierCSP(cell);
