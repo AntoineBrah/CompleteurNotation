@@ -15,6 +15,8 @@ file.readFile(str, function(err, buf){
         let pion = new RegExp('[a-h]?x?[a-h]{1}[1-8]{1}(=[QBNR])?[+#]?');
         let piece = new RegExp('[QKBNR]{1}[a-h1-8]?x?[a-h]{1}[1-8]{1}[+#]?');
         let roque = new RegExp('O-O(-O)?');
+        
+        let pionProm = new RegExp('[a-h]?x?[a-h]{1}[1-8]{1}(=[QBNR]){1}[+#]?');
 
         fileContent.forEach(x => {
             if(pion.test(x) || piece.test(x) || roque.test(x)){
@@ -43,8 +45,35 @@ file.readFile(str, function(err, buf){
                     fileArray.push(translation);
 
                 }
-                elseif(new RegExp('[a-h]?x?[a-h]{1}[1-8]{1}(=[QBNR]){1}[+#]?').test()){
-                    //On modifie pour la promotion.........
+                else if(pionProm.test(x)){
+
+                    let translation = '';
+
+                    for(let i=0; i<x.length; i++){
+                        switch(x[i]){
+                            case 'Q':
+                                translation += 'D';
+                                break;
+                            case 'K':
+                                translation += 'R';
+                                break;
+                            case 'B':
+                                translation += 'F';
+                                break;
+                            case 'N':
+                                translation += 'C';
+                                break;
+                            case 'R':
+                                translation += 'T';
+                                break;
+                            default:
+                                translation += x[i];
+                                break;
+                        }
+                    }
+
+                    fileArray.push(translation);
+
                 }
                 else{
                     fileArray.push(x);
