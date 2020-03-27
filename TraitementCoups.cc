@@ -59,11 +59,11 @@ bool traitementCoups(lectureFichier* f){
 
 
         if(!descBlanc.empty()){
-            cout << "\nPiece : " << descBlanc[0] << "\nColonne : " << descBlanc[1] << "\nLigne : " << descBlanc[2] << "\nDeplacement : " << descBlanc[3] << "\nPromotion : " << descBlanc[4] << "\nEchec : " << descBlanc[5] << endl << endl;
+            //cout << "\nPiece : " << descBlanc[0] << "\nColonne : " << descBlanc[1] << "\nLigne : " << descBlanc[2] << "\nDeplacement : " << descBlanc[3] << "\nPromotion : " << descBlanc[4] << "\nEchec : " << descBlanc[5] << endl << endl;
         }
 
         if(!descNoir.empty()){
-            cout << "\nPiece : " << descNoir[0] << "\nColonne : " << descNoir[1] << "\nLigne : " << descNoir[2] << "\nDeplacement : " << descNoir[3] << "\nPromotion : " << descNoir[4] << "\nEchec : " << descNoir[5] << endl << endl;
+           //cout << "\nPiece : " << descNoir[0] << "\nColonne : " << descNoir[1] << "\nLigne : " << descNoir[2] << "\nDeplacement : " << descNoir[3] << "\nPromotion : " << descNoir[4] << "\nEchec : " << descNoir[5] << endl << endl;
         }
 
         if(deplacementBlanc != ""){
