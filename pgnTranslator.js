@@ -4,7 +4,9 @@ var file = require('fs');
 
 file.readFile(str, function(err, buf){
 
-        let fileArray = [];
+    let fileArray = [];
+
+    if(err === null){
 
         let fileContent = buf.toString();
 
@@ -104,8 +106,7 @@ file.readFile(str, function(err, buf){
 
         file.writeFile(str, finalString, (err) => {
             if (err) console.log(err);
-            console.log("Successfully Written to File.");
+            console.log("NodeJS : Successfully Written to File.\n");
         });
-
-
+    }
 });

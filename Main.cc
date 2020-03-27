@@ -15,20 +15,29 @@ int main(int argc, char* argv[]){
 
     bool estTraite = false;
 
-    if(argc != 2){
-        if(argc < 2){
-            cout << "ERREUR : Vous devez passer un fichier en argument." << endl;
-        }
-        if(argc>2){
-            cout << "ERREUR : Vous devez passer un unique fichier en argument." << endl;   
-        }
+    if(argc != 3 && argc != 4){
+        cout << "\nUsage: chess <plateforme> <fichier> [options...]\n\nParamètres requis :\n\nfichier : contient la partie d'échecs au format PGN\nplateforme : -l (linux), -w (windows) -m (macos)\n\nParamètres optionnels :\n\ntraduction : -t converti un fichier PGN anglo-saxon en fichier PGN français (nécessite d'avoir NodeJS d'installé)\n" << endl;
         return EXIT_FAILURE;
     }
     else{
 
-        system((std::string("nodejs pgnTranslator.js ") + argv[1]).c_str()); // Traduction du fichier PGN
+        if(string(argv[1]) != "-l" && string(argv[1]) != "-m" && string(argv[1]) != "-w"){
+            cout << "\nUsage: chess <plateforme> <fichier> [options...]\n\nParamètres requis :\n\nfichier : contient la partie d'échecs au format PGN\nplateforme : -l (linux), -w (windows) -m (macos)\n\nParamètres optionnels :\n\ntraduction : -t converti un fichier PGN anglo-saxon en fichier PGN français (nécessite d'avoir NodeJS d'installé)\n" << endl;
+            return EXIT_FAILURE;
+        }
+        else{
+            if(argc == 4){
+                if(string(argv[3]) != "-t"){
+                    cout << "\nUsage: chess <plateforme> <fichier> [options...]\n\nParamètres requis :\n\nfichier : contient la partie d'échecs au format PGN\nplateforme : -l (linux), -w (windows) -m (macos)\n\nParamètres optionnels :\n\ntraduction : -t converti un fichier PGN anglo-saxon en fichier PGN français (nécessite d'avoir NodeJS d'installé)\n" << endl;
+                    return EXIT_FAILURE;
+                }
+            }
+        }
+
+        if(argc == 4)
+            system((string("nodejs pgnTranslator.js ") + argv[2]).c_str()); // Traduction du fichier PGN
         
-        lectureFichier File(argv[1]); // On ouvre le fichier txt en lecture
+        lectureFichier File(argv[2]); // On ouvre le fichier txt en lecture
 
         if(File.getEstCorrectementOuvert()){ // Si le fichier est correctement ouvert alors, on le traite
             estTraite = traitementCoups(&File);
@@ -40,7 +49,13 @@ int main(int argc, char* argv[]){
     correctionSyntaxe();
 
     if(estTraite){
-        system("./Interface/ChessCompletor-linux-x64/ChessCompletor");
+
+        if(string(argv[1]) == "-l")
+            system("./Interface/ChessCompletor-linux-x64/ChessCompletor");
+        else if(string(argv[1]) == "-m")
+            system("./Interface/ChessCompletor-darwin-x64/ChessCompletor-MacOS.app/Contents/MacOS/ChessCompletor");
+        else if(string(argv[1]) == "-w")
+            system("./Interface/ChessCompletor-win-x64/ChessCompletor.exe");
     }
 
     return 0;

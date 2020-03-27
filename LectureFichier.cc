@@ -11,7 +11,7 @@ lectureFichier::lectureFichier(string fichier) : ligne(""), cb(""), cn(""), estC
         traiterLigne();
     }
     else{
-        cout << fichier << " : ouverture en lecture échouée." << endl;
+        cout << fichier << " : ouverture en lecture échouée." << endl << endl;
     }
 }
 
