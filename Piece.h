@@ -90,6 +90,9 @@ vector<Piece*>& getListePiece();
 */
 Piece* existePieceSurPosition(string);
 
+// renvoi true si la position fait parti de la liste des coups possibles de la pièce, renvoi false sinon
+bool appartientAListeCoupsPossiblesDePiece(Piece*, string position);
+
 // Met à jour la liste des coups possibles de toutes les pièces instanciés
 void updateListeCoupsPossiblesAll(bool);
 

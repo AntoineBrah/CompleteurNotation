@@ -66,7 +66,7 @@ static vector<Cellule*> listeCellule;
 
 // renvoi un pointeur vers le vector listeCellule
 // car ce vector ne peut pas être manipuler en dehors du fichier (static)
-vector<Cellule*>* getListeCellule();
+vector<Cellule*>& getListeCellule();
 
 // renvoi la derniere cellule de CSP 
 Cellule* getDernierCSP(Cellule*);

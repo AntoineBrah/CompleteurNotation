@@ -46,13 +46,18 @@ void lectureFichier::traiterLigne(){
     s = ligne;
     int pos = s.find_first_of(" ");
     
-    cb = s.substr(0,pos);
+    if(pos != -1)
+        cb = s.substr(0,pos);
+    else
+        cb = s;
 
     detecterCoup(cb, descriptionCb, "Blanc");
 
     // Cas ou il n'y a pas d'espace et donc on finit avec un coup blanc
     if(pos == -1){
         cn = "";
+
+        detecterCoup(cn, descriptionCn, "Noir");
     }
     else{
         cn = s.substr(pos+1); // si on précise pas le deuxième paramètre, ça va jusqu'à la fin de la chaine
@@ -430,7 +435,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
         
     }
     else{
-        cout << "[!] La syntaxe PGN du coup : '" << coup << "' étant fausse, le coup vient d'être annulé.\n" << endl;
+        //cout << "[!] La syntaxe PGN du coup : '" << coup << "' étant fausse, le coup vient d'être annulé.\n" << endl;
         coup = "";
     }
 

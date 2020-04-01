@@ -17,10 +17,11 @@ file.readFile(str, function(err, buf){
         let pion = new RegExp('[a-h]?x?[a-h]{1}[1-8]{1}(=[QBNR])?[+#]?');
         let piece = new RegExp('[QKBNR]{1}[a-h1-8]?x?[a-h]{1}[1-8]{1}[+#]?');
         let roque = new RegExp('O-O(-O)?');
-        
-        let pionProm = new RegExp('[a-h]?x?[a-h]{1}[1-8]{1}(=[QBNR]){1}[+#]?');
 
+        let pionProm = new RegExp('[a-h]?x?[a-h]{1}[1-8]{1}(=[QBNR]){1}[+#]?');
+        
         fileContent.forEach(x => {
+ 
             if(pion.test(x) || piece.test(x) || roque.test(x)){
                 if(piece.test(x)){
                     let translation = '';
@@ -42,39 +43,39 @@ file.readFile(str, function(err, buf){
                             translation += 'T';
                             break;
                     }
-
+    
                     translation += x.substring(1);
                     fileArray.push(translation);
 
                 }
                 else if(pionProm.test(x)){
 
-                    let translation = '';
+                    let translation2 = '';
 
                     for(let i=0; i<x.length; i++){
                         switch(x[i]){
                             case 'Q':
-                                translation += 'D';
+                                translation2 += 'D';
                                 break;
                             case 'K':
-                                translation += 'R';
+                                translation2 += 'R';
                                 break;
                             case 'B':
-                                translation += 'F';
+                                translation2 += 'F';
                                 break;
                             case 'N':
-                                translation += 'C';
+                                translation2 += 'C';
                                 break;
                             case 'R':
-                                translation += 'T';
+                                translation2 += 'T';
                                 break;
                             default:
-                                translation += x[i];
+                                translation2 += x[i];
                                 break;
                         }
                     }
 
-                    fileArray.push(translation);
+                    fileArray.push(translation2);
 
                 }
                 else{

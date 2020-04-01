@@ -71,6 +71,7 @@ void Piece::setFirstCell(Cellule* c){
 }
 
 void Piece::setPostion(string position){
+
 	pos.setCoord(position);
 
 	if(!aBouge)
@@ -150,13 +151,28 @@ vector<Piece*>& getListePiece(){
 	return listePiece;
 }
 
+bool appartientAListeCoupsPossiblesDePiece(Piece* p, string position){
+
+	for(Position pos : p->getListeCoupsPossibles()){
+		if(pos.getCoord() == position){
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void updateListeCoupsPossiblesAll(bool lcpCellToo){
+
 	for(Piece *p : getListePiece()){
+
 		p->updateListeCoupsPossibles();
+
 
 		if(lcpCellToo){
 			// On récupère la dernière cellule de la pièce et on la met à jour
 			getDernierCSP(p->getFirstCell())->updateListeCoupsPossibles();
 		}
 	}
+
 }

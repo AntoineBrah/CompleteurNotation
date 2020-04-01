@@ -21,6 +21,7 @@ Cellule* Cellule::getCSE() const{
     return CSE;
 }
 
+
 vector<vector<Position> >& Cellule::getListeCoupsPossibles(){
     return listeCoupsPossibles;
 }
@@ -162,8 +163,8 @@ Cellule::~Cellule(){
     }
 }
 
-vector<Cellule*>* getListeCellule(){
-	return &listeCellule;
+vector<Cellule*>& getListeCellule(){
+	return listeCellule;
 }
 
 Cellule* getDernierCSP(Cellule* c){

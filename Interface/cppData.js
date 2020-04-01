@@ -276,7 +276,7 @@ function printListesCoupPossibles(cell){
         let p = getPiece(cell.getAttribute('currentcell'));
         let lcp = p.lcp.split(',');
 
-        console.log(lcp[cpt], "| cpt = ", cpt);
+        console.log(lcp, "| cpt = ", cpt);
         
         removeColorCase();
         colorierCase(lcp[cpt].split(' '));   
