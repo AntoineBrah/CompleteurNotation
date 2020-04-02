@@ -1,6 +1,10 @@
 #include "Dame.h"
 
-Dame::Dame(Couleur c, type::Nom n, string pos) : Piece(c,n,pos){}
+int Dame::nbInstances = 0;
+
+Dame::Dame(Couleur c, type::Nom n, string pos) : Piece(c,n,pos){
+    nbInstances++;
+}
 
 void Dame::updateListeCoupsPossibles(){
 

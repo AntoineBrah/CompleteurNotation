@@ -9,6 +9,7 @@ class Dame : public virtual Piece{
 		Dame(Couleur, type::Nom, string);
 		virtual void updateListeCoupsPossibles();
 		virtual ~Dame();
+		static int nbInstances;
 };
 
 #endif

@@ -1,3 +1,11 @@
-Cf3 d5
-Ce5 Dd6
-Cc3 Dxe5
+e4 e5
+Cf3 Cf6
+Cxe5 Cxe4
+De2 De7
+Dg4 Dg5
+d3 Rd8
+Dxe4 Dxe5
+Dxe5 Cc6
+Dg5 Fe7
+Cd2 Re8
+a3 Fxa3

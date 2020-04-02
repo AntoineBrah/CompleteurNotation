@@ -48,7 +48,7 @@ int main(int argc, char* argv[]){
 
     correctionSyntaxe();
 
-    if(false){
+    if(estTraite){
 
         if(string(argv[1]) == "-l")
             system("./Interface/ChessCompletor-linux-x64/ChessCompletor");
