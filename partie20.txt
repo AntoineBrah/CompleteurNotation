@@ -1,6 +1,0 @@
-a3 Cc6
-b3 Cf6
-Fb2 Cb4
-Fc1 Cbd5
-Fb2 Cf4
-Ta2 C4h5

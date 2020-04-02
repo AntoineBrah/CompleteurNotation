@@ -1,6 +1,0 @@
-Cf3 Cc6
-g3 b6
-Fg2 d6
-O-O Fb7
-a3 Dd7
-b3 O-O-O

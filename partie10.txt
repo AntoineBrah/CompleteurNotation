@@ -1,6 +1,0 @@
-Cf3 Ch6
-g3 g6
-Fg2 Fg7
-Rg1 Rg8
-a3 Rg8
-Ca3 Cc6

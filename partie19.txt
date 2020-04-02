@@ -1,6 +1,0 @@
-Cc3 a6
-Cf3 Ta7
-Cd4 Ta8
-Ce6 Ta7
-Cc5 Ta8
-C3e4

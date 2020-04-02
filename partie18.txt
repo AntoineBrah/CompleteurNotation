@@ -1,6 +1,0 @@
-a3 Cc6
-h3 Cf6
-b3 Cd5
-c3 Cf4
-g3 Ce6
-f3 Ccd4
