@@ -32,7 +32,7 @@ button, #chessboard{
     flex-wrap: wrap;
     height: 800px;
     width: 800px;
-    box-shadow: 0 4px 4px 0 rgba(255,255,255,1),0 4px 4px 0 rgba(255,255,255,1),0 4px 4px 0 rgba(255,255,255,1);
+    box-shadow: 0 0 11px rgba(0, 0, 0, 0.3);
 }
 
 #chessboard div{
@@ -118,6 +118,7 @@ button, #chessboard{
     font-size: 3em;
     text-align: center;
     color: #4c4c4c;
+    outline: none;
 }
 
 #chess-console .buttons .left-button:hover, #chess-console .buttons .right-button:hover{
