@@ -1,6 +1,10 @@
 body{
     margin: 0 auto;
     height: 800px;
+    width: 1400px;
+
+    background-color: #edebe9;
+
 
     /* disabled text selection highlighting */
     -webkit-touch-callout: none; /* iOS Safari */
@@ -16,8 +20,8 @@ button, #chessboard{
 }
 
 .main-content{
-    width: 1200px;
     height: 800px;
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
@@ -28,17 +32,15 @@ button, #chessboard{
     flex-wrap: wrap;
     height: 800px;
     width: 800px;
-}
-
-div{
-    height: 100px;
-    width: 100px;
-    position: relative;
+    box-shadow: 0 4px 4px 0 rgba(255,255,255,1),0 4px 4px 0 rgba(255,255,255,1),0 4px 4px 0 rgba(255,255,255,1);
 }
 
 #chessboard div{
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    position: relative;
 }
 
 #chessboard div:nth-child(n+1):nth-child(-n+64){
@@ -77,6 +79,7 @@ div{
     top: 0;
     right: 0;
     margin-top: 2px;
+    margin-right: 2px;
 }
 
 #chessboard div .colonne{
@@ -89,14 +92,40 @@ div{
 }
 
 #chess-console{
-    height: 200px;
+    flex: 1;
+    height: auto;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
+    flex-direction: column;
+    margin: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
 }
 
-#chess-console button{
-    margin: 10px;
+#chess-console .buttons{
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    border-bottom: 1px solid #d9d9d9;
+    background-color: #d9d9d9;
+}
+
+#chess-console .buttons .left-button, #chess-console .buttons .right-button{
+    flex: 1;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    background-color: #f7f6f5;
+    border: none;
+    font-size: 3em;
+    text-align: center;
+    color: #4c4c4c;
+}
+
+#chess-console .buttons .left-button:hover, #chess-console .buttons .right-button:hover{
+    transition-duration: 0.4s;
+    background-color: #89b25b;
+    color: #ffffff;
+}
+
+#chess-console .buttons .left-button{
+    margin-right: 1px;
 }
