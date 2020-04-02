@@ -206,7 +206,7 @@ void Roi::updateListeCoupsPossibles(){
             // Petit roque (1) et (2)
             if(this->getABouge() == false && !existePieceSurPosition("f1") && !existePieceSurPosition("g1") && existePieceSurPosition("h1") && existePieceSurPosition("h1")->getCouleur() == "Blanc" && existePieceSurPosition("h1")->getNomString() == "Tour" && existePieceSurPosition("h1")->getABouge() == false){
                 //(2bis) et (3) : On regarde qu'aucune pièce adverse vise f1 et g1
-                if(!estEnEchecRoiBlanc() && !this->posDansLCPAdverse("f1") && !this->posDansLCPAdverse("g1") && !this->possedePionAdverseEnDiagonaleSup(Point(1,6)) &&!this->possedePionAdverseEnDiagonaleSup(Point(1,7))){
+                if(!estEnEchecRoi("Blanc") && !this->posDansLCPAdverse("f1") && !this->posDansLCPAdverse("g1") && !this->possedePionAdverseEnDiagonaleSup(Point(1,6)) &&!this->possedePionAdverseEnDiagonaleSup(Point(1,7))){
                     listeCoupsPossibles.push_back(Position("g1")); // Case du petit roque
                 }
             }
@@ -214,7 +214,7 @@ void Roi::updateListeCoupsPossibles(){
             // Grand roque (1) et (2)
             if(this->getABouge() == false && !existePieceSurPosition("b1") && !existePieceSurPosition("c1") && !existePieceSurPosition("d1") && existePieceSurPosition("a1") && existePieceSurPosition("a1")->getCouleur() == "Blanc" && existePieceSurPosition("a1")->getNomString() == "Tour" && existePieceSurPosition("a1")->getABouge() == false){
                 //(2bis) et (3) : On regarde qu'aucune pièce adverse vise b1 et c1 et d1
-                if(!estEnEchecRoiBlanc() && !this->posDansLCPAdverse("b1") && !this->posDansLCPAdverse("c1") && !this->posDansLCPAdverse("d1") && !this->possedePionAdverseEnDiagonaleSup(Point(1,2)) && !this->possedePionAdverseEnDiagonaleSup(Point(1,3)) && !this->possedePionAdverseEnDiagonaleSup(Point(1,4))){
+                if(!estEnEchecRoi("Blanc") && !this->posDansLCPAdverse("b1") && !this->posDansLCPAdverse("c1") && !this->posDansLCPAdverse("d1") && !this->possedePionAdverseEnDiagonaleSup(Point(1,2)) && !this->possedePionAdverseEnDiagonaleSup(Point(1,3)) && !this->possedePionAdverseEnDiagonaleSup(Point(1,4))){
                     listeCoupsPossibles.push_back(Position("c1")); // Case du grand roque
                 }
             }
@@ -232,7 +232,7 @@ void Roi::updateListeCoupsPossibles(){
             // Petit roque (1) et (2)
             if(this->getABouge() == false && !existePieceSurPosition("f8") && !existePieceSurPosition("g8") && existePieceSurPosition("h8") && existePieceSurPosition("h8")->getCouleur() == "Noir" && existePieceSurPosition("h8")->getNomString() == "Tour" && existePieceSurPosition("h8")->getABouge() == false){
                 //(2bis) et (3) : On regarde qu'aucune pièce adverse vise f8 et g8
-                if(!estEnEchecRoiNoir() && !this->posDansLCPAdverse("f8") && !this->posDansLCPAdverse("g8") && !this->possedePionAdverseEnDiagonaleSup(Point(8,6)) &&!this->possedePionAdverseEnDiagonaleSup(Point(8,7))){
+                if(!estEnEchecRoi("Noir") && !this->posDansLCPAdverse("f8") && !this->posDansLCPAdverse("g8") && !this->possedePionAdverseEnDiagonaleSup(Point(8,6)) &&!this->possedePionAdverseEnDiagonaleSup(Point(8,7))){
                     listeCoupsPossibles.push_back(Position("g8")); // Case du petit roque
                 }
             }
@@ -240,7 +240,7 @@ void Roi::updateListeCoupsPossibles(){
             // Grand roque (1) et (2)
             if(this->getABouge() == false && !existePieceSurPosition("b8") && !existePieceSurPosition("c8") && !existePieceSurPosition("d8") && existePieceSurPosition("a8") && existePieceSurPosition("a8")->getCouleur() == "Noir" && existePieceSurPosition("a8")->getNomString() == "Tour" && existePieceSurPosition("a8")->getABouge() == false){
                 //(2bis) et (3) : On regarde qu'aucune pièce adverse vise b1 et c1 et d1
-                if(!estEnEchecRoiNoir() && !this->posDansLCPAdverse("b8") && !this->posDansLCPAdverse("c8") && !this->posDansLCPAdverse("d8") && !this->possedePionAdverseEnDiagonaleSup(Point(8,2)) && !this->possedePionAdverseEnDiagonaleSup(Point(8,3)) && !this->possedePionAdverseEnDiagonaleSup(Point(8,4))){
+                if(!estEnEchecRoi("Noir") && !this->posDansLCPAdverse("b8") && !this->posDansLCPAdverse("c8") && !this->posDansLCPAdverse("d8") && !this->possedePionAdverseEnDiagonaleSup(Point(8,2)) && !this->possedePionAdverseEnDiagonaleSup(Point(8,3)) && !this->possedePionAdverseEnDiagonaleSup(Point(8,4))){
                     listeCoupsPossibles.push_back(Position("c8")); // Case du grand roque
                 }
             }
@@ -364,50 +364,54 @@ bool Roi::possedePionAdverseEnDiagonaleSup(const Point &p){
 Roi::~Roi(){}
 
 
-bool estEnEchecRoiBlanc(){
+bool estEnEchecRoi(string Couleur){
 
-    bool estEnEchec = false;
+    if(Couleur == "Blanc"){
+        bool estEnEchec = false;
 
-    for(Piece *p : getListePiece()){
-		if(p->getNomString() == "Roi" && p->getCouleur() == "Blanc"){
+        for(Piece *p : getListePiece()){
+            if(p->getNomString() == "Roi" && p->getCouleur() == "Blanc"){
 
-            Position posRoiBlanc = p->getPosition();
+                Position posRoiBlanc = p->getPosition();
 
-            for(Piece *q : getListePiece()){
-                if(q->getCouleur() != "Blanc"){
-                    for(Position pos : q->getListeCoupsPossibles()){
-                        if(pos.getCoord() == posRoiBlanc.getCoord()){
-                            estEnEchec = true;
+                for(Piece *q : getListePiece()){
+                    if(q->getCouleur() != "Blanc"){
+                        for(Position pos : q->getListeCoupsPossibles()){
+                            if(pos.getCoord() == posRoiBlanc.getCoord()){
+                                estEnEchec = true;
+                            }
                         }
                     }
                 }
             }
         }
-	}
 
-    return estEnEchec;
-}
+        return estEnEchec;
+    }
+    else if(Couleur == "Noir"){
 
-bool estEnEchecRoiNoir(){
+        bool estEnEchec = false;
 
-    bool estEnEchec = false;
+        for(Piece *p : getListePiece()){
+            if(p->getNomString() == "Roi" && p->getCouleur() == "Noir"){
 
-    for(Piece *p : getListePiece()){
-		if(p->getNomString() == "Roi" && p->getCouleur() == "Noir"){
+                Position posRoiBlanc = p->getPosition();
 
-            Position posRoiBlanc = p->getPosition();
-
-            for(Piece *q : getListePiece()){
-                if(q->getCouleur() != "Noir"){
-                    for(Position pos : q->getListeCoupsPossibles()){
-                        if(pos.getCoord() == posRoiBlanc.getCoord()){
-                            estEnEchec = true;
+                for(Piece *q : getListePiece()){
+                    if(q->getCouleur() != "Noir"){
+                        for(Position pos : q->getListeCoupsPossibles()){
+                            if(pos.getCoord() == posRoiBlanc.getCoord()){
+                                estEnEchec = true;
+                            }
                         }
                     }
                 }
             }
         }
-	}
 
-    return estEnEchec;
+        return estEnEchec;
+    }
+
+
+    return 0; // Ça n'arrive jamais
 }

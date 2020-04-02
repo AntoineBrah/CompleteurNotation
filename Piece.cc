@@ -120,6 +120,20 @@ void Piece::printListeCoupsPossibles() const{
 	cout << "}" << endl;
 }
 
+void Piece::supprimePosDeLCP(const Position& pos){
+
+	int i=0;
+
+	for(Position p : listeCoupsPossibles){
+		if(pos.getCoord() == p.getCoord()){
+			listeCoupsPossibles.erase(listeCoupsPossibles.begin() + i);   
+		}
+
+		i++;
+	}
+}
+
+
 string Piece::toString() const{
 	return "Type pièce : " + getNomString() + "\nCouleur pièce : " + getCouleur() + "\nPosition pièce : " + getPositionString();
 }

@@ -38,7 +38,6 @@ class Roi : public virtual Piece{
 		virtual ~Roi();
 };
 
-bool estEnEchecRoiBlanc();
-bool estEnEchecRoiNoir();
+bool estEnEchecRoi(string Couleur);
 
 #endif

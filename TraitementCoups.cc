@@ -112,9 +112,10 @@ bool traitementCoups(lectureFichier* f){
                             p->setPostion(deplacement); // on déplace la pièce
                             updateListeCoupsPossiblesAll(false); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                             
-                            if(estEnEchecRoiBlanc()){
+                            if(estEnEchecRoi("Blanc")){
                                 // Si malgré le déplacement de la pièce, le roi est toujours en échec (ou devient en échec) alors on annule le déplacement de la pièce
                                 // et on ne créé pas de nouvelle cellule
+
 
                                 p->setPostion(pos.getCoord());
 
@@ -228,7 +229,7 @@ bool traitementCoups(lectureFichier* f){
                             p->setPostion(deplacement); // on déplace la pièce
                             updateListeCoupsPossiblesAll(false); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                             
-                            if(estEnEchecRoiBlanc()){
+                            if(estEnEchecRoi("Blanc")){
                                 // Si malgré le déplacement de la pièce, le roi est toujours en échec (ou devient en échec) alors on annule le déplacement de la pièce
                                 // et on ne créé pas de nouvelle cellule
 
@@ -304,7 +305,7 @@ bool traitementCoups(lectureFichier* f){
                         p->setPostion(deplacement); // on déplace la pièce
                         updateListeCoupsPossiblesAll(false); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
 
-                        if(estEnEchecRoiNoir()){
+                        if(estEnEchecRoi("Noir")){
                             // Si malgré le déplacement de la pièce, le roi est toujours en échec (ou devient en échec) alors on annule le déplacement de la pièce
                             // et on ne créé pas de nouvelle cellule
 
@@ -397,7 +398,7 @@ bool traitementCoups(lectureFichier* f){
                         p->setPostion(deplacement); // on déplace la pièce
                         updateListeCoupsPossiblesAll(false); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
                         
-                        if(estEnEchecRoiNoir()){
+                        if(estEnEchecRoi("Noir")){
                             // Si malgré le déplacement de la pièce, le roi est toujours en échec (ou devient en échec) alors on annule le déplacement de la pièce
                             // et on ne créé pas de nouvelle cellule
 

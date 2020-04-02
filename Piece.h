@@ -60,6 +60,7 @@ class Piece{
 		void setNom(string);
 		vector<Position>& getListeCoupsPossibles(); // Renvoi un pointeur vers la liste des coups possibles d'une pièce
 		void printListeCoupsPossibles() const;
+		void supprimePosDeLCP(const Position&); // Supprime la position de la liste des coups possibles de la pièce
 
 		string toString() const;
 		
