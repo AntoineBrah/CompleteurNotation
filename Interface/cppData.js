@@ -15,20 +15,64 @@ var leftButton = document.querySelector('.left-button');
 
 
 /* Reverse Chessboard */
-
-//Non terminé
 var reverseChessboard = document.querySelector('.reverse');
-var lines = document.querySelectorAll('.ligne');
-var columns = document.querySelectorAll('.colonne');
+var linesWhiteSide = document.querySelectorAll('.line-whiteSide');
+var columnsWhiteSide = document.querySelectorAll('.column-whiteSide');
+var linesBlackSide = document.querySelectorAll('.line-blackSide');
+var columnsBlackSide = document.querySelectorAll('.column-blackSide');
 
+var side = 1;
 
 reverseChessboard.onclick = function(){
 
-    board.style.transform = 'rotate(180deg)';
+    if(side%2==0){
+        board.style.transform = 'rotate(0deg)';
 
-    chessboard.forEach(x => {
-        x.style.transform = 'rotate(180deg)';
-    });
+        columnsWhiteSide.forEach(x => {
+            x.style.display = 'inline';
+        });
+
+        linesWhiteSide.forEach(x => {
+            x.style.display = 'inline';
+        });
+
+        columnsBlackSide.forEach(x => {
+            x.style.display = 'none';
+        });
+
+        linesBlackSide.forEach(x => {
+            x.style.display = 'none';
+        });
+
+        chessboard.forEach(x => {
+            x.style.transform = 'rotate(0deg)';
+        });
+    }
+    else{
+        board.style.transform = 'rotate(180deg)';
+
+        columnsBlackSide.forEach(x => {
+            x.style.display = 'inline';
+        });
+
+        linesBlackSide.forEach(x => {
+            x.style.display = 'inline';
+        });
+
+        columnsWhiteSide.forEach(x => {
+            x.style.display = 'none';
+        });
+
+        linesWhiteSide.forEach(x => {
+            x.style.display = 'none';
+        });
+
+        chessboard.forEach(x => {
+            x.style.transform = 'rotate(180deg)';
+        });
+    }
+
+    side++;
 }
 /************************/
 
