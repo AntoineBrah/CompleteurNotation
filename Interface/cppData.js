@@ -1,3 +1,5 @@
+var board = document.querySelector('#chessboard');
+
 var chessboard = document.querySelectorAll('#chessboard div');
 
 var chessboardColor = [];
@@ -9,6 +11,27 @@ chessboard.forEach(x => {
 
 var rightButton = document.querySelector('.right-button');
 var leftButton = document.querySelector('.left-button');
+
+
+
+/* Reverse Chessboard */
+
+//Non terminé
+var reverseChessboard = document.querySelector('.reverse');
+var lines = document.querySelectorAll('.ligne');
+var columns = document.querySelectorAll('.colonne');
+
+
+reverseChessboard.onclick = function(){
+
+    board.style.transform = 'rotate(180deg)';
+
+    chessboard.forEach(x => {
+        x.style.transform = 'rotate(180deg)';
+    });
+}
+/************************/
+
 
 /************************/
 /*   REQUETE CELLULES   */

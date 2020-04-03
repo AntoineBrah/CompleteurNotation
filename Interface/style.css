@@ -15,6 +15,23 @@ body{
     user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */ 
 }
 
+@font-face {
+    font-family: 'signika_negativeregular';
+    src: url('Signika_Negative/signikanegative-regular-webfont.woff2') format('woff2'),
+         url('Signika_Negative/signikanegative-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'signika_negativelight';
+    src: url('Signika_Negative/signikanegative-light-webfont.woff2') format('woff2'),
+         url('Signika_Negative/signikanegative-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 button, #chessboard{
     -webkit-app-region: no-drag;
 }
@@ -33,6 +50,7 @@ button, #chessboard{
     height: 800px;
     width: 800px;
     box-shadow: 0 0 11px rgba(0, 0, 0, 0.3);
+    /*transform: rotate(180deg);*/
 }
 
 #chessboard div{
@@ -129,4 +147,103 @@ button, #chessboard{
 
 #chess-console .buttons .left-button{
     margin-right: 1px;
+}
+
+.reverse-chessboard{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.reverse-chessboard .reverse{
+    margin: auto;
+    font-family: 'signika_negativeregular' , sans-serif;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    color: #4c4c4c;
+    cursor: pointer;
+    border-radius: 3px;
+    padding-top: 5px;
+    transition-duration: 0.4s;
+}
+
+.reverse-chessboard .reverse:hover{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.225);
+    background-color: #f3f3f3;
+    color: #3084d3;
+    transition-duration: 0.4s;
+}
+
+
+.reverse-chessboard .reverse span{
+    font-size: 2em;
+}
+
+#chess-console .game{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+    font-family: 'signika_negativeregular' , sans-serif;
+    font-size: 0.6em;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #4c4c4c;
+}
+
+#chess-console .game .initial-game, #chess-console .game .corrected-game{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#chess-console .game .initial-game .initial-game-header, #chess-console .game .corrected-game .corrected-game-header{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #d9d9d9;
+    background-color: #f7f6f5;
+}
+
+#chess-console .game .initial-game .initial-game-header, #chess-console .game .corrected-game .corrected-game-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chess-console .game .initial-game .initial-game-body, #chess-console .game .corrected-game .corrected-game-body{
+    flex: 1;
+    padding: 10px 10px 10px 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.print-initial-game, .print-corrected-game{
+    background-color: #ffffff;
+    outline: none;
+    margin-right: 10px;
+    height: 45%;
+    cursor: pointer;
+    border: 1px solid #d9d9d9;
+    transition-duration: 0.4s;
+}
+
+.print-initial-game:hover, .print-corrected-game:hover{
+    transition-duration: 0.4s;
+    background-color: #89b25b;
+    color: #ffffff;
+}
+
+#chess-console .game .initial-game{
+
+}
+
+#chess-console .game .corrected-game{
+
+}
+
+#chess-console .game .score{
+    border-top: 1px solid #d9d9d9;
+    background-color: #f7f6f5;
 }

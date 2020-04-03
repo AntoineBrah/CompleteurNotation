@@ -130,8 +130,6 @@ bool traitementCoups(lectureFichier* f){
                                 // Cas ou le déplacement d'une piece entraine le fait que le Roi Blanc n'est plus en échec
                                 // Dans cette situation tout se déroule comme quand le Roi n'est pas en échec
 
-                                //cout << endl << p->toString() << endl; /* AFFICHAGE */
-
                                 p->setPostion(deplacement); // on déplace la pièce
 
                                 // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
@@ -144,7 +142,7 @@ bool traitementCoups(lectureFichier* f){
 
                                 k=c;
 
-                                
+                                // On déplace juste la Tour (on a déplacé le Roi auparavant)
                                 /* Cas ou le Roi Blanc Roque */
                                 if(p->getNomString() == "Roi" && deplacement == "g1" && (Point(1,7)-convertPositionToPoint(getDernierCSP(p->getFirstCell())->getCPP()->getPositionCell())).getY() == 2){ // Petit Roque
                                     
@@ -423,7 +421,7 @@ bool traitementCoups(lectureFichier* f){
 
                             // S'il y a une promotion
                             if(p->getPosition().getLigne() == "1" && descNoir[4] != ""){
-                                cout << "--> Promotion du pion noir en " << descNoir[3] << endl << endl;
+                                cout << "--> Promotion du pion noir en " << descNoir[3] << endl;
                                 p->setNom(descNoir[4]);
                             } 
                             
