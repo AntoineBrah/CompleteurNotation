@@ -1,5 +1,7 @@
 #include "EcritureFichier.h"
 
+/*ok*/
+
 ecritureFichier::ecritureFichier(string s){
 
     const string path = "Interface/cellules.json";
