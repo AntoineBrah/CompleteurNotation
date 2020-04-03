@@ -8,6 +8,7 @@
 #include "Point.h"
 #include "Pion.h"
 
+extern string plateforme;
 
 int main(int argc, char* argv[]){
 
@@ -36,6 +37,8 @@ int main(int argc, char* argv[]){
 
         if(argc == 4)
             system((string("nodejs pgnTranslator.js ") + argv[2]).c_str()); // Traduction du fichier PGN
+
+        plateforme = argv[1]; // Permet de savoir dans quel dossier modifier le fichier Cellules.json
         
         lectureFichier File(argv[2]); // On ouvre le fichier txt en lecture
 

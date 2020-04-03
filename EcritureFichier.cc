@@ -1,8 +1,13 @@
 #include "EcritureFichier.h"
 
-/*ok*/
+string plateforme = "";
+
+string path_linux = "ChessCompletor-linux-x64/resources/app/cellules.json";
+string path_windows = "ChessCompletor-win-x64/resources/app/cellules.json";
+string path_macos = "ChessCompletor-darwin-x64/ChessCompletor.app/Contents/Resources/app/cellules.json";
 
 ecritureFichier::ecritureFichier(string s){
+
 
     const string path = "Interface/cellules.json";
     monFlux.open(path.c_str(), ios::app);

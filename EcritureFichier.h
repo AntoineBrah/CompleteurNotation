@@ -14,8 +14,6 @@ class ecritureFichier{
 
     public:
         ecritureFichier(string);
-
-
         ~ecritureFichier();
 
 };
