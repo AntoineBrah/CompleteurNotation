@@ -6,10 +6,9 @@ string path_linux = "ChessCompletor-linux-x64/resources/app/cellules.json";
 string path_windows = "ChessCompletor-win-x64/resources/app/cellules.json";
 string path_macos = "ChessCompletor-darwin-x64/ChessCompletor.app/Contents/Resources/app/cellules.json";
 
-ecritureFichier::ecritureFichier(string s){
 
+ecritureFichier::ecritureFichier(const string p, string s) : path(p){
 
-    const string path = "Interface/cellules.json";
     monFlux.open(path.c_str(), ios::app);
 
     // Si le flux est bien ouvert
@@ -22,13 +21,16 @@ ecritureFichier::ecritureFichier(string s){
 
 }
 
+string ecritureFichier::getPath() const{
+    return path;
+}
+
 ecritureFichier::~ecritureFichier(){
     monFlux.close();
 }
 
-void viderFichier(){
+void viderFichier(const string path){
 
-    const string path = "Interface/cellules.json";
     ofstream monFlux;
     monFlux.open(path.c_str());
 
@@ -36,9 +38,8 @@ void viderFichier(){
     monFlux.close();
 }
 
-void correctionSyntaxe(){
+void correctionSyntaxe(const string path){
 
-    const string path = "Interface/cellules.json";
     ifstream monFluxLecture;
     monFluxLecture.open(path.c_str());
 

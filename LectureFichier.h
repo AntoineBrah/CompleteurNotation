@@ -33,6 +33,8 @@ class lectureFichier{
 
         void traiterLigne();
 
+        ifstream* getFlux(); //Renvoi un pointeur vers le flux en lecture
+
         bool getEstCorrectementOuvert() const;
         string getCoupBlanc() const;
         string getCoupNoir() const;

@@ -12,7 +12,8 @@ extern string plateforme;
 
 int main(int argc, char* argv[]){
 
-    viderFichier();
+    viderFichier("Interface/cellulesIncorrectes.json");
+    viderFichier("Interface/cellules.json");
 
     bool estTraite = false;
 
@@ -40,16 +41,9 @@ int main(int argc, char* argv[]){
 
         plateforme = argv[1]; // Permet de savoir dans quel dossier modifier le fichier Cellules.json
         
-        lectureFichier File(argv[2]); // On ouvre le fichier txt en lecture
-
-        if(File.getEstCorrectementOuvert()){ // Si le fichier est correctement ouvert alors, on le traite
-            estTraite = traitementCoups(&File);
-        }
-
-
+        estTraite = traitementCoups(argv[2]);
     }
 
-    correctionSyntaxe();
 
     if(estTraite){
 

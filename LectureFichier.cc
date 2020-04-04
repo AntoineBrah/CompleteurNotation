@@ -66,6 +66,10 @@ void lectureFichier::traiterLigne(){
     }
 }
 
+ifstream* lectureFichier::getFlux(){
+    return &monFlux;
+}
+
 vector<string>& lectureFichier::getDescriptionCb(){
     return descriptionCb;
 }
@@ -109,6 +113,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(0,2)); // Déplacement
                     description.push_back(coup.substr(2,2)); // Promotion
                     description.push_back(coup.substr(4,1)); // echec
+                    description.push_back(""); // Mange une pièce
 
                 }
                 else{ // S'il n'y a pas échec ou mat
@@ -119,6 +124,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(0,2)); // Déplacement
                     description.push_back(coup.substr(2,2)); // Promotion
                     description.push_back(""); // echec
+                    description.push_back(""); // Mange une pièce
                 }
 
             }
@@ -134,6 +140,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(0,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(coup.substr(2,1)); // echec
+                    description.push_back(""); // Mange une pièce
 
                 }
                 else{ // S'il n'y a pas échec ou mat
@@ -144,6 +151,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(0,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(""); // echec
+                    description.push_back(""); // Mange une pièce
                     
                 }
 
@@ -165,6 +173,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(coup.substr(4,2)); // Promotion
                     description.push_back(coup.substr(6,1)); // echec
+                    description.push_back("x"); // Mange une pièce
 
                 }
                 else{ // S'il n'y a pas échec ou mat
@@ -175,6 +184,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(coup.substr(4,2)); // Promotion
                     description.push_back(""); // echec
+                    description.push_back("x"); // Mange une pièce
                 }
 
             }
@@ -190,6 +200,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(coup.substr(4,1)); // echec
+                    description.push_back("x"); // Mange une pièce
 
                 }
                 else{ // S'il n'y a pas échec ou mat
@@ -200,6 +211,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(""); // echec
+                    description.push_back("x"); // Mange une pièce
                     
                 }
 
@@ -255,6 +267,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(coup.substr(4,1)); // echec
+                    description.push_back(""); // Mange une pièce
                 }
                 else{ // S'il n'y a ni échec ni mat
                     description.push_back(typePiece); // Piece
@@ -263,6 +276,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(""); // echec
+                    description.push_back(""); // Mange une pièce
                 }
 
 
@@ -278,6 +292,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(coup.substr(4,1)); // echec
+                    description.push_back(""); // Mange une pièce
                 }
                 else{ // S'il n'y a ni échec ni mat
                     description.push_back(typePiece); // Piece
@@ -286,6 +301,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(""); // echec
+                    description.push_back(""); // Mange une pièce
                 }
 
             }
@@ -300,6 +316,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(1,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(coup.substr(3,1)); // echec
+                    description.push_back(""); // Mange une pièce
                 }
                 else{ // S'il n'y a pas échec ou mat 
                     description.push_back(typePiece); // Piece
@@ -308,6 +325,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(1,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(""); // echec
+                    description.push_back(""); // Mange une pièce
                 }
             }
 
@@ -329,6 +347,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(3,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(coup.substr(5,1)); // echec
+                    description.push_back("x"); // Mange une pièce
                 }
                 else{ // S'il n'y a ni échec ni mat
                     description.push_back(typePiece); // Piece
@@ -337,6 +356,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(3,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(""); // echec
+                    description.push_back("x"); // Mange une pièce
                 }
 
 
@@ -352,6 +372,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(3,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(coup.substr(5,1)); // echec
+                    description.push_back("x"); // Mange une pièce
                 }
                 else{ // S'il n'y a ni échec ni mat
                     description.push_back(typePiece); // Piece
@@ -360,6 +381,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(3,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(""); // echec
+                    description.push_back("x"); // Mange une pièce
                 }
 
             }
@@ -374,6 +396,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(coup.substr(4,1)); // echec
+                    description.push_back("x"); // Mange une pièce
                 }
                 else{ // S'il n'y a pas échec ou mat 
                     description.push_back(typePiece); // Piece
@@ -382,6 +405,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                     description.push_back(coup.substr(2,2)); // Déplacement
                     description.push_back(""); // Promotion
                     description.push_back(""); // echec
+                    description.push_back("x"); // Mange une pièce
                 }
             }
 
@@ -403,6 +427,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                 description.push_back("g1"); // Déplacement
                 description.push_back(""); // Promotion
                 description.push_back(""); // echec
+                description.push_back(""); // Mange une pièce
             }
             else if(regex_match(coup, grandRoque)){
                 description.push_back("Roi"); // Piece
@@ -411,6 +436,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                 description.push_back("c1"); // Déplacement
                 description.push_back(""); // Promotion
                 description.push_back(""); // echec
+                description.push_back(""); // Mange une pièce
             }
         }
         else if(couleurPiece == "Noir"){
@@ -422,6 +448,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                 description.push_back("g8"); // Déplacement
                 description.push_back(""); // Promotion
                 description.push_back(""); // echec
+                description.push_back(""); // Mange une pièce
             }
             else if(regex_match(coup, grandRoque)){
                 description.push_back("Roi"); // Piece
@@ -430,6 +457,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
                 description.push_back("c8"); // Déplacement
                 description.push_back(""); // Promotion
                 description.push_back(""); // echec
+                description.push_back(""); // Mange une pièce
             }
         }
         

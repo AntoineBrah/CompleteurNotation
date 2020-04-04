@@ -11,14 +11,16 @@ class ecritureFichier{
 
     private:
         ofstream monFlux;
+        string path; // Chemin du fichier
 
     public:
-        ecritureFichier(string);
+        ecritureFichier(const string p, string contenu);
+        string getPath() const;
         ~ecritureFichier();
 
 };
 
-void viderFichier();
-void correctionSyntaxe();
+void viderFichier(const string);
+void correctionSyntaxe(const string);
 
 #endif
