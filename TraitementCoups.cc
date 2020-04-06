@@ -477,7 +477,6 @@ bool traitementCoups(string path){
 /******************************/
 
 
-
 bool analyseCoups(string path){
 
     cout << "[*] Début de l'analyse des coups...\n" << endl;

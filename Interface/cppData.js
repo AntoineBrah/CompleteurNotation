@@ -141,6 +141,9 @@ requete.onload = function(){
                     break;
             }
         }
+
+
+
         
     }
 }
@@ -275,7 +278,6 @@ var deplacerPieceArriere = (piece) => {
 
     // Position précédente
     var cellPrec = getCase(getCPP(piece).position);
-    console.log(getCPP(piece));
     cellPrec.setAttribute('currentcell', getCPP(piece).adr);
     cellPrec.style.backgroundImage = 'url(images/pieces/' + getCPP(piece).couleur + '/' + getCPP(piece).piece + '.svg)';
 } 
@@ -368,3 +370,25 @@ function removeColorCase(){
         chessboard[i].style.backgroundColor = chessboardColor[i];
     }
 }
+
+
+/********************************/
+/*   AFFICHAGE PARTIE INITIALE  */
+/********************************/
+/*
+function printPartieInitiale(){
+
+    var file = require('fs');
+
+    file.readFile = function(err, buf){
+
+        let fileContent = buf.toString();
+
+        fileContent = fileContent.split("\n");
+        fileContent = fileContent.join(' ');
+
+        console.log(fileContent);
+    }
+
+}
+*/
