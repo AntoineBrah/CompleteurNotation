@@ -11,7 +11,7 @@
 
 bool analyseCoups(string path); // Analyse la partie (celle qui contient les erreurs)
 bool traitementCoups(string path); // Corrige la partie
-void seFaitMangerPiece(string pos);
+void seFaitMangerPiece(Piece*);
 void annulationSeFaitMangerPiece(Piece*,Position);
 
 #endif
