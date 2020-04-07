@@ -92,7 +92,7 @@ void detecterCoup(string &coup, vector<string> &description, string couleurPiece
     regex piece("[RDFCT]{1}[a-h1-8]?x?[a-h]{1}[1-8]{1}[+#]?"); // regex pour une piece
     regex roque("O-O(-O)?"); // regex pour le roque
 
-    if(regex_match(coup, pion)){
+    if(regex_match(coup, pion) && !regex_match(coup, regex("x{1}[a-h]{1}[1-8]{1}(=[DFCT])?[+#]?")) && !regex_match(coup, regex("[a-h]{1}[a-h]{1}[1-8]{1}(=[DFCT])?[+#]?"))){
         
         regex deplacementPion("[a-h]{1}[1-8]{1}(=[DFCT])?[+#]?");
         regex mangePion("[a-h]{1}x{1}[a-h]{1}[1-8]{1}(=[DFCT])?[+#]?");

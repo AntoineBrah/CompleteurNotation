@@ -5,8 +5,26 @@
 */
 void deplacementPiece(Piece* p, Cellule* &k, string coup, string couleur, vector<string> &descCoup, int nbCoup){
 
+    if(descCoup[0] != "Pion" && couleur == "Blanc" && nbCoup == 1){
 
-    if(descCoup[0] != "Pion" && couleur == "Blanc"){
+        Cellule *dernierCSP = getDernierCSP(p->getFirstCell());
+
+        // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
+        p->setPostion(descCoup[3]); // on déplace la pièce
+
+        // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
+        Cellule *c = new Cellule(p);
+        c->copieListeCoupsPossibles(dernierCSP);
+
+        dernierCSP->setCSP(c);
+        dernierCSP->setCSE(c);
+        c->setCPP(dernierCSP);
+
+        k=c;
+
+        updateListeCoupsPossiblesAll(true); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+    }
+    else if(descCoup[0] != "Pion" && couleur == "Blanc"){
 
         Cellule *dernierCSP = getDernierCSP(p->getFirstCell());
 
@@ -90,6 +108,24 @@ void deplacementPiece(Piece* p, Cellule* &k, string coup, string couleur, vector
             updateListeCoupsPossiblesAll(true); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
         }
     }
+    else if(descCoup[0] == "Pion" && couleur == "Blanc" && nbCoup == 1){
+
+        Cellule *dernierCSP = getDernierCSP(p->getFirstCell());
+
+        // On récupère la première pièce possèdant cette position dans sa liste des coups possibles
+        p->setPostion(descCoup[3]); // on déplace la pièce
+
+        // On créé une nouvelle cellule contenant la pièce avec les nouvelles positions
+        Cellule *c = new Cellule(p);
+        c->copieListeCoupsPossibles(dernierCSP);
+
+        dernierCSP->setCSP(c);
+        dernierCSP->setCSE(c);
+        c->setCPP(dernierCSP);
+    
+        k=c;
+        updateListeCoupsPossiblesAll(true); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièces
+    }
     else if(descCoup[0] == "Pion" && couleur == "Blanc"){
 
         Cellule *dernierCSP = getDernierCSP(p->getFirstCell());
@@ -171,6 +207,7 @@ void deplacementPiece(Piece* p, Cellule* &k, string coup, string couleur, vector
         }
     }
     else if(descCoup[0] != "Pion" && couleur == "Noir"){
+
         Cellule *dernierCSP = getDernierCSP(p->getFirstCell());
 
         Position pos = Position(descCoup[3]); // On stock la position initiale de la pièce
@@ -266,6 +303,7 @@ void deplacementPiece(Piece* p, Cellule* &k, string coup, string couleur, vector
             p2 = existePieceSurPosition(descCoup[3]);
             seFaitMangerPiece(p2); // Si une pièce est présente sur la position du déplacement, alors elle se fait manger
 
+            descCoup[1] = p->getPosition().getColonne(); // On précise de quelle colonne il s'agit
             descCoup[6] = "x"; // On rajoute le "x" étant donné qu'une pièce se fait manger
         }
         else if(existePieceSurPosition(convertPointToPosition(convertPositionToPoint(descCoup[3])+Point(1,0))) && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(descCoup[3])+Point(1,0)))->getCouleur() == "Blanc" && existePieceSurPosition(convertPointToPosition(convertPositionToPoint(descCoup[3])+Point(1,0)))->getNomString() == "Pion"){
@@ -292,13 +330,13 @@ void deplacementPiece(Piece* p, Cellule* &k, string coup, string couleur, vector
                 if(!prendEnPassant){
                     annulationSeFaitMangerPiece(p2, descCoup[3]);
 
-                    descCoup[1] = "" // On enlève la précision de la colonne
+                    descCoup[1] = ""; // On enlève la précision de la colonne
                     descCoup[6] = ""; // On enlève le "x"
                 }
                 else{
                     annulationSeFaitMangerPiece(p2, convertPointToPosition(convertPositionToPoint(descCoup[3])+Point(1,0)));
                     
-                    descCoup[1] = "" // On enlève la précision de la colonne
+                    descCoup[1] = ""; // On enlève la précision de la colonne
                     descCoup[6] = ""; // On enlève le "x"
                 }
             }
@@ -330,26 +368,53 @@ void deplacementPiece(Piece* p, Cellule* &k, string coup, string couleur, vector
             k=c;
             updateListeCoupsPossiblesAll(true); // Vu qu'on déplace une piece, on met à jour la liste des coups possibles de toutes les pièce
         }
-
     }
-
-
-
 }
 
-void verificationDeplacementPionNiveau1(Cellule* &k, string coup, string couleur, vector<string> &descCoup, int nbCoup){
+
+/*
+*   verificationDeplacementPiece a pour but de corriger les erreurs de notations avec déplacement correcte, 
+*   ex : exf5 et le joueur note seulement f5
+*   ex : C3xf5 et le joueur note seulement Cf5
+*
+*   Ça fonctionne pour le moment pour les Pions (rajoute le "x" s'il mange + précise la colonne), ça rajoute le "x" pour les pièces également.
+*   Néanmoins c'est toujours pas fonctionnel dans le cas plus compliqué ou 2 pièces peuvent se déplacer au même endroit et que l'on doit déterminer de quelle pièce il s'agit...
+*   
+*/
+
+void verificationDeplacementPiece(Cellule* &k, string coup, string couleur, vector<string> &descCoup, int nbCoup){
 
     // k correspond au pointeur CSE qui permet de définir la liste chainée des Coups Suivants Échiquier (passage de pointeur par référence)
 
     vector<string> descCoupCorrection;
 
-    descCoupCorrection[0] = descCoup[0]; // Piece
-    descCoupCorrection[1] = descCoup[1]; // Colonne
-    descCoupCorrection[2] = descCoup[2]; // Ligne
-    descCoupCorrection[3] = descCoup[3]; // Deplacement
-    descCoupCorrection[4] = descCoup[4]; // Promotion
-    descCoupCorrection[5] = descCoup[5]; // Echec
-    descCoupCorrection[6] = descCoup[6]; // Mange une pièce
+    string typePiece = "";
+
+    if(descCoup[0] == "Pion")
+        typePiece = "";
+    else if(descCoup[0] == "Roi")
+        typePiece = "R";
+    else if(descCoup[0] == "Dame")
+        typePiece = "D";
+    else if(descCoup[0] == "Fou")
+        typePiece = "F";
+    else if(descCoup[0] == "Cavalier")
+        typePiece = "C";
+    else if(descCoup[0] == "Tour")
+        typePiece = "T";
+
+    separator();
+    separator();
+    cout << "Le coup joué est : " << coup << endl;
+
+    descCoupCorrection.push_back(descCoup[0]); // Piece
+    descCoupCorrection.push_back(descCoup[1]); // Colonne
+    descCoupCorrection.push_back(descCoup[2]); // Ligne
+    descCoupCorrection.push_back(descCoup[3]); // Deplacement
+    descCoupCorrection.push_back(descCoup[4]); // Promotion
+    descCoupCorrection.push_back(descCoup[5]); // Echec
+    descCoupCorrection.push_back(descCoup[6]); // Mange une pièce
+
 
     vector<Piece*> piecesDeplacables;
 
@@ -360,12 +425,14 @@ void verificationDeplacementPionNiveau1(Cellule* &k, string coup, string couleur
     }
 
     if(piecesDeplacables.size() == 1){ // Si une seule pièce peut se déplacer sur la position donnée, on la déplace
-        deplacementPiece(piecesDeplacables[0], k, coup, couleur, descCoup, nbCoup);
+        deplacementPiece(piecesDeplacables[0], k, coup, couleur, descCoupCorrection, nbCoup);
     }
 
-    piecesDeplacables.clear(); // On vide le vector
+    cout << "Après correction le coup est : " << typePiece + descCoupCorrection[1] + descCoupCorrection[2] + descCoupCorrection[6] + descCoupCorrection[3] + descCoupCorrection[4] + descCoupCorrection[5] << endl;
+    separator();
+    separator();
+    cout << endl;
 
-
-
+    descCoupCorrection.clear();
 
 }

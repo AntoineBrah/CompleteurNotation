@@ -6,6 +6,7 @@
 #include "LectureFichier.h"
 #include "Piece.h"
 #include "Cellule.h"
+#include "GestionErreurs.h"
 #include <iostream>
 
 
