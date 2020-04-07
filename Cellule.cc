@@ -1,7 +1,8 @@
 #include "Cellule.h"
 
-Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CPP(NULL), CSE(NULL), type(p->getNom()), pos(p->getPositionString()){
+unsigned int Cellule::nbErreur = 0; // On initialise l'attribut de classe à 0
 
+Cellule::Cellule(Piece* p) : piece(p), CSP(NULL), CPP(NULL), CSE(NULL), type(p->getNom()), pos(p->getPositionString()), certitude(Vrai){
     listeCellule.push_back(this);
 }
 
@@ -71,6 +72,23 @@ string Cellule::getTypePiece() const{
 			return "Erreur";
 			break;
 	}
+}
+
+string Cellule::getVeracite() const{
+    switch(certitude){
+        case Vrai:
+            return "Vrai";
+            break;
+        case Incertain:
+            return "Incertain";
+            break;
+        case Faux:
+            return "Faux";
+            break;
+        default:
+            return "NULL"; // Ça n'arrive jamais
+            break;
+    }
 }
 
 string Cellule::toString() const{
@@ -147,6 +165,10 @@ void Cellule::setCPP(Cellule *c){
 
 void Cellule::setCSE(Cellule *c){
     CSE=c;
+}
+
+void Cellule::setVeracite(const Veracite c){
+    certitude = c;
 }
 
 Cellule::~Cellule(){

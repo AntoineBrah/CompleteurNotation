@@ -15,6 +15,12 @@ using namespace std;
 *   créer une nouvelle cellule possèdant les nouvelles positions de la pièce.
 */
 
+enum Veracite{
+    Vrai = 1,
+    Incertain = 0,
+    Faux = -1
+};
+
 class Cellule{
 
     private:
@@ -25,11 +31,15 @@ class Cellule{
 
         vector<vector<Position> > listeCoupsPossibles;
 
+        const type::Nom type; // Contient le type de la pièce vers laquelle pointe la cellule (utile pour la promotion des pions)
+        const Position pos; // Position de la cellule (cad de la pièce à un moment donné)
+
+        Veracite certitude; // Certitude que l'on a sur la véracité de la cellule
+
     public:
         Cellule(Piece*);
 
-        const type::Nom type; // Contient le type de la pièce vers laquelle pointe la cellule (utile pour la promotion des pions)
-        const Position pos; // Position de la cellule (cad de la pièce à un moment donné)
+        static unsigned int nbErreur; // Nombre de cellules ayant val(certitude) = Faux
 
         Piece* getPiece();
         Cellule* getCSP() const;
@@ -45,6 +55,7 @@ class Cellule{
         Position getPositionCell() const;
         string getPosition() const; // Renvoi la position courante de la pièce sous la forme d'une string
         string getTypePiece() const;
+        string getVeracite() const;
         
         string toString() const;
 
@@ -54,6 +65,7 @@ class Cellule{
         void setCSP(Cellule*);
         void setCPP(Cellule*);
         void setCSE(Cellule*);
+        void setVeracite(const Veracite);
 
         ~Cellule();
 
