@@ -36,6 +36,7 @@ class lectureFichier{
         ifstream* getFlux(); //Renvoi un pointeur vers le flux en lecture
 
         bool getEstCorrectementOuvert() const;
+        string getLigne() const;
         string getCoupBlanc() const;
         string getCoupNoir() const;
 

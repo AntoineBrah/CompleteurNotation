@@ -28,6 +28,7 @@ class Cellule{
         Cellule *CSP; // Coup suivant pièce
         Cellule *CPP; // Coup précédent pièce
         Cellule *CSE; // Coup suivant échiquier  
+        Cellule *CPE; // Coup précédent échiquier
 
         vector<vector<Position> > listeCoupsPossibles;
 
@@ -37,6 +38,7 @@ class Cellule{
         Veracite certitude; // Certitude que l'on a sur la véracité de la cellule
 
     public:
+        Cellule();
         Cellule(Piece*);
 
         static unsigned int nbErreur; // Nombre de cellules ayant val(certitude) = Faux
@@ -45,6 +47,7 @@ class Cellule{
         Cellule* getCSP() const;
         Cellule* getCPP() const;
         Cellule* getCSE() const;
+        Cellule* getCPE() const;
 
         void updateListeCoupsPossibles();
 
@@ -65,6 +68,7 @@ class Cellule{
         void setCSP(Cellule*);
         void setCPP(Cellule*);
         void setCSE(Cellule*);
+        void setCPE(Cellule*);
         void setVeracite(const Veracite);
 
         ~Cellule();
@@ -73,7 +77,7 @@ class Cellule{
 
 // variable globale restreinte au fichier uniquement
 // cette liste nous permettra d'obtenir des informations sur toutes
-// les cellules du jeu qui sont instanciés
+// les cellules du jeu qui sont instanciées
 static vector<Cellule*> listeCellule;
 
 // renvoi un pointeur vers le vector listeCellule
@@ -85,5 +89,14 @@ Cellule* getDernierCSP(Cellule*);
 
 // Renvoi un pointeur contenant la cellule de la dernière pièce ayant été déplacé
 Cellule* getDernierCSE();
+
+// Renvoi un pointeur contenant la cellule de la première pièce qui s'est déplacé
+Cellule* getPremierCSE();
+
+// Renvoi le nombre de cellule de la chaine CSE depuis l'initialisation
+int getStructSize();
+
+// Permet de faire revenir la structure nbDeCSE fois en arrière
+void backtrackStruct(int nbDeCSE);
 
 #endif

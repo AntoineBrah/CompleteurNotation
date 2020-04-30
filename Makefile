@@ -1,22 +1,22 @@
 CXX=g++
 CXX_FLAGS= -ansi -Wall -std=c++11 -pedantic -g
-SOURCE= Piece.cc Tour.cc Cavalier.cc Fou.cc Dame.cc Roi.cc Pion.cc Cellule.cc Position.cc Point.cc LectureFichier.cc EcritureFichier.cc Initialisation.cc TraitementCoups.cc GestionErreurs.cc Main.cc
+SOURCE= Piece.cpp Tour.cpp Cavalier.cpp Fou.cpp Dame.cpp Roi.cpp Pion.cpp Cellule.cpp Position.cpp Point.cpp LectureFichier.cpp EcritureFichier.cpp Initialisation.cpp TraitementCoups.cpp GestionErreurs.cpp main.cpp
 PROG=chess
 MSG_OK = @ echo "\t\t\t........................OK"
 
-.SUFFIXES : .cc .h .o
+.SUFFIXES : .cpp .h .o
 
 all : $(PROG)
 
-.cc.o :
+.cpp.o :
 	$(CXX) -c $(CXX_FLAGS) $<
 	$(MSG_OK)
 
-$(PROG) : $(SOURCE:.cc=.o)
+$(PROG) : $(SOURCE:.cpp=.o)
 	$(CXX) $^ $(CXX_FLAGS) -o $(PROG)
 	$(MSG_OK)
 clear :
-	rm $(SOURCE:.cc=.o)
+	rm $(SOURCE:.cpp=.o)
 
 
 
